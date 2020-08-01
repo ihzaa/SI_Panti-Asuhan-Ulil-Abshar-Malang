@@ -10927,13 +10927,13 @@ a {
     -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;
     transition: .3s all ease;
-    color: var(--teal);
+    color: #0028ff;
 }
 
 a:hover,
 a:focus {
     text-decoration: none;
-    color: var(--teal);
+    color: #0028ff;
     outline: none !important;
 }
 
@@ -12418,7 +12418,7 @@ textarea.form-control {
 }
 
 .blog-entry .meta>div a span {
-    color: var(--teal);
+    color: #0028ff;
 }
 
 .blog-entry .topp {
@@ -12438,7 +12438,7 @@ textarea.form-control {
 .blog-entry span.day {
     font-size: 50px;
     font-weight: 300;
-    color: var(--teal);
+    color: #0028ff;
     line-height: 1;
 }
 
@@ -12503,7 +12503,7 @@ textarea.form-control {
 
 .block-27 ul li.active a,
 .block-27 ul li.active span {
-    background: var(--teal);
+    background: #0028ff;
     color: #fff;
     border: 1px solid transparent;
 }
@@ -12573,13 +12573,13 @@ textarea.form-control {
 }
 
 .block-21 .text .heading-1 a {
-    color: var(--teal);
+    color: #000000;
 }
 
 .block-21 .text .heading-1 a:hover,
 .block-21 .text .heading-1 a:active,
 .block-21 .text .heading-1 a:focus {
-    color: var(--teal);
+    color: #0028ff;
 }
 
 .block-21 .text .meta>div {
