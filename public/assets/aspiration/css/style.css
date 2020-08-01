@@ -2745,42 +2745,42 @@ fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: var(--teal);
+    border: 1px solid var(--teal);
 }
 
 .btn-primary:hover {
-    color: #fff;
-    background-color: #0069d9;
-    border-color: #0062cc;
+    color: var(--teal);
+    background-color: #fff;
+    border-color: var(--teal) !important;
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
-    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(32, 201, 151, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(32, 201, 151, 0.5);
 }
 
 .btn-primary.disabled,
 .btn-primary:disabled {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #1eb98b;
+    border-color: #1eb98b;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show>.btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #0062cc;
-    border-color: #005cbf;
+    background-color: var(--teal);
+    border-color: var(--teal);
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show>.btn-primary.dropdown-toggle:focus {
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
-    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(32, 201, 151, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(32, 201, 151, 0.5);
 }
 
 .btn-secondary {
@@ -10927,13 +10927,13 @@ a {
     -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;
     transition: .3s all ease;
-    color: #0028ff;
+    color: var(--teal);
 }
 
 a:hover,
 a:focus {
     text-decoration: none;
-    color: #0028ff;
+    color: var(--teal);
     outline: none !important;
 }
 
@@ -12418,7 +12418,7 @@ textarea.form-control {
 }
 
 .blog-entry .meta>div a span {
-    color: #0028ff;
+    color: var(--teal);
 }
 
 .blog-entry .topp {
@@ -12438,7 +12438,7 @@ textarea.form-control {
 .blog-entry span.day {
     font-size: 50px;
     font-weight: 300;
-    color: #0028ff;
+    color: var(--teal);
     line-height: 1;
 }
 
@@ -12503,7 +12503,7 @@ textarea.form-control {
 
 .block-27 ul li.active a,
 .block-27 ul li.active span {
-    background: #0028ff;
+    background: var(--teal);
     color: #fff;
     border: 1px solid transparent;
 }
@@ -12579,7 +12579,7 @@ textarea.form-control {
 .block-21 .text .heading-1 a:hover,
 .block-21 .text .heading-1 a:active,
 .block-21 .text .heading-1 a:focus {
-    color: #0028ff;
+    color: var(--teal);
 }
 
 .block-21 .text .meta>div {
