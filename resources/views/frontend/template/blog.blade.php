@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>{{config('app.name')}} | Blog</title>
+    <title>{{config('app.name')}} | @yield('judul_halaman')</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -52,87 +52,7 @@
     </nav>
     <!-- END nav -->
 
-    <section class="hero-wrap hero-wrap-2 js-fullheight"
-        style="background-image: url({{asset('aspiration/images/bg_2.jpg')}});" data-stellar-background-ratio="0.5">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-                <div class="col-md-9 ftco-animate pb-5 text-center">
-                    <h2 class="mb-3 bread">Blog</h2>
-                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
-                                    class="ion-ios-arrow-forward"></i></a></span> <span>Blog <i
-                                class="ion-ios-arrow-forward"></i></span></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="ftco-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 ftco-animate">
-                    <div class="row">
-                        @foreach($data['blogs'] as $d)
-                        <div class="col-md-12 d-flex ftco-animate">
-                            <div class="blog-entry align-self-stretch d-md-flex">
-                                <a href="blog-single.html" class="block-20"
-                                    style="background-image: url('assets/aspiration/images/image_1.jpg');">
-                                </a>
-                                <div class="text d-block pl-md-4">
-                                    <div class="meta mb-3">
-                                        <div><a
-                                                href="#">{{\Carbon\Carbon::parse($d->created_at)->formatLocalized("%A, %d %B %Y") }}</a>
-                                        </div>
-                                        <div><a href="#">- {{$d->users->name}}</a></div>
-                                    </div>
-                                    <h3 class="heading"><a href="#">{{$d->judul}}</a></h3>
-                                    <p>{{preg_replace('/<[^>]*>/', '', substr($d->konten,0,150))}}</p>
-                                    <p><a href="blog-single.html" class="btn btn-primary py-2 px-3">Read more</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                        {{ $data['blogs']->links() }}
-                    </div>
-                </div> <!-- .col-md-8 -->
-                <div class="col-lg-4 sidebar ftco-animate">
-                    <div class="sidebar-box">
-                        <form action="#" class="search-form">
-                            <div class="form-group">
-                                <span class="icon ion-ios-search"></span>
-                                <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="sidebar-box ftco-animate">
-                        <h3 class="heading-2">Categories</h3>
-                        <ul class="categories">
-                            @foreach ( $data['kategoris'] as $d)
-                            <li><a href="#">{{$d->nama}}
-                                    @if($d->blog_count != 0)
-                                    <span>({{$d->blog_count}})</span>
-                                    @endif
-                                </a></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="sidebar-box ftco-animate">
-                        <h3 class="heading-2">Tag Cloud</h3>
-                        <div class="tagcloud">
-                            <a href="#" class="tag-cloud-link">donate</a>
-                            <a href="#" class="tag-cloud-link">charity</a>
-                            <a href="#" class="tag-cloud-link">non-profit</a>
-                            <a href="#" class="tag-cloud-link">organization</a>
-                            <a href="#" class="tag-cloud-link">child</a>
-                            <a href="#" class="tag-cloud-link">abuse</a>
-                            <a href="#" class="tag-cloud-link">help</a>
-                            <a href="#" class="tag-cloud-link">volunteer</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> <!-- .section -->
+    @yield('konten')
 
     <footer class="ftco-footer ftco-section img" style="background-image: url(images/footer.jpg);">
         <div class="overlay"></div>

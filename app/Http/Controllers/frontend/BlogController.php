@@ -14,6 +14,14 @@ class BlogController extends Controller
         $data['blogs'] = blog::with('users:id,name')->orderBy('id', 'DESC')->paginate(5);
         $data['kategoris'] = kategori::withCount(['blog'])->orderBy('nama')->get();
         // return $data;
-        return view('frontend.pages.blog', compact('data'));
+        return view('frontend.pages.Blog.blog', compact('data'));
+    }
+
+    public function single_blog($id)
+    {
+        $data = array();
+        $data['kategoris'] = kategori::withCount(['blog'])->orderBy('nama')->get();
+        $data['blog'] = blog::find($id);
+        return view('frontend.pages.Blog.single-blog', compact('data'));
     }
 }

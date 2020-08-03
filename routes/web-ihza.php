@@ -7,3 +7,4 @@ Route::get('/admin', function () {
 })->name('admin_dashboard');
 
 Route::get('/blog', 'frontend\BlogController@index')->name('frontend_blog_index');
+Route::get('/blog/{id}', 'frontend\BlogController@single_blog')->name('frontend_single_blog');
