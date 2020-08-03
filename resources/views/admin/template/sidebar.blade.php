@@ -61,7 +61,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('admin_pages_blog_index')}}"
-                                class="nav-link {{request()->is('*adm1n/pages/blog*') ? '': ''}}">
+                                class="nav-link {{request()->is('*adm1n/pages/blog*') ? 'active': ''}}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Blog</p>
                             </a>
