@@ -20,4 +20,6 @@ Route::prefix('adm1n')->middleware('auth:admin')->group(function () {
         return view('admin.pages.dashboard');
     })->name('admin_dashboard');
 
+    Route::get('pages/blog', 'Admin\BlogController@index')->name('admin_pages_blog_index');
+    Route::get('pages/blog/delete/{id}', 'Admin\BlogController@hapus')->name('admin_hapus_blog');
 });

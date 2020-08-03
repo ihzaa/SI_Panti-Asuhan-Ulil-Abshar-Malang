@@ -18,6 +18,7 @@ class CreateBlogsTable extends Migration
             $table->string('judul');
             $table->text('sampul_foto');
             $table->longText('konten');
+            $table->integer('jumlah_dibaca')->default(0);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -35,7 +35,7 @@
                                             href="{{route('frontend_single_blog',['id'=>$d->id])}}">{{\Carbon\Carbon::parse($d->created_at)->formatLocalized("%A, %d %B %Y") }}</a>
                                     </div>
                                     <div><a href="{{route('frontend_single_blog',['id'=>$d->id])}}">-
-                                            {{$d->users->name}}</a></div>
+                                            {{$d->users->nama}}</a></div>
                                 </div>
                                 <h3 class="heading"><a
                                         href="{{route('frontend_single_blog',['id'=>$d->id])}}">{{$d->judul}}</a>
