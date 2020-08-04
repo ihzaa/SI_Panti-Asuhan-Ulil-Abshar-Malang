@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Frontend\blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -20,5 +21,11 @@ class BlogController extends Controller
         blog::find($id)->delete();
         return response()->json(['OK' => 200]);
         // return back()->with('icon', 'success')->with('title', 'Berhasil')->with('text', 'Berhasil menghapus postingan blog.');
+    }
+
+    public function tampilHalamanTambah()
+    {
+        $data = array();
+        return view('admin.pages.Blog.tambah-edit', compact('data'));
     }
 }

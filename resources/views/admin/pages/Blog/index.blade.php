@@ -20,7 +20,8 @@
             <div class="card" id="card_tabel">
                 <div class="card-header d-flex">
                     <h3 class="card-title my-auto">Daftar Postingan Blog</h3>
-                    <button class="btn btn-primary btn-sm ml-auto"><i class="fas fa-plus"></i> Tambah Postingan</button>
+                    <a class="btn btn-primary btn-sm ml-auto" href="{{route('admin_tampil_halaman_tambah_blog')}}"><i
+                            class="fas fa-plus"></i> Tambah Postingan</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

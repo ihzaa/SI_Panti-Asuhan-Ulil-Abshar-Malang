@@ -7,6 +7,7 @@ use App\Models\role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminLoginController extends Controller
 {
@@ -23,9 +24,14 @@ class AdminLoginController extends Controller
         ]);
         $user = User::where('username', $request->username)->first();
         if ($user != []) {
-            $role = role::find($user->role_id);
-            Auth::guard($role->nama)->loginUsingId($user->id);
-            return redirect(route('admin_dashboard'));
+            if (Hash::check($request->password, $user->password)) {
+                $role = role::find($user->role_id);
+                $remember = $request->has('remember') ? true : false;
+                Auth::guard($role->nama)->loginUsingId($user->id, $remember);
+                return redirect(route('admin_dashboard'));
+            } else {
+                return back()->with('icon', 'error')->with('title', 'Maaf')->with('text', 'username atau password salah!');
+            }
         } else {
             return back()->with('icon', 'error')->with('title', 'Maaf')->with('text', 'username atau password salah!');
         }
