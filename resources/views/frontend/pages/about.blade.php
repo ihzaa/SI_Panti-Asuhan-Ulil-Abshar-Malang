@@ -8,8 +8,8 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
           <div class="col-md-9 ftco-animate pb-5 text-center">
-            <h2 class="mb-3 bread">About Us</h2>
-            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>About us <i class="ion-ios-arrow-forward"></i></span></p>
+            <h2 class="mb-3 bread">Tentang kami</h2>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Beranda <i class="ion-ios-arrow-forward"></i></a></span> <span>Tentang kami <i class="ion-ios-arrow-forward"></i></span></p>
           </div>
         </div>
       </div>
@@ -29,8 +29,9 @@
 			          	<span class="subheading">Pesantren Panti Asuhan Putra Muhammadiyah Ulil Abshar</span>
 			            <h2 class="mb-4">Sejarah</h2>
 			            <!-- <h2 class="mb-4">We Voluntary Help for Almost <span class="number" data-number="100">0</span> Years</h2> -->
-			            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-			            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+                  @foreach($data as $d)
+			            <p>{{ $d->history_info }}</p>
+                  
 			          </div>
 			        </div>
 		        </div>
@@ -45,13 +46,14 @@
     			<div class="col-md-4 py-4 py-md-5 ftco-animate">
     				<div class="py-md-4 pb-md-5">
 	    				<h3>Misi</h3>
-	    				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+	    				<p>{{ $d->mission_info }}</p>
     				</div>
     			</div>
     			<div class="col-md-4 py-4 py-md-5 ftco-animate">
     				<div class="py-md-4 pb-md-5">
 	    				<h3>Visi</h3>
-	    				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+	    				<p>{{ $d->vission_info }}</p>
+              @endforeach
     				</div>
     			</div>
     			<div class="col-md-4 py-4 py-md-5 img" style="background-image: url({{ asset('aspiration/images/logo.jpg') }});background-size: 220px 320px;"></div>
