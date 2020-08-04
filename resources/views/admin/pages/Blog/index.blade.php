@@ -172,8 +172,8 @@
 <script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <script src="{{asset('js/sweetalert2.all.min.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{asset('js/vue.min.js')}}"></script>
+<script src="{{asset('js/axios.min.js')}}"></script>
 <script>
     $(document).ready(function () {
         let vue = new Vue({
