@@ -28,14 +28,14 @@
                     $d = $data['blog']->konten;
                     echo "<p>$d</p>";
                 ?>
-                <div class="tag-widget post-tag-container mb-5 mt-5">
+                {{-- <div class="tag-widget post-tag-container mb-5 mt-5">
                     <div class="tagcloud">
                         <a href="#" class="tag-cloud-link">child</a>
                         <a href="#" class="tag-cloud-link">help</a>
                         <a href="#" class="tag-cloud-link">give</a>
                         <a href="#" class="tag-cloud-link">charity</a>
                     </div>
-                </div>
+                </div> --}}
 
                 {{-- <div class="about-author d-flex p-4 bg-light">
                     <div class="bio mr-5">
@@ -181,7 +181,7 @@
             <div class="col-lg-4 sidebar ftco-animate">
                 @include('frontend.pages.Blog.Components.searchBar')
                 @include('frontend.pages.Blog.Components.categoris')
-                @include('frontend.pages.Blog.Components.tags')
+                {{-- @include('frontend.pages.Blog.Components.tags') --}}
 
             </div>
 

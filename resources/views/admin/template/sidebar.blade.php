@@ -25,7 +25,7 @@
                 <!-- Add icons to the links using the .nav-icon class
        with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{route('admin_dashboard')}}" class="nav-link {{request()->is('admin') ? "active":""}}">
+                    <a href="{{route('admin_dashboard')}}" class="nav-link {{request()->is('adm1n') ? "active":""}}">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             Dashboard

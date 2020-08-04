@@ -22,6 +22,8 @@ Route::prefix('adm1n')->middleware('auth:admin')->group(function () {
 
     Route::get('pages/blog', 'Admin\BlogController@index')->name('admin_pages_blog_index');
     Route::get('pages/blog/delete/{id}', 'Admin\BlogController@hapus')->name('admin_hapus_blog');
-    Route::get('pages/blog/tambah','Admin\BlogController@tampilHalamanTambah')->name('admin_tampil_halaman_tambah_blog');
+    Route::get('pages/blog/tambah', 'Admin\BlogController@tampilHalamanTambah')->name('admin_tampil_halaman_tambah_blog');
+    Route::post('pages/blog/tambah', 'Admin\BlogController@tambahBlog')->name('admin_tambah_blog');
 
+    Route::post('pages/blog/kategori/tambah','Admin\BlogController@tambahKategori')->name('admin_tambah_blog_kategori');
 });

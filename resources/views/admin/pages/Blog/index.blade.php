@@ -42,8 +42,8 @@
                                 <td>{{$blog->judul}}</td>
                                 <td>{{$blog->sampul_foto}}</td>
                                 <td>{{$blog->jumlah_dibaca}}</td>
-                                <td>{{\Carbon\Carbon::parse($blog->created_at)->formatLocalized("%A, %d %B %Y")}}</td>
-                                <td>{{\Carbon\Carbon::parse($blog->updated_at)->formatLocalized("%A, %d %B %Y")}}</td>
+                                <td>{{\Carbon\Carbon::parse($blog->created_at)->toDayDateTimeString()}}</td>
+                                <td>{{\Carbon\Carbon::parse($blog->updated_at)->toDayDateTimeString()}}</td>
                                 <td class="text-center">
                                     <a href="#" class="btn btn-sm btn-warning" data-toggle="tooltip"
                                         data-placement="bottom" title="Edit"><i class="fas fa-edit"></i></a>

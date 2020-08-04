@@ -53,7 +53,7 @@
             <div class="col-lg-4 sidebar ftco-animate">
                 @include('frontend.pages.Blog.Components.searchBar')
                 @include('frontend.pages.Blog.Components.categoris')
-                @include('frontend.pages.Blog.Components.tags')
+                {{-- @include('frontend.pages.Blog.Components.tags') --}}
             </div>
         </div>
     </div>
