@@ -11269,7 +11269,7 @@ h5,
 }
 
 .slider-text h1 {
-    font-size: 7vw;
+    font-size: 3vw;
     color: #fff;
     line-height: 1.2;
     font-weight: 700 !important;
@@ -11372,9 +11372,9 @@ h5,
 }
 
 .ftco-volunteer .img-volunteer {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top center;
+  background-size: 354px;
+  background-repeat: no-repeat;
+  background-position: top left;
 }
 
 .ftco-volunteer .about-text {
@@ -11496,6 +11496,7 @@ h5,
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
     padding: 40px 25px;
+    width: 100%;
 }
 
 @media (max-width: 991.98px) {
@@ -11672,7 +11673,7 @@ textarea.form-control {
 }
 
 .featured-causes .text .one .goal span {
-    width: 100%;
+    /* width: 100%; */
 }
 
 .featured-causes .text .one .goal span:first-child {
