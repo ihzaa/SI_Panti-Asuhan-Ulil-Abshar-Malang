@@ -11,8 +11,8 @@
 @endsection
 
 @section('konten')
-<form action="{{request()->is('*/blog/tambah*') ? route('admin_tambah_blog'): ''}}" method="POST"
-    enctype="multipart/form-data">
+<form action="{{request()->is('*/blog/tambah*') ? route('admin_tambah_blog'): route('admin_edit_blog',['id'=>$data['blog']->id])}}"
+    method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-md-12">
@@ -25,7 +25,8 @@
                 <div class="card-body" id="card-body-atas">
                     <div class="form-group">
                         <input type="text" class="form-control" id="inputWarning" name="judul"
-                            placeholder="Judul Postingan Blog" value="{{old('judul')}}" required>
+                            placeholder="Judul Postingan Blog"
+                            value="{{request()->is('*/blog/tambah*')?old('judul'):$data['blog']->judul}}" required>
                         @error('judul')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -33,15 +34,17 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <img id="blah" class="img-fluid" src="{{asset('images/default/picture.svg')}}"
+                            <img id="blah" class="img-fluid"
+                                src="{{request()->is('*/blog/tambah*')?asset('images/default/picture.svg'):asset($data['blog']->sampul_foto)}}"
                                 alt="your image" />
                         </div>
                         <div class="col-md-8 d-flex">
                             <div class="form-group col-md-12 my-auto">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="imgInp" required
-                                        name="foto_sampul">
-                                    <label class="custom-file-label" for="imgInp">Foto Sampul</label>
+                                    <input type="file" class="custom-file-input" id="imgInp"
+                                        {{request()->is('*/blog/tambah*')?"required":""}} name="foto_sampul">
+                                    <label class="custom-file-label"
+                                        for="imgInp">{{request()->is('*/blog/tambah*')?"Foto Sampul":"Foto sampul.jpg"}}</label>
                                     <small class="form-text text-muted">- Ukuran max 256KB</small>
                                     <small class="form-text text-muted">- Harus berupa gambar (format: jpg, jpeg, svg,
                                         png , dll)</small>
@@ -52,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row mt-3">
                         <label for="" class="col-sm-2 form-control-label my-auto">Kategori</label>
                         <div class="col-sm-10" id="row_select">
                             <div class="input-group mb-3">
@@ -97,7 +100,7 @@
                 <div class="card-body pad">
                     <div class="mb-3">
                         <textarea class="textarea" name="konten" required placeholder="Place some text here"
-                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{old('konten')}}</textarea>
+                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{request()->is('*/blog/tambah*')?old('konten'):$data['blog']->konten}}</textarea>
                     </div>
                     @error('konten')
                     <div class="alert alert-danger">{{ $message }}</div>

@@ -24,6 +24,12 @@ Route::prefix('adm1n')->middleware('auth:admin')->group(function () {
     Route::get('pages/blog/delete/{id}', 'Admin\BlogController@hapus')->name('admin_hapus_blog');
     Route::get('pages/blog/tambah', 'Admin\BlogController@tampilHalamanTambah')->name('admin_tampil_halaman_tambah_blog');
     Route::post('pages/blog/tambah', 'Admin\BlogController@tambahBlog')->name('admin_tambah_blog');
+    Route::get('pages/blog/edit/{id}', 'Admin\BlogController@editBlogIndex')->name('admin_edit_blog_index');
+    Route::post('pages/blog/edit/{id}', 'Admin\BlogController@editBlog')->name('admin_edit_blog');
 
-    Route::post('pages/blog/kategori/tambah','Admin\BlogController@tambahKategori')->name('admin_tambah_blog_kategori');
+    // Route::post('pages/blog/kategori/index/tambah','')->name('admin_tambah_blog_kategori_index');
+    Route::post('pages/blog/kategori/tambah', 'Admin\BlogController@tambahKategori')->name('admin_tambah_blog_kategori');
+    Route::get('kategori/all', 'Admin\BlogController@getAllKategori')->name('admin_get_all_kategori');
+    Route::get('kategori/hapus/{id}', 'Admin\BlogController@hapusKategori')->name('admin_hapus_blog_kategori');
+    Route::post('kategori/edit/{id}', 'Admin\BlogController@editKategori')->name('admin_edit_blog_kategori');
 });

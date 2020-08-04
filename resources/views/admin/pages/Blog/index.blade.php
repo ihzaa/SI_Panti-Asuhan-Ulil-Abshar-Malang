@@ -40,13 +40,15 @@
                             @foreach ($data['blogs'] as $blog)
                             <tr id="blog-{{$blog->id}}">
                                 <td>{{$blog->judul}}</td>
-                                <td>{{$blog->sampul_foto}}</td>
+                                <td class="text-center"><img src="{{asset($blog->sampul_foto)}}" alt="" width="150">
+                                </td>
                                 <td>{{$blog->jumlah_dibaca}}</td>
                                 <td>{{\Carbon\Carbon::parse($blog->created_at)->toDayDateTimeString()}}</td>
                                 <td>{{\Carbon\Carbon::parse($blog->updated_at)->toDayDateTimeString()}}</td>
                                 <td class="text-center">
-                                    <a href="#" class="btn btn-sm btn-warning" data-toggle="tooltip"
-                                        data-placement="bottom" title="Edit"><i class="fas fa-edit"></i></a>
+                                    <a href="{{route('admin_edit_blog_index',['id'=>$blog->id])}}"
+                                        class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom"
+                                        title="Edit"><i class="fas fa-edit"></i></a>
                                     <button class="btn btn-sm btn-danger btn-hapus" data-id="{{$blog->id}}"
                                         data-toggle="tooltip" data-placement="bottom" title="Hapus"><i
                                             class="fas fa-trash"></i></button>
@@ -69,6 +71,96 @@
                 <!-- /.card-body -->
             </div>
         </div>
+        {{-- <div > --}}
+        <div class="col-md-6" id="vue_app">
+            <div class="card" id="card_kategori">
+                <div class="card-header d-flex">
+                    <h3 class="card-title my-auto">Daftar Ketagori</h3>
+                    <div class="col-sm-5 input-group">
+                        <input type="text" class="form-control" placeholder="Cari" v-model="cari">
+                        <div class="input-group-append d-none d-md-flex">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm ml-auto" @click="tambah()"><i class="fas fa-plus"></i> Tambah
+                        Kategori</button>
+
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body" style="max-height: 600px;overflow-y: scroll;">
+                    <table id="tabel_kategori" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Jumlah Postingan</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{-- @foreach ($data['kategoris'] as $k)
+                                <tr>
+                                    <td>{{$k->nama}}</td>
+                            <td>{{$k->blog_count}}</td>
+                            <td class="text-center">
+                                <button href="#" class="btn btn-sm btn-warning" data-toggle="tooltip"
+                                    data-placement="bottom" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-sm btn-danger" data-id="{{$k->id}}" data-toggle="tooltip"
+                                    data-placement="bottom" title="Hapus"><i class="fas fa-trash"></i></button>
+                            </td>
+                            </tr>
+                            @endforeach --}}
+                            <tr v-for="i in filterdata">
+                                <td>@{{i.nama}}</td>
+                                <td>@{{i.blog_count}}</td>
+                                <td class="text-center">
+                                    <button href="#" class="btn btn-sm btn-warning" data-toggle="tooltip"
+                                        data-placement="bottom" title="Edit" @click="edit(i.id,i.nama)"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom"
+                                        title="Hapus" @click="hapus(i.id)"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr id="data-kosong" class="odd" v-if="data_list.length == 0">
+                                <td valign="top" colspan="100%" class="dataTables_empty text-center">
+                                    Data Kosong
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Judul</th>
+                                <th>Foto Sampul</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <div id="modal-kategori" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-kategori-title"></h5>
+                            <button class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group mb-0">
+                                <input type="text" class="form-control" placeholder="Nama Kategori" v-model="nama">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-sm btn-primary" @click="tambahKeDb">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- </div> --}}
+
     </div>
 </div>
 
@@ -80,7 +172,138 @@
 <script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <script src="{{asset('js/sweetalert2.all.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
+    $(document).ready(function () {
+        let vue = new Vue({
+            el : "#vue_app",
+            mounted() {
+                // method yg pertama di panggil
+                this.tampilData();
+            },
+            data : {
+                // variabel
+                data_list :[],
+                id : "",
+                nama : "",
+                cari : "",
+            },
+            methods: {
+                // method disini
+                tambah: function(){
+                    $('#modal-kategori-title').html('Tambah Kategori');
+                    this.nama = "";
+                    this.id = "";
+                    $('#modal-kategori').modal('show');
+                },
+                tambahKeDb: function() {
+                    $('#modal-kategori').modal('hide');
+                    if(this.id == ""){
+                        this.openLoading();
+                        axios.post("{{route('admin_tambah_blog_kategori')}}", {
+                            data: this.nama,
+                        }).then(resp => {
+                            if(!resp.data.status){
+                                Swal.fire(
+                                    'Maaf!',
+                                    'Kategori sudah ada.',
+                                    'error'
+                                );
+                                this.remLoading();
+                                return;
+                            }
+                            this.data_list = resp.data.data;
+                            this.remLoading();
+                        }).catch(err => {
+                            console.log(err);
+                        });
+                    }else{
+                        this.openLoading();
+                        let url = "{{route('admin_edit_blog_kategori',':__id')}}";
+                        url = url.replace(':__id', this.id);
+                        axios.post(url, {
+                            data: this.nama,
+                        }).then(resp => {
+                            this.data_list = resp.data;
+                            this.remLoading();
+                        }).catch(err => {
+                            console.log(err);
+                        });
+                    }
+                },
+                openLoading: function(){
+                    $('#card_kategori').append(`
+                    <div class="overlay dark" id="loading">
+                        <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                    </div>`
+                    );
+                },
+                remLoading: function(){
+                    $('#loading').remove();
+                },
+                tampilData: function(){
+                    this.openLoading();
+                    this.data_list = [];
+                    axios.get("{{route('admin_get_all_kategori')}}")
+                    .then(resp =>{
+                        this.data_list = resp.data
+                        this.remLoading();
+                    }).catch(err =>{
+                        console.log('eror =' + err);
+                    })
+                    // yg selalu dilakukan itu then akhir
+                    // .then(function(){
+                    //     $('#tbl-loader').hide();
+                    // });
+                },
+                hapus: function(id){
+                    this.id = id;
+                    Swal.fire({
+                        title: 'Yakin menghapus kategori?',
+                        text: "Kategori yang dihapus tidak dapat dikembalikan!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, Hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.value) {
+                            this.openLoading();
+                            let url = "{{route('admin_hapus_blog_kategori',':__id')}}";
+                            url = url.replace(':__id', this.id);
+                            axios.get(url)
+                            .then(data => {
+                                this.data_list = data.data;
+                                Swal.fire(
+                                    'Terhapus!',
+                                    'Kategori blog telah terhapus.',
+                                    'success'
+                                );
+                                this.remLoading();
+                            })
+                            .catch(err => {console.log(err);});
+                        }
+                    });
+                },
+                edit: function(id,nama){
+                    this.id = id;
+                    this.nama = nama;
+                    $('#modal-kategori-title').html('Edit Kategori');
+                    $('#modal-kategori').modal('show');
+                }
+            },computed: {
+                filterdata() {
+                    return this.cari ?
+                    this.data_list.filter(item =>
+                        item.nama.toLowerCase().includes(this.cari)
+                    ): this.data_list
+                }
+            }
+        });
+    });
+
     $('#tabel_blog').DataTable({
       "paging": true,
       "lengthChange": true,
