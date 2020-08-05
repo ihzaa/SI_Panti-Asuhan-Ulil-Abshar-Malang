@@ -189,3 +189,7 @@
     </div>
 </section> <!-- .section -->
 @endsection
+
+@section('JsTambahanAfter')
+<script src="{{asset('js/pages/blog-search.js')}}"></script>
+@endsection

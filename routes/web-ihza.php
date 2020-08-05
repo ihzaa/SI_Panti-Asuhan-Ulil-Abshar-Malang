@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/blog', 'frontend\BlogController@index')->name('frontend_blog_index');
+Route::get('/blog/cari/{cari}', 'frontend\BlogController@cari')->name('frontend_blog_cari');
+Route::get('/blog/kategori/{kat}', 'frontend\BlogController@kategori')->name('frontend_blog_per_kategori');
 Route::get('/blog/{id}', 'frontend\BlogController@single_blog')->name('frontend_single_blog');
 
 Route::get('/adm1n/login', 'Auth\AdminLoginController@loginGet')->name('login_admin_get')->middleware('guest');

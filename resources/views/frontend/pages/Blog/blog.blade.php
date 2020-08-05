@@ -23,11 +23,16 @@
         <div class="row">
             <div class="col-lg-8 ftco-animate">
                 <div class="row">
+                    @if (count($data['blogs']) == 0)
+                    <div class="col-md-12 text-center">
+                        Blog tidak ada
+                    </div>
+                    @endif
                     @foreach($data['blogs'] as $d)
                     <div class="col-md-12 d-flex ftco-animate">
                         <div class="blog-entry align-self-stretch d-md-flex">
                             <a href="{{route('frontend_single_blog',['id'=>$d->id])}}" class="block-20"
-                                style="background-image: url('assets/aspiration/images/image_1.jpg');">
+                                style="background-image: url('{{asset($d->sampul_foto)}}');">
                             </a>
                             <div class="text d-block pl-md-4">
                                 <div class="meta mb-3">
@@ -47,7 +52,8 @@
                         </div>
                     </div>
                     @endforeach
-                    {{ $data['blogs']->links() }}
+                    {{$data['blogs']->links()}}
+                    {{-- {{ request()->is('blog*') ? "":$data['blogs']->links()}} --}}
                 </div>
             </div> <!-- .col-md-8 -->
             <div class="col-lg-4 sidebar ftco-animate">
@@ -58,4 +64,8 @@
         </div>
     </div>
 </section> <!-- .section -->
+@endsection
+
+@section('JsTambahanAfter')
+<script src="{{asset('js/pages/blog-search.js')}}"></script>
 @endsection
