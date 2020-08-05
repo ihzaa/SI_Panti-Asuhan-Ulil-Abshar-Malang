@@ -31,7 +31,7 @@
                         <li><a href="#" class="py-2 d-block">Home</a></li>
                         <li><a href="#" class="py-2 d-block">Who we are</a></li>
                         <li><a href="#" class="py-2 d-block">Causes</a></li>
-                        <li><a href="#" class="py-2 d-block">Blog</a></li>
+                        <li><a href="{{route('frontend_blog_index')}}" class="py-2 d-block">Blog</a></li>
                         <li><a href="#" class="py-2 d-block">Contact</a></li>
                     </ul>
                 </div>
