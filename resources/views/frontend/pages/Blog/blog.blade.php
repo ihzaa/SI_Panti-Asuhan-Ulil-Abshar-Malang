@@ -1,4 +1,4 @@
-@extends('frontend.template.blog')
+@extends('frontend.all')
 
 @section('judul_halaman','Blog')
 
