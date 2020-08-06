@@ -26,7 +26,7 @@
        with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="{{route('admin_dashboard')}}" class="nav-link {{request()->is('adm1n') ? "active":""}}">
-                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <i class="nav-icon fas fa-home"></i>
                         <p>
                             Dashboard
                         </p>
@@ -94,7 +94,7 @@
                 <li class="nav-header">Data Panti Asuhan</li>
                 <li class="nav-item">
                     <a href="pages/calendar.html" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <i class="nav-icon fas fa-child"></i>
                         <p>
                             Profil Anak
                         </p>
@@ -102,7 +102,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('admin_manager')}}" class="nav-link {{request()->is('*adm1n/pages/manager*') ? 'active': ''}}">
-                        <i class="nav-icon far fa-image"></i>
+                        <i class="nav-icon fas fa-user"></i>
                         <p>
                             Pengurus
                         </p>
@@ -110,7 +110,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="pages/calendar.html" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <i class="nav-icon fas fa-tools"></i>
                         <p>
                             Sarana Prasarana
                         </p>

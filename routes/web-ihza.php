@@ -7,6 +7,8 @@ Route::get('/blog/cari/{cari}', 'frontend\BlogController@cari')->name('frontend_
 Route::get('/blog/kategori/{kat}', 'frontend\BlogController@kategori')->name('frontend_blog_per_kategori');
 Route::get('/blog/{id}', 'frontend\BlogController@single_blog')->name('frontend_single_blog');
 
+Route::get('/contact', 'frontend\ContactController@index')->name('frontend_contact');
+
 Route::get('/adm1n/login', 'Auth\AdminLoginController@loginGet')->name('login_admin_get')->middleware('guest');
 Route::post('/adm1n/login', 'Auth\AdminLoginController@loginPost')->name('login_admin_post')->middleware('guest');
 Route::get('/adm1n/logout', 'Auth\AdminLoginController@logout')->name('logout_admin');
