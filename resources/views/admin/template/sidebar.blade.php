@@ -101,7 +101,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
+                    <a href="{{route('admin_manager')}}" class="nav-link {{request()->is('*adm1n/pages/manager*') ? 'active': ''}}">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Pengurus

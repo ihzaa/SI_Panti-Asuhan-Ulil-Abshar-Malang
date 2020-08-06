@@ -1,6 +1,6 @@
 @extends('frontend.all')
 
-@section('judul_halaman','About Us')
+@section('JudulHalaman','Tentang kami')
 
 @section('konten')
 <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{ asset('aspiration/images/panti.jpg') }});" data-stellar-background-ratio="0.5">
@@ -29,7 +29,7 @@
 			          	<span class="subheading">Pesantren Panti Asuhan Putra Muhammadiyah Ulil Abshar</span>
 			            <h2 class="mb-4">Sejarah</h2>
 			            <!-- <h2 class="mb-4">We Voluntary Help for Almost <span class="number" data-number="100">0</span> Years</h2> -->
-                  @foreach($data as $d)
+                  @foreach($data['about'] as $d)
 			            <p>{{ $d->history_info }}</p>
                   
 			          </div>
@@ -70,8 +70,8 @@
 		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 text-center">
 		              <div class="text">
-		                <strong class="number" data-number="20">0</strong>
-		                <span>Pengurus</span>
+		                <strong class="number" data-number="{{ count($data['orphanages']) }}">0</strong>
+		                <span>Anak asuh</span>
 		              </div>
 		            </div>
 		          </div>
@@ -86,8 +86,8 @@
 		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 text-center">
 		              <div class="text">
-		                <strong class="number" data-number="24">0</strong>
-		                <span>Anak asuh</span>
+		                <strong class="number" data-number="{{ count($data['managers']) }}">0</strong>
+		                <span>Pengurus</span>
 		              </div>
 		            </div>
 		          </div>
@@ -116,81 +116,23 @@
 		          <h2 class="mb-0">Pengurus Panti Asuhan</h2>
 		        </div>
             <div class="carousel-testimony owl-carousel ftco-owl">
+              @foreach( $data['managers'] as $d)
               <div class="item">
                 <div class="testimony-wrap">
                   <!-- <div class="text">
                     <p class="mb-4">Ketua panti adalah seorang yang bertanggung jawab atas segala hal yang ada di panti.</p>
                   </div> -->
                   <div class="d-flex align-items-center">
-                    <div class="user-img" style="background-image: url({{ asset('aspiration/images/person_1.jpg') }})">
+                    <div class="user-img" style="background-image: url({{ asset($d->image) }})">
 	                  </div>
 	                  <div class="pos ml-3">
-	                  	<p class="name">Bapak panti</p>
-	                    <span class="position">Ketua Pengurus Panti Asuhan</span>
+	                  	<p class="name">{{ $d->name }}</p>
+	                    <span class="position">{{ $d->position }}</span>
 	                  </div>
 	                </div>
                 </div>
               </div>
-              <div class="item">
-                <div class="testimony-wrap">
-                  <!-- <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div> -->
-                  <div class="d-flex align-items-center">
-	                  <div class="user-img" style="background-image: url(images/person_1.jpg)">
-	                  </div>
-	                  <div class="pos ml-3">
-	                  	<p class="name">Ibu Panti</p>
-	                    <span class="position">Istri Ketua Pengurus</span>
-	                  </div>
-	                </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap">
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="d-flex align-items-center">
-	                  <div class="user-img" style="background-image: url(images/person_1.jpg)">
-	                  </div>
-	                  <div class="pos ml-3">
-	                  	<p class="name">Henry Ford</p>
-	                    <span class="position">Businessman</span>
-	                  </div>
-	                </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap">
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="d-flex align-items-center">
-	                  <div class="user-img" style="background-image: url(images/person_1.jpg)">
-	                  </div>
-	                  <div class="pos ml-3">
-	                  	<p class="name">Jeff Chan</p>
-	                    <span class="position">Businessman</span>
-	                  </div>
-	                </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap">
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="d-flex align-items-center">
-	                  <div class="user-img" style="background-image: url(images/person_1.jpg)">
-	                  </div>
-	                  <div class="pos ml-3">
-	                  	<p class="name">Michael Bubble</p>
-	                    <span class="position">Businessman</span>
-	                  </div>
-	                </div>
-                </div>
-              </div>
+              @endforeach
             </div>
           </div>
         </div>
