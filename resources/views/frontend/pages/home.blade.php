@@ -2,6 +2,13 @@
 
 @section('JudulHalaman', 'Home')
 
+@section('CssTambahanAfter')
+<link rel="stylesheet" href="{{asset('admin/plugins/ion-rangeslider/css/ion.rangeSlider.min.css')}}">
+  <!-- bootstrap slider -->
+<link rel="stylesheet" href="{{asset('admin/plugins/bootstrap-slider/css/bootstrap-slider.min.css')}}">
+@endsection
+
+
 @section('konten')
 <!--  -->
 <div class="hero-wrap" style="background-image: url('assets/aspiration/images/bg_4.jpg');" data-stellar-background-ratio="0.5">
@@ -46,25 +53,6 @@
   </div>
 </section>
 
-{{-- Toast --}}
-<div aria-live="polite" aria-atomic="true" style="position: relative">
-
-  <div class="toast" data-animation="true" data-delay="5000" data-autohide="true" style="position: fixed; z-index: 5; bottom: 25px; right: 25px;">
-    <div class="toast-header">
-      <span class="rounded mr-2 bg-primary" style="width: 15px;height: 15px"></span>
-      <strong class="mr-auto">Notification</strong>
-      <small>Just Now</small>
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="toast-body">
-      Donasi yang anda lakukan berhasil.
-    </div>
-  </div>
-  
-</div>
-
 <!-- Modal Donasi-->
 <div class="modal fade" id="donasiModal" tabindex="-1" role="dialog" aria-labelledby="donasiModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -77,18 +65,20 @@
       </div>
       <div class="modal-body">
         <form id="donasi_form">
+          @csrf
           <div class="form-group">
             <label for="name" class="col-form-label col-form-label-sm">Nama Pengirim:</label>
-            <input type="text" class="form-control form-control-sm" id="name" required>
+            <input type="text" class="form-control form-control-sm" name="name" id="name" required>
           </div>
           <div class="form-group">
-            <label for="message-text" class="col-form-label col-form-label-sm">Jumlah:</label>
-            <input type="number" class="form-control form-control-sm" id="donasi" required>
+            <label for="donasi" class="col-form-label col-form-label-sm">Jumlah:</label>
+            {{-- <input type="number" class="form-control form-control-sm" name="donasi" id="donasi" required> --}}
+            <input id="donasi" type="number" name="donasi" required>
           </div>
 
           <div class="form-group">
             <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Bank</label>
-            <select class="custom-select my-1 mr-sm-2" id="bank" required>
+            <select class="custom-select my-1 mr-sm-2" name="bank" id="bank" required>
               <option value="" selected>Choose...</option>
               <option value="BNI">BNI</option>
               <option value="BCA">BCA</option>
@@ -99,12 +89,18 @@
 
           <div class="form-group">
             <label for="exampleFormControlFile1">Bukti Transfer</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" name="image" class="custom-file-input" id="image" required>
+                <label class="custom-file-label" for="image">Choose file</label>
+              </div>
+            </div>
+            {{-- <input type="file" class="form-control-file" name="image" id="image"> --}}
           </div>
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary" onclick="createPost()">Submit</button>
+        <button type="submit" class="btn btn-primary" >Submit</button>
       </div>
     </form>
     </div>
@@ -180,7 +176,10 @@
               </div>
             </div>
             <div class="one text-md-right">
-              <p><a href="#" class="btn btn-primary">Donate now</a></p>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#donasiModal">
+                Donasi Sekarang
+              </button>
+              {{-- <p><a href="#" class="btn btn-primary">Donate now</a></p> --}}
             </div>
           </div>
         </div>
@@ -308,50 +307,158 @@
 @endsection
 
 @section('JsTambahanAfter')
+<script src="{{asset('admin/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
+  <!-- Bootstrap slider -->
+<script src="{{asset('admin/plugins/bootstrap-slider/bootstrap-slider.min.js')}}"></script>
+
+<script src="{{asset('admin/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+
+<script src="{{asset('js/sweetalert2.all.min.js')}}"></script>
+
   <script>
+    $(function () {
+      /* BOOTSTRAP SLIDER */
+      $('.slider').bootstrapSlider()
+
+      /* ION SLIDER */
+      $('#donasi').ionRangeSlider({
+        min: 0,
+        max: 5000000,
+        from: 0,
+        to: 4000,
+        // type: 'double',
+        step: 500,
+        prefix: 'Rp. ',
+        prettify: false,
+        hasGrid: true
+      })
+    });
+
     $("#donasi_form").submit(function(e) {
       e.preventDefault();
-  });
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
+    });
+
+    $.validator.setDefaults({
+      submitHandler: function () {
+        var action_url = 'donasi';
+        
+        var form_data = new FormData($('#donasi_form')[0]);
+
+        $.ajax({
+          url: action_url,
+          type:"POST",
+          data: form_data,
+          contentType: false,
+          processData: false,
+          success:function(response)
+          {
+            $('#donasiModal').modal('hide');
+            $('#donasi_form')[0].reset();
+
+              Swal.fire(
+              'Berhasil!',
+              'Donasi anda akan kami periksa terlebih dahulu.',
+              'success'
+            );
+          },
+          error: function(response) {
+            // console.log(response.responseJSON.errors)
+          }
+        });
+      }
+    });
+
+    var validator = $('#donasi_form').validate({
+      rules: {
+        name: {
+          required: true,
+        },
+        donasi: {
+          required: true,
+          min: 100000,
+        },
+        bank: {
+          required: true,
+        },
+        image: {
+          required: true
+        },
+      },
+      messages: {
+        name: {
+          required: "Mohon Masukan Nama",
+        },
+        donasi: {
+          required: "Mohon Tentukan Donasi",
+          min: "Minimal donasi Rp. 100.000"
+        },
+        bank: {
+          required: "Mohon Masukan Bank Tujuan",
+        },
+        image: "Mohon Lampirkan bukti transfer"
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
     });
     
     
-    function createPost() {
-      var name = $('#name').val();
-      var selectedBank = $("#bank option:selected").val();
-      var donasi = $('#donasi').val();
+
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    // });
+    
+    
+    // function createPost() {
+    //   var name = $('#name').val();
+    //   var selectedBank = $("#bank option:selected").val();
+    //   var donasi = $('#donasi').val();
+    //   var image = $('#image')[0].files[0];
+
+    //   var form_data = new FormData();                  
+    //   form_data.append('name', name);
+    //   form_data.append('bank', selectedBank);
+    //   form_data.append('donasi', donasi);
+    //   form_data.append('image', image);
+
+    //   console.log(name)
   
-      let _url     = 'donasi';
+    //   let _url     = 'donasi';
 
-        $.ajax({
-          url: _url,
-          type: "POST",
-          data: {
-            name: name,
-            bank: selectedBank,
-            donasi: donasi
-          },
-          success: function(response) {
-            $('#name').val('');
-            $("#bank select").val('');
-            $("donasi").val('');
+    //     $.ajax({
+    //       url: _url,
+    //       type: "POST",
+    //       data: form_data,
+    //       contentType: false,
+    //       processData: false,
+    //       success: function(response) {
+    //         $('#name').val('');
+    //         $("#bank select").val('');
+    //         $("donasi").val('');
 
-            $('.toast').toast('show');
-            $('#donasiModal').modal('hide');
-          },
-          error: function(response) {
-            console.log(response.responseJSON.errors)
-            $('#nameError').text(response.responseJSON.errors.name);
-            if(response.responseJSON.errors.name){
-              $('input[type=text]').addClass(' is-invalid')
-            }
-            // $('#descriptionError').text(response.responseJSON.errors.description);
-          }
-        });
-    }
+    //         $('.toast').toast('show');
+    //         $('#donasiModal').modal('hide');
+    //       },
+    //       error: function(response) {
+    //         console.log(response.responseJSON.errors)
+    //         $('#nameError').text(response.responseJSON.errors.name);
+    //         if(response.responseJSON.errors.name){
+    //           $('input[type=text]').addClass(' is-invalid')
+    //         }
+    //         // $('#descriptionError').text(response.responseJSON.errors.description);
+    //       }
+    //     });
+    // }
 
   </script>
 @endsection
