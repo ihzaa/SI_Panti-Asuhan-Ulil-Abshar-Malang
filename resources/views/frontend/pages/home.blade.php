@@ -40,7 +40,13 @@
       </div>
       <div class="col-md-6 d-flex align-items-center bg-primary">
         <div class="about-text px-3 py-5 pl-md-5 pr-md-5">
-          <h2>Donasi Terkumpul <br><span>Rp</span><strong class="number" data-number="{{$donasi->sum}}">0</strong></h2>
+          <h2>Donasi Terkumpul <br><span>Rp</span>
+            @if ($donasi)
+              <strong class="number" data-number="{{$donasi->sum}}">0</strong>
+            @else
+              <strong class="number">0</strong>
+            @endif
+          </h2>
           <p>Donasi yang terkumpulkan merupakan donasi bulan ini yang di butuhkan anak-anak panti setiap bulan mulai dari sekolah, pakaian, uang jajan dan kebutuhan lainnya.
             </p>
           <!-- Button trigger modal -->
@@ -163,15 +169,27 @@
       <div class="col-md-8">
         <div class="featured-causes">
           <div class="progress" style="height:50px">
-          <div class="progress-bar progress-bar-striped" style="width:{{($donasi->sum/$kebutuhan)*100}}%; height:50px"></div>
+            @if ($donasi)
+              <div class="progress-bar progress-bar-striped" style="width:{{($donasi->sum/$kebutuhan)*100}}%; height:50px"></div>
+            @else
+              <div class="progress-bar progress-bar-striped" style="width:{{(0/$kebutuhan)*100}}%; height:50px"></div>
+            @endif
           </div>
           <div class="text mt-4 d-md-flex">
             <div class="one d-flex">
               <div class="mr-4">
-              <h2>{{intval(($donasi->sum/$kebutuhan)*100)}}%</h2>
+                @if ($donasi)
+                  <h2>{{intval(($donasi->sum/$kebutuhan)*100)}}%</h2>
+                @else
+                  <h2>{{intval((0/$kebutuhan)*100)}}%</h2>
+                @endif
               </div>
               <div class="goal">
-                <p class="d-flex"><span>Terkumpul :</span>Rp. <span class="number" data-number="{{$donasi->sum}}">0</span></p>
+                @if ($donasi)
+                  <p class="d-flex"><span>Terkumpul :</span>Rp. <span class="number" data-number="{{$donasi->sum}}">0</span></p>
+                @else
+                  <p class="d-flex"><span>Terkumpul :</span>Rp. <span class="number">0</span></p>
+                @endif
                 <p class="d-flex"><span>Kebutuhan :</span>Rp. <span class="number" data-number="{{$kebutuhan}}">0</span></p>
               </div>
             </div>
@@ -248,57 +266,68 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6">
-        <div class="blog-entry align-self-stretch ftco-animate">
-          <a href="blog-single.html" class="block-20 img" style="background-image: url('assets/aspiration/images/image_1.jpg');">
-          </a>
-          <div class="text text-2 bg-light">
-            <h3 class="heading mb-2"><a href="#">Advocating on behalf of abused and neglected</a></h3>
-            <div class="meta mb-2">
-              <div><a href="#">Sept. 04, 2019</a></div>
-              <div><a href="#">Admin</a></div>
-              <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-            </div>
-          </div>
+      @if (count($blogs) == 0)
+        <div class="col-md-12 text-center" style="font-size: 1.3rem !important;">
+            Blog tidak ada
         </div>
+      @endif
+      <div class="col-md-6">
+        @foreach($blogs as $key => $d)
+          @if($key < 1)
+            <div class="blog-entry align-self-stretch ftco-animate">
+              <a href="{{route('frontend_single_blog',['id'=>$d->id])}}" class="block-20 img" style="background-image: url('{{asset($d->sampul_foto)}}');">
+              </a>
+              <div class="text text-2 bg-light">
+                <h3 class="heading mb-2">
+                  <a href="{{route('frontend_single_blog',['id'=>$d->id])}}">{{$d->judul}}</a>
+                </h3>
+                <div class="meta mb-2">
+                  <div>
+                    <a href="{{route('frontend_single_blog',['id'=>$d->id])}}">
+                      {{\Carbon\Carbon::parse($d->created_at)->formatLocalized("%A, %d %B %Y") }}
+                    </a>
+                  </div>
+                  <div>
+                    <a href="{{route('frontend_single_blog',['id'=>$d->id])}}">
+                        {{$d->users->nama}}
+                    </a>
+                  </div>
+                  {{-- <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div> --}}
+                </div>
+              </div>
+            </div>
+          @endif
+        @endforeach
       </div>
       <div class="col-md-6">
-        <div class="blog-entry align-self-stretch d-md-flex bg-light p-3 align-items-center d-flex ftco-animate">
-          <a href="blog-single.html" class="block-20 thumb" style="background-image: url('assets/aspiration/images/image_2.jpg');">
-          </a>
-          <div class="text text-thumb d-block pl-2 pl-md-4">
-            <h3 class="heading mb-2"><a href="#">Gathering Books for Children</a></h3>
-            <div class="meta">
-              <div><a href="#">Sept. 04, 2019</a></div>
-              <div><a href="#">Admin</a></div>
-              <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+        @foreach($blogs as $key => $d)
+          @if($key > 0)
+            <div class="blog-entry align-self-stretch d-md-flex bg-light p-3 align-items-center d-flex ftco-animate">
+              <a href="{{route('frontend_single_blog',['id'=>$d->id])}}" class="block-20 thumb" style="background-image: url('{{asset($d->sampul_foto)}}');">
+              </a>
+              <div class="text text-thumb d-block pl-2 pl-md-4">
+                <h3 class="heading mb-2">
+                  <a href="{{route('frontend_single_blog',['id'=>$d->id])}}">{{$d->judul}}</a>
+                </h3>
+                <div class="meta">
+                  <div>
+                    <a href="{{route('frontend_single_blog',['id'=>$d->id])}}">
+                      {{\Carbon\Carbon::parse($d->created_at)->formatLocalized("%A, %d %B %Y") }}
+                    </a>
+                  </div>
+                  <div>
+                    <a href="{{route('frontend_single_blog',['id'=>$d->id])}}">
+                      {{$d->users->nama}}
+                    </a>
+                  </div>
+                  {{-- <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div> --}}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="blog-entry align-self-stretch d-md-flex bg-light p-3 align-items-center d-flex ftco-animate">
-          <a href="blog-single.html" class="block-20 thumb" style="background-image: url('assets/aspiration/images/image_3.jpg');">
-          </a>
-          <div class="text text-thumb d-block pl-2 pl-md-4">
-            <h3 class="heading mb-2"><a href="#">Access to Clean Water</a></h3>
-            <div class="meta">
-              <div><a href="#">Sept. 04, 2019</a></div>
-              <div><a href="#">Admin</a></div>
-              <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="blog-entry align-self-stretch d-md-flex bg-light p-3 align-items-center d-flex ftco-animate">
-          <a href="blog-single.html" class="block-20 thumb" style="background-image: url('assets/aspiration/images/image_4.jpg');">
-          </a>
-          <div class="text text-thumb d-block pl-2 pl-md-4">
-            <h3 class="heading mb-2"><a href="#">Super typhoon Haiyan Disaster Relief</a></h3>
-            <div class="meta">
-              <div><a href="#">Sept. 04, 2019</a></div>
-              <div><a href="#">Admin</a></div>
-              <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-            </div>
-          </div>
-        </div>
+          @endif
+        @endforeach
+        
+        
       </div>
     </div>
     

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'frontend\HomeController@index')->name('home');
 Route::get('/home', 'frontend\HomeController@index')->name('home');
+Route::get('/profil_anak', 'frontend\ProfilAnakController@index')->name('profil_anak');
 
 Route::post('/donasi', 'frontend\HomeController@donation')->name('send_donasi');
 

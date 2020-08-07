@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Frontend\blog;
 use App\Models\Frontend\Donasi;
+use App\Models\Frontend\kategori;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,21 +14,23 @@ class HomeController extends Controller
 {
   public function index()
   {
-    $data = DB::table('donasis')
+    $donasi = DB::table('donasis')
       ->whereExists(function ($query) {
         $query->from('donasi_masuks')
           ->whereRaw('donasi_masuks.donasi_id = donasis.id');
       });
 
-    $months['donasi'] = $data->select(
+    $data['donasi'] = $donasi->select(
       DB::raw('MONTH(created_at) as month'),
       DB::raw('SUM(total_donasi) as sum')
     )
       ->whereMonth('created_at', '=', Carbon::now()->month)
       ->groupBy('month')
       ->first();
-    $months['kebutuhan'] = 10000000;
-    return view('frontend.pages.home', $months);
+    $data['kebutuhan'] = 10000000;
+
+    $data['blogs'] = blog::with('users:id,nama')->latest()->paginate(4);
+    return view('frontend.pages.home', $data);
   }
   //
   public function donation(Request $request)
