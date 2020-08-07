@@ -1,33 +1,30 @@
-@extends('frontend.template.blog')
+@extends('frontend.all')
 
 @section('judul_halaman','Blog')
 
 @section('konten')
-<section class="hero-wrap hero-wrap-2 js-fullheight"
-    style="background-image: url({{asset('aspiration/images/bg_2.jpg')}});" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-            <div class="col-md-9 ftco-animate pb-5 text-center">
-                <h2 class="mb-3 bread">Blog</h2>
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
-                                class="ion-ios-arrow-forward"></i></a></span> <span>Blog <i
-                            class="ion-ios-arrow-forward"></i></span></p>
-            </div>
-        </div>
-    </div>
-</section>
+@section('isiHeader')
+<h2 class="mb-3 bread">Blog</h2>
+<p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span>
+    <span>Blog <i class="ion-ios-arrow-forward"></i></span></p>
+@endsection
+@include('frontend.template.header')
 
 <section class="ftco-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 ftco-animate">
                 <div class="row">
+                    @if (count($data['blogs']) == 0)
+                    <div class="col-md-12 text-center">
+                        Blog tidak ada
+                    </div>
+                    @endif
                     @foreach($data['blogs'] as $d)
                     <div class="col-md-12 d-flex ftco-animate">
                         <div class="blog-entry align-self-stretch d-md-flex">
                             <a href="{{route('frontend_single_blog',['id'=>$d->id])}}" class="block-20"
-                                style="background-image: url('assets/aspiration/images/image_1.jpg');">
+                                style="background-image: url('{{asset($d->sampul_foto)}}');">
                             </a>
                             <div class="text d-block pl-md-4">
                                 <div class="meta mb-3">
@@ -47,7 +44,8 @@
                         </div>
                     </div>
                     @endforeach
-                    {{ $data['blogs']->links() }}
+                    {{$data['blogs']->links()}}
+                    {{-- {{ request()->is('blog*') ? "":$data['blogs']->links()}} --}}
                 </div>
             </div> <!-- .col-md-8 -->
             <div class="col-lg-4 sidebar ftco-animate">
@@ -58,4 +56,8 @@
         </div>
     </div>
 </section> <!-- .section -->
+@endsection
+
+@section('JsTambahanAfter')
+<script src="{{asset('js/pages/blog-search.js')}}"></script>
 @endsection

@@ -18,7 +18,7 @@ class CreateManagersTable extends Migration
             $table->text('image');
             $table->text('name');
             $table->text('position');
-            $table->text('position_desc');
+            $table->text('position_desc')->nullable();
             $table->timestamps();
         });
     }
