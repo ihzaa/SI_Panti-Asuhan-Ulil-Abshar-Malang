@@ -2,12 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-  return view('frontend.pages.home');
-})->name('home');
-Route::get('/home', function () {
-  return view('frontend.pages.home');
-})->name('home');
+Route::get('/', 'frontend\HomeController@index')->name('home');
+Route::get('/home', 'frontend\HomeController@index')->name('home');
 
 Route::post('/donasi', 'frontend\HomeController@donation')->name('send_donasi');
 

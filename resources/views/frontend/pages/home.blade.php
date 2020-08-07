@@ -40,7 +40,7 @@
       </div>
       <div class="col-md-6 d-flex align-items-center bg-primary">
         <div class="about-text px-3 py-5 pl-md-5 pr-md-5">
-          <h2>Donasi Terkumpul <br><span>Rp</span><strong class="number" data-number="2500000">0</strong></h2>
+          <h2>Donasi Terkumpul <br><span>Rp</span><strong class="number" data-number="{{$donasi->sum}}">0</strong></h2>
           <p>Donasi yang terkumpulkan merupakan donasi bulan ini yang di butuhkan anak-anak panti setiap bulan mulai dari sekolah, pakaian, uang jajan dan kebutuhan lainnya.
             </p>
           <!-- Button trigger modal -->
@@ -163,16 +163,16 @@
       <div class="col-md-8">
         <div class="featured-causes">
           <div class="progress" style="height:50px">
-            <div class="progress-bar progress-bar-striped" style="width:25%; height:50px"></div>
+          <div class="progress-bar progress-bar-striped" style="width:{{($donasi->sum/$kebutuhan)*100}}%; height:50px"></div>
           </div>
           <div class="text mt-4 d-md-flex">
             <div class="one d-flex">
               <div class="mr-4">
-                <h2>25%</h2>
+              <h2>{{intval(($donasi->sum/$kebutuhan)*100)}}%</h2>
               </div>
               <div class="goal">
-                <p class="d-flex"><span>Terkumpul :</span><span>Rp. 2.500.000</span></p>
-                <p class="d-flex"><span>Kebutuhan :</span><span>Rp. 10.000.000</span></p>
+                <p class="d-flex"><span>Terkumpul :</span>Rp. <span class="number" data-number="{{$donasi->sum}}">0</span></p>
+                <p class="d-flex"><span>Kebutuhan :</span>Rp. <span class="number" data-number="{{$kebutuhan}}">0</span></p>
               </div>
             </div>
             <div class="one text-md-right">
@@ -313,10 +313,13 @@
 
 <script src="{{asset('admin/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
 
+<script src="{{asset('admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+
 <script src="{{asset('js/sweetalert2.all.min.js')}}"></script>
 
   <script>
     $(function () {
+      bsCustomFileInput.init();
       /* BOOTSTRAP SLIDER */
       $('.slider').bootstrapSlider()
 
@@ -410,55 +413,6 @@
       }
     });
     
-    
-
-    // $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     }
-    // });
-    
-    
-    // function createPost() {
-    //   var name = $('#name').val();
-    //   var selectedBank = $("#bank option:selected").val();
-    //   var donasi = $('#donasi').val();
-    //   var image = $('#image')[0].files[0];
-
-    //   var form_data = new FormData();                  
-    //   form_data.append('name', name);
-    //   form_data.append('bank', selectedBank);
-    //   form_data.append('donasi', donasi);
-    //   form_data.append('image', image);
-
-    //   console.log(name)
-  
-    //   let _url     = 'donasi';
-
-    //     $.ajax({
-    //       url: _url,
-    //       type: "POST",
-    //       data: form_data,
-    //       contentType: false,
-    //       processData: false,
-    //       success: function(response) {
-    //         $('#name').val('');
-    //         $("#bank select").val('');
-    //         $("donasi").val('');
-
-    //         $('.toast').toast('show');
-    //         $('#donasiModal').modal('hide');
-    //       },
-    //       error: function(response) {
-    //         console.log(response.responseJSON.errors)
-    //         $('#nameError').text(response.responseJSON.errors.name);
-    //         if(response.responseJSON.errors.name){
-    //           $('input[type=text]').addClass(' is-invalid')
-    //         }
-    //         // $('#descriptionError').text(response.responseJSON.errors.description);
-    //       }
-    //     });
-    // }
 
   </script>
 @endsection

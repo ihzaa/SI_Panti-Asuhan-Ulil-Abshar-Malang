@@ -18,8 +18,9 @@ class Donasi extends Migration
       $table->timestamps();
       $table->string('nama_donatur');
       $table->string('desc')->nullable();
-      $table->string('total_donasi');
+      $table->bigInteger('total_donasi');
       $table->string('nama_bank');
+      $table->text('image_path');
     });
   }
 
