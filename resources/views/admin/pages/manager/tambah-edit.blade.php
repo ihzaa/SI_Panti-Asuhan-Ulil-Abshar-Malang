@@ -47,7 +47,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mt-4">
                         <input type="text" class="form-control" id="inputWarning" name="name"
                             placeholder="Nama Pengurus Panti Asuhan"
                             value="{{request()->is('*/manager/tambah*')?old('name'):$data['manager']->name}}" required>

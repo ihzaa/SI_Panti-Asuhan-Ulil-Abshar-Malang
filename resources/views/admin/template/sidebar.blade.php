@@ -65,12 +65,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>About Us</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="../layout/boxed.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Product</p>
@@ -101,7 +95,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('admin_manager')}}" class="nav-link {{request()->is('*adm1n/pages/manager*') ? 'active': ''}}">
+                    <a href="{{route('admin_manager')}}" class="nav-link {{request()->is('*adm1n/manager*') ? 'active': ''}}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Pengurus
