@@ -1,11 +1,12 @@
+## Pastikan sudah install composer
 ## Cara menggunakan setelah clone dari git:
 0. buka cmd, cd ke folder project
-1. composer install
+1. lakukan perintah : composer install
 2. buat db dengan nama panti
-3. cp .env.example .env (linux) atau copy .env.example .env (windows) 
-4. php artisan key:generate
-5. php artisan migrate:fresh --seed
-6. php artisan serve
+3. lakukan perintah: cp .env.example .env (linux) atau copy .env.example .env (windows) 
+4. lakukan perintah: php artisan key:generate
+5. lakukan perintah: php artisan migrate:fresh --seed
+6. lakukan perintah: php artisan serve
 
 ## Kalau kalau setelah buat route tapi route nya error dgn keterangan route tidak ada
 ## Coba perintah php artisan optimize
