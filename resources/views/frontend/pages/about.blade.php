@@ -29,8 +29,8 @@
 			          	<span class="subheading">Pesantren Panti Asuhan Putra Muhammadiyah Ulil Abshar</span>
 			            <h2 class="mb-4">Sejarah</h2>
 			            <!-- <h2 class="mb-4">We Voluntary Help for Almost <span class="number" data-number="100">0</span> Years</h2> -->
-                  @foreach($data['about'] as $d)
-			            <p>{{ $d->history_info }}</p>
+                  
+			            <p>Didirikan pada tanggal 24 Oktober 1990. Panti asuhan Ulil Abshar merupakan salah satu panti asuhan di bawah naungan PCM (Pimpinan Cabang Muhammadiyah). Panti asuhan ini berada di kecamatan Dau kabupaten Malang.Santri di panti asuhan Ulil Abshar merupakan siswa SD dan SMP.</p>
                   
 			          </div>
 			        </div>
@@ -46,14 +46,13 @@
     			<div class="col-md-4 py-4 py-md-5 ftco-animate">
     				<div class="py-md-4 pb-md-5">
 	    				<h3>Misi</h3>
-	    				<p>{{ $d->mission_info }}</p>
+	    				<p>Menyelenggarakan pendidikan yang berkarakter religi, wirausaha, dan mandiri.</p>
     				</div>
     			</div>
     			<div class="col-md-4 py-4 py-md-5 ftco-animate">
     				<div class="py-md-4 pb-md-5">
 	    				<h3>Visi</h3>
-	    				<p>{{ $d->vission_info }}</p>
-              @endforeach
+	    				<p>Terwujudnya generasi yang berakhlak mulia dan mandiri.</p>
     				</div>
     			</div>
     			<div class="col-md-4 py-4 py-md-5 img" style="background-image: url({{ asset('aspiration/images/logo.jpg') }});background-size: 220px 320px;"></div>
@@ -109,7 +108,7 @@
       <div class="container">
         <div class="row ftco-animate justify-content-center">
         	<div class="col-md-6 d-flex">
-        		<div class="testimony-img" style="background-image: url(images/testimony-img.jpg);"></div>
+        		<div class="testimony-img" style="background-image: url({{ asset('aspiration/images/testimony-img.jpg') }});"></div>
         	</div>
           <div class="col-md-6 py-5">
           	<div class="heading-section pb-4 pt-md-4 ftco-animate">
@@ -117,6 +116,7 @@
 		        </div>
             <div class="carousel-testimony owl-carousel ftco-owl">
               @foreach( $data['managers'] as $d)
+              @if($d->position_desc == NULL)
               <div class="item">
                 <div class="testimony-wrap">
                   <!-- <div class="text">
@@ -132,6 +132,23 @@
 	                </div>
                 </div>
               </div>
+              @else
+              <div class="item">
+                <div class="testimony-wrap">
+                  <div class="d-flex align-items-center">
+                    <div class="user-img" style="background-image: url({{ asset($d->image) }})">
+	                  </div>
+	                  <div class="pos ml-3">
+	                  	<p class="name">{{ $d->name }}</p>
+	                    <span class="position">{{ $d->position }}</span>
+                    </div>
+                  </div>
+                  <div class="text">
+                    <p class="mb-4">{{ $d->position_desc}}</p>
+                  </div>
+                </div>
+              </div>
+              @endif
               @endforeach
             </div>
           </div>
