@@ -22,7 +22,8 @@
     <section class="ftco-section ftco-causes">
     	<div class="container" id="produk">
         <div class="row">
-        @foreach ($data['produk'] as $d)
+        @if ($data->count() > 0)
+        @foreach ($data as $d)
         	<div class="col-md-4">
         		<div class="causes causes-2 text-center ftco-animate">
         			<div class="img" style="background-image: url({{asset($d->image)}});"></div>
@@ -33,19 +34,22 @@
 							</div>
         		</div>
           </div>
+          
           @endforeach
+        </div>
+        @else
+        
+        <h1 style="color:var(--teal);">produk tidak ada</h1>
+        
+        @endif
         
 
-        </div>
+       
         <div class="row mt-5">
           <div class="col text-center">
-            <div class="block-27">
+            <div class="block-27">   
               <ul>
-                <li><a href="#" class="ion-ios-arrow-back"></a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#" class="ion-ios-arrow-forward"></a></li>
+                <li class="">{{ $data->links() }}</li>
               </ul>
             </div>
           </div>

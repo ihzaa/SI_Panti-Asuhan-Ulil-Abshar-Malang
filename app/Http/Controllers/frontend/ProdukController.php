@@ -12,8 +12,8 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        $data = array();
-        $data['produk'] = produk::all();
+        
+        $data= produk::paginate(6);
   
         return view('frontend.pages.produk',compact('data'));
     }
