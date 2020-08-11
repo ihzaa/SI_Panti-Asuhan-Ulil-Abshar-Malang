@@ -28,11 +28,11 @@
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2">Links</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">Home</a></li>
-                        <li><a href="#" class="py-2 d-block">Who we are</a></li>
+                        <li><a href="{{route('home')}}" class="py-2 d-block">Home</a></li>
+                        <li><a href="{{route('about')}}" class="py-2 d-block">Who we are</a></li>
                         <li><a href="#" class="py-2 d-block">Causes</a></li>
                         <li><a href="{{route('frontend_blog_index')}}" class="py-2 d-block">Blog</a></li>
-                        <li><a href="#" class="py-2 d-block">Contact</a></li>
+                        <li><a href="{route('frontend_contact')}}" class="py-2 d-block">Contact</a></li>
                     </ul>
                 </div>
             </div>
