@@ -20,9 +20,7 @@ Route::get('/adm1n/logout', 'Auth\AdminLoginController@logout')->name('logout_ad
 //MIDDLEWARE YG DIPAKE AUTH:ADMIN
 Route::prefix('adm1n')->middleware('auth:admin')->group(function () {
 
-    Route::get('', function () {
-        return view('admin.pages.dashboard');
-    })->name('admin_dashboard');
+    Route::get('', 'Admin\DashboardController@index')->name('admin_dashboard');
 
     Route::get('pages/blog', 'Admin\BlogController@index')->name('admin_pages_blog_index');
     Route::get('pages/blog/delete/{id}', 'Admin\BlogController@hapus')->name('admin_hapus_blog');
@@ -36,4 +34,8 @@ Route::prefix('adm1n')->middleware('auth:admin')->group(function () {
     Route::get('kategori/all', 'Admin\BlogController@getAllKategori')->name('admin_get_all_kategori');
     Route::get('kategori/hapus/{id}', 'Admin\BlogController@hapusKategori')->name('admin_hapus_blog_kategori');
     Route::post('kategori/edit/{id}', 'Admin\BlogController@editKategori')->name('admin_edit_blog_kategori');
+
+    Route::get('kelola-akun', 'Admin\AkunController@index')->name('admin_kelola_akun');
+    Route::post('ubah-pass', 'Admin\AkunController@ubahPass')->name('admin_ubah_password');
+    Route::post('ubah-nama', 'Admin\AkunController@ubahNama')->name('admin_ubah_nama');
 });
