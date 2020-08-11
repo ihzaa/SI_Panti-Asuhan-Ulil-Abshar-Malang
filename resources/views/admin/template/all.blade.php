@@ -39,6 +39,9 @@
                         <i class="far fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="{{route('admin_kelola_akun')}}" class="dropdown-item">
+                            Kelola Akun
+                        </a>
                         <a href="{{route('logout_admin')}}" class="dropdown-item">
                             Logout
                         </a>

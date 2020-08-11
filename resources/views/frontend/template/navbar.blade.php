@@ -12,10 +12,10 @@
                     method request()->is('url') ini untuk supaya ada efek aktif
                     di navbar sesuai halaman yg sekarang dibuka
                 --}}
-                <li class="nav-item {{request()->is('/') ? "active":""}}"><a href="index.html" class="nav-link">Home</a>
+                <li class="nav-item {{request()->is('/') ? "active":""}}"><a href="{{route('home')}}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item {{request()->is('about*') ? "active":""}}"><a href="{{route('about')}}" class="nav-link">About us</a></li>
-                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link">Product</a></li>
                 <li class="nav-item"><a href="causes.html" class="nav-link">Causes</a></li>
                 <li class="nav-item {{request()->is('blog*') ? "active":""}}"><a href="{{route('frontend_blog_index')}}"
                         class="nav-link">Blog</a></li>

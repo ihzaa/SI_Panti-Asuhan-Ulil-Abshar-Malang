@@ -11,8 +11,9 @@
 @endsection
 
 @section('konten')
-<form action="{{request()->is('*/blog/tambah*') ? route('admin_tambah_blog'): route('admin_edit_blog',['id'=>$data['blog']->id])}}"
-    method="POST" enctype="multipart/form-data">
+<form
+    action="{{request()->is('*/blog/tambah*') ? route('admin_tambah_blog'): route('admin_edit_blog',['id'=>$data['blog']->id])}}"
+    method="POST" enctype="multipart/form-data" id="form_blog">
     @csrf
     <div class="row">
         <div class="col-md-12">
@@ -210,6 +211,17 @@
 
     $("#imgInp").change(function() {
         readURL(this);
+    });
+
+    $('#form_blog').on('submit',function(){
+        let card = $(this).find('.card');
+        for(let i = 0; i < card.length;i++){
+            card.append(`
+                <div class="overlay dark" id="loading">
+                    <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                </div>
+                `);
+        }
     });
 </script>
 @endsection
