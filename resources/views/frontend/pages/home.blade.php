@@ -77,6 +77,10 @@
             <input type="text" class="form-control form-control-sm" name="name" id="name" required>
           </div>
           <div class="form-group">
+            <label for="nama_alias" class="col-form-label col-form-label-sm">Nama Alias:</label>
+            <input type="text" class="form-control form-control-sm" name="nama_alias" id="nama_alias" required>
+          </div>
+          <div class="form-group">
             <label for="donasi" class="col-form-label col-form-label-sm">Jumlah:</label>
             {{-- <input type="number" class="form-control form-control-sm" name="donasi" id="donasi" required> --}}
             <input id="donasi" type="number" name="donasi" required>
@@ -93,16 +97,9 @@
             <div class="invalid-feedback">Example invalid custom select feedback</div>
           </div>
 
-          <div class="form-group">
-            <label for="exampleFormControlFile1">Bukti Transfer</label>
-            <div class="input-group">
-              <div class="custom-file">
-                <input type="file" name="image" class="custom-file-input" id="image" required>
-                <label class="custom-file-label" for="image">Choose file</label>
-              </div>
-            </div>
-            {{-- <input type="file" class="form-control-file" name="image" id="image"> --}}
-          </div>
+          <h5><span class="badge badge-info">Nama pengirim di samakan dengan nomor rekening.</span></h5>
+
+          
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -412,7 +409,7 @@
         bank: {
           required: true,
         },
-        image: {
+        nama_alias: {
           required: true
         },
       },
@@ -427,7 +424,7 @@
         bank: {
           required: "Mohon Masukan Bank Tujuan",
         },
-        image: "Mohon Lampirkan bukti transfer"
+        nama_alias: "Beri tanda '-' untuk mengosongkan"
       },
       errorElement: 'span',
       errorPlacement: function (error, element) {

@@ -39,10 +39,7 @@ class DonationController extends Controller
           $hasil_rupiah = "Rp " . number_format($row->total_donasi, 2, ',', '.');
           return $hasil_rupiah;
         })
-        ->addColumn('image', function ($row) {
-          return '<a target="_blank" href="' . asset($row->image_path) . '"><img src="' . asset($row->image_path) . '" alt="" width="150"></a>';
-        })
-        ->rawColumns(['action', 'image'])
+        ->rawColumns(['action'])
         ->make(true);
     }
     return view('admin.pages.donasi');
@@ -72,9 +69,6 @@ class DonationController extends Controller
         ->addColumn('total_donasi', function ($row) {
           $hasil_rupiah = "Rp " . number_format($row->total_donasi, 2, ',', '.');
           return $hasil_rupiah;
-        })
-        ->addColumn('image', function ($row) {
-          return '<a target="_blank" href="' . asset($row->image_path) . '"><img src="' . asset($row->image_path) . '" alt="" width="150"></a>';
         })
         ->rawColumns(['action', 'image'])
         ->make(true);

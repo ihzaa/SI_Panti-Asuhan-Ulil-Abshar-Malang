@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{route('admin_pages_donasi_index')}}" class="nav-link {{request()->is('*adm1n/donasi*') ? 'active': ''}}">
                         <i class="fas fa-people-carry nav-icon"></i>
                         <p>
                             Donasi
@@ -58,12 +58,7 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Home</p>
-                            </a>
-                        </li>
+                        
                         <li class="nav-item">
                             <a href="../layout/boxed.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -87,7 +82,7 @@
                 </li>
                 <li class="nav-header">Data Panti Asuhan</li>
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
+                    <a href="{{route('admin_profil_anak')}}" class="nav-link {{request()->is('*adm1n/profil_anak*') ? 'active': ''}}">
                         <i class="nav-icon fas fa-child"></i>
                         <p>
                             Profil Anak

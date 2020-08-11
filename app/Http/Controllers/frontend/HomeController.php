@@ -38,24 +38,19 @@ class HomeController extends Controller
     // untuk validasi form
     $this->validate($request, [
       'name' => 'required',
+      'nama_alias' => 'required',
       'donasi' => 'required',
       'bank' => 'required',
-      'image' => 'required'
     ]);
 
-    if ($files = $request->file('image')) {
-      $destinationPath = 'assets/images/bukti_transfer'; // upload path
-      $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-      $files->move($destinationPath, $profileImage);
-      $image = "images/bukti_transfer/$profileImage";
-    }
+
 
     // insert data ke table books
     $donasi = Donasi::create([
       'nama_donatur' => $request->name,
+      'nama_alias' => $request->nama_alias,
       'total_donasi' => $request->donasi,
       'nama_bank' => $request->bank,
-      'image_path' => $image
     ]);
 
     return response()->json(['code' => 200, 'message' => 'Donation Created successfully', 'data' => $donasi], 200);

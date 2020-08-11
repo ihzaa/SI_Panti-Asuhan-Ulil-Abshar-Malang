@@ -38,7 +38,6 @@
                 <th>Nama Donatur</th>
                 <th>Donasi</th>
                 <th>Bank</th>
-                <th>Gambar</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -51,7 +50,6 @@
                 <th>Nama Donatur</th>
                 <th>Donasi</th>
                 <th>Bank</th>
-                <th>Gambar</th>
                 <th>Aksi</th>
               </tr>
             </tfoot>
@@ -81,7 +79,6 @@
                   <th>Nama Donatur</th>
                   <th>Donasi</th>
                   <th>Bank</th>
-                  <th>Gambar</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -94,7 +91,6 @@
                   <th>Nama Donatur</th>
                   <th>Donasi</th>
                   <th>Bank</th>
-                  <th>Gambar</th>
                   <th>Aksi</th>
                 </tr>
               </tfoot>
@@ -146,10 +142,6 @@
           name: 'nama_bank'
         },
         {
-          data: 'image',
-          name: 'image',
-        },
-        {
           data: 'action',
           name: 'action',
           orderable: false
@@ -181,10 +173,6 @@
           name: 'nama_bank'
         },
         {
-          data: 'image',
-          name: 'image',
-        },
-        {
           data: 'action',
           name: 'action',
           orderable: false
@@ -214,8 +202,8 @@
                   $('#tabel_donasi').DataTable().ajax.reload();
                   $('#tabel_donasi_masuk').DataTable().ajax.reload();
                   Swal.fire(
-                      'Konfirmasi Berhasil!',
-                      'Postingan blog telah terhapus.',
+                      'Success!',
+                      'Konfirmasi donasi telah dilakukan.',
                       'success'
                   );
                 })
@@ -277,8 +265,8 @@
               $('#tabel_donasi').DataTable().ajax.reload();
                   $('#tabel_donasi_masuk').DataTable().ajax.reload();
                 Swal.fire(
-                    'Terhapus!',
-                    'Postingan blog telah terhapus.',
+                    'Success!',
+                    'Pembatalan donasi berhasil.',
                     'success'
                 );
             })
