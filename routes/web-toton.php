@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'frontend\HomeController@index')->name('home');
-Route::get('/home', 'frontend\HomeController@index')->name('home');
-Route::get('/profil_anak', 'frontend\ProfilAnakController@index')->name('profil_anak');
+Route::get('home', 'frontend\HomeController@index')->name('home');
+Route::get('profil_anak', 'frontend\ProfilAnakController@index')->name('profil_anak');
+Route::get('profil_anak/pagination', 'frontend\ProfilAnakController@fetch_data')->name('profil_anak_pagination');
 
-Route::post('/donasi', 'frontend\HomeController@donation')->name('send_donasi');
+Route::post('donasi', 'frontend\HomeController@donation')->name('send_donasi');
 
 
 Route::prefix('adm1n')->middleware('auth:admin')->group(function () {
