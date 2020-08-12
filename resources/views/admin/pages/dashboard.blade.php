@@ -162,7 +162,7 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text">Donasi Masuk</span>
-                    <span class="info-box-number">000</span>
+                <span class="info-box-number">{{$data['donasi_masuk']}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -172,7 +172,7 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text">Donasi yang Belum Dikonfirmasi</span>
-                    <span class="info-box-number">00</span>
+                <span class="info-box-number">{{$data['donasi_belum']}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
