@@ -76,18 +76,18 @@
             <div class="card" id="card_kategori">
                 <div class="card-header d-flex">
                     <h3 class="card-title my-auto">Daftar Ketagori</h3>
-                    <div class="col-sm-5 input-group">
+                    {{-- <div class="col-sm-5 input-group">
                         <input type="text" class="form-control" placeholder="Cari" v-model="cari">
                         <div class="input-group-append d-none d-md-flex">
                             <span class="input-group-text"><i class="fas fa-search"></i></span>
                         </div>
-                    </div>
+                    </div> --}}
                     <button class="btn btn-primary btn-sm ml-auto" @click="tambah()"><i class="fas fa-plus"></i> Tambah
                         Kategori</button>
 
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body" style="max-height: 600px;overflow-y: scroll;">
+                <!-- /.card-header style="max-height: 600px;overflow-y: scroll;" -->
+                <div class="card-body" >
                     <table id="tabel_kategori" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -97,19 +97,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($data['kategoris'] as $k)
-                                <tr>
-                                    <td>{{$k->nama}}</td>
-                            <td>{{$k->blog_count}}</td>
-                            <td class="text-center">
-                                <button href="#" class="btn btn-sm btn-warning" data-toggle="tooltip"
-                                    data-placement="bottom" title="Edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-sm btn-danger" data-id="{{$k->id}}" data-toggle="tooltip"
-                                    data-placement="bottom" title="Hapus"><i class="fas fa-trash"></i></button>
-                            </td>
-                            </tr>
-                            @endforeach --}}
-                            <tr v-for="i in filterdata">
+                            <tr v-for="i in data_list">
                                 <td>@{{i.nama}}</td>
                                 <td>@{{i.blog_count}}</td>
                                 <td class="text-center">
@@ -120,11 +108,11 @@
                                         title="Hapus" @click="hapus(i.id)"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
-                            <tr id="data-kosong" class="odd" v-if="data_list.length == 0">
+                            {{-- <tr id="data-kosong" class="odd" v-if="data_list.length == 0">
                                 <td valign="top" colspan="100%" class="dataTables_empty text-center">
                                     Data Kosong
                                 </td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                         <tfoot>
                             <tr>
@@ -181,6 +169,7 @@
             mounted() {
                 // method yg pertama di panggil
                 this.tampilData();
+
             },
             data : {
                 // variabel
@@ -188,6 +177,7 @@
                 id : "",
                 nama : "",
                 cari : "",
+                tabel : "",
             },
             methods: {
                 // method disini
@@ -215,6 +205,7 @@
                             }
                             this.data_list = resp.data.data;
                             this.remLoading();
+                            this.tampilData();
                         }).catch(err => {
                             console.log(err);
                         });
@@ -227,6 +218,7 @@
                         }).then(resp => {
                             this.data_list = resp.data;
                             this.remLoading();
+                            this.tampilData();
                         }).catch(err => {
                             console.log(err);
                         });
@@ -247,11 +239,28 @@
                     this.data_list = [];
                     axios.get("{{route('admin_get_all_kategori')}}")
                     .then(resp =>{
-                        this.data_list = resp.data
+                        if(this.tabel != ""){
+                            this.tabel.clear().destroy();
+                        }
+                        this.data_list = "";
+                        this.data_list = resp.data;
                         this.remLoading();
-                    }).catch(err =>{
-                        console.log('eror =' + err);
+
+                        // if(this.data_list.length == 0){
+                        //     $('#tabel_kategori tbody').append(`<tr id="data-kosong" class="odd" v-if="data_list.length == 0">
+                        //         <td valign="top" colspan="100%" class="dataTables_empty text-center">
+                        //             Data Kosong
+                        //         </td>
+                        //     </tr>`);
+                        // }
+                    }).then(()=>{
+                            this.tabel = $('#tabel_kategori').DataTable();
                     })
+                    .catch(err =>{
+                        console.log('eror =' + err);
+                    }).finally(()=>{
+
+                    });
                     // yg selalu dilakukan itu then akhir
                     // .then(function(){
                     //     $('#tbl-loader').hide();
@@ -282,6 +291,7 @@
                                     'success'
                                 );
                                 this.remLoading();
+                                this.tampilData();
                             })
                             .catch(err => {console.log(err);});
                         }
@@ -294,12 +304,12 @@
                     $('#modal-kategori').modal('show');
                 }
             },computed: {
-                filterdata() {
-                    return this.cari ?
-                    this.data_list.filter(item =>
-                        item.nama.toLowerCase().includes(this.cari)
-                    ): this.data_list
-                }
+                // filterdata() {
+                //     return this.cari ?
+                //     this.data_list.filter(item =>
+                //         item.nama.toLowerCase().includes(this.cari)
+                //     ): this.data_list
+                // }
             }
         });
     });
