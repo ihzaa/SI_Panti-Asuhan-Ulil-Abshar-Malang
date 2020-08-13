@@ -383,6 +383,7 @@
           {
             $('#donasiModal').modal('hide');
             $('#donasi_form')[0].reset();
+            $('#donasi').data('ionRangeSlider').reset();
 
               Swal.fire(
               'Berhasil!',
