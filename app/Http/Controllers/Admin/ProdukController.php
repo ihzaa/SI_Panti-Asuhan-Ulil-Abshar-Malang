@@ -13,7 +13,7 @@ class ProdukController extends Controller
     public function index()
     {
         $data = array();
-        $data['produk'] = produk::all();
+        $data['produk'] = Produk::all();
   
         return view('admin.pages.Produk.produk',compact('data'));
     }

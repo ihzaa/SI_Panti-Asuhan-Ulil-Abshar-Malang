@@ -13,7 +13,7 @@ class ProdukController extends Controller
     public function index()
     {
         
-        $data= produk::paginate(6);
+        $data= Produk::paginate(6);
   
         return view('frontend.pages.produk',compact('data'));
     }
