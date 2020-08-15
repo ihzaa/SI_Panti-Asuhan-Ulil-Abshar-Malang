@@ -87,7 +87,7 @@
 
                 </div>
                 <!-- /.card-header style="max-height: 600px;overflow-y: scroll;" -->
-                <div class="card-body" >
+                <div class="card-body">
                     <table id="tabel_kategori" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -314,7 +314,7 @@
         });
     });
 
-    $('#tabel_blog').DataTable({
+    let table_blog = $('#tabel_blog').DataTable({
       "paging": true,
       "lengthChange": true,
       "searching": true,
@@ -356,7 +356,17 @@
                         'Postingan blog telah terhapus.',
                         'success'
                     );
+                    table_blog.destroy();
                     $("#blog-"+id).remove();
+                    table_blog = $('#tabel_blog').DataTable({
+                        "paging": true,
+                        "lengthChange": true,
+                        "searching": true,
+                        "ordering": true,
+                        "info": true,
+                        "autoWidth": true,
+                        "responsive": true,
+                    });
                     $('#card_tabel #loading').remove();
                 })
                 .catch(err => {console.log(err);});
