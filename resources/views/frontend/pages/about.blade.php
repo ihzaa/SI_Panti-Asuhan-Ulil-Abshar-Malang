@@ -115,7 +115,16 @@
 		          <h2 class="mb-0">Pengurus Panti Asuhan</h2>
 		        </div>
             <div class="carousel-testimony owl-carousel ftco-owl">
-              @foreach( $data['managers'] as $d)
+            @if($data['managers']->isEmpty())
+               <div class="item">
+                <div class="testimony-wrap">
+                  <div class="text">
+                    <p class="mb-4 mt-4">Data pengurus belum tersedia</p>
+                  </div>
+                </div>
+              </div>
+            @endif  
+            @foreach( $data['managers'] as $d)
               @if($d->position_desc == NULL)
               <div class="item">
                 <div class="testimony-wrap">
@@ -151,6 +160,71 @@
               @endif
               @endforeach
             </div>
+          </div>
+        </div>
+      </div>
+    </section> <!-- .section -->
+
+    <section class="testimony-section bg-light">
+      <div class="container">
+        <div class="row ftco-animate justify-content-center">
+        	
+          <div class="col-md-6 py-5">
+          	<div class="heading-section pb-4 pt-md-4 ftco-animate">
+		          <h2 class="mb-0">Fasilitas Panti Asuhan</h2>
+            </div>
+            
+            <div class="sidebar-box ftco-animate">
+              <ul class="categories">
+            @if($data['sarana']->isEmpty())
+              <div class="item">
+                <div class="testimony-wrap">
+                  <div class="text">
+                    <p class="mb-4 mt-4">Data fasilitas belum tersedia</p>
+                  </div>
+                </div>
+              </div>
+            @endif 
+             
+            @foreach( $data['sarana'] as $d)
+              <li><a>{{$d->name}} <span style="color:black">Jumlah ({{$d->total}})</span></a></li>
+            @endforeach
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex">
+        		<!-- <div class="testimony-img" style="background-image: url({{ asset('aspiration/images/testimony-img.jpg') }});"></div> -->
+            <div id="carouselExampleFade" class="carousel slide carousel-fade my-auto" data-ride="carousel">
+              <div class="carousel-inner my-auto">
+                <div class="carousel-item my-auto active">
+                  <img src="{{ asset('aspiration/images/panti.jpg') }}" class="my-auto d-block w-100 h-100"  alt="foto fasilitas">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h4 style="font-weight:700; color:white;background-color:var(--teal);border:1px solid white"></h4>
+                  </div>
+                </div>
+              @foreach($data['sarana'] as $d)
+                @if($d->image != NULL)
+                <div class="carousel-item">
+                  <img src="{{ asset($d->image) }}" class="d-block w-100" alt="foto fasilitas">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h4 style="font-weight:700; color:white;background-color:var(--teal);border:1px solid white">{{ $d->name }}</h4>
+                  </div>
+                </div>
+                @endif
+              @endforeach
+              @if(!$data['sarana']->isEmpty())
+              <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+              @endif
+            </div>
+        	</div>
+          
           </div>
         </div>
       </div>

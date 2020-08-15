@@ -5,7 +5,8 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Frontend\manager;
-use App\Models\Frontend\orphanage;
+use App\Models\Frontend\sarana;
+use App\Models\Frontend\ProfilAnak;
 
 class AboutController extends Controller
 {
@@ -13,7 +14,8 @@ class AboutController extends Controller
     {
       $data = array();
       $data['managers'] = manager::all();
-      $data['orphanages'] = orphanage::all();
+      $data['orphanages'] = ProfilAnak::all();
+      $data['sarana']= sarana::all();
 
       return view('frontend.pages.about', compact('data'));
     }

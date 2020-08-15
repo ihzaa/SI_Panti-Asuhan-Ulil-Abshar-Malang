@@ -98,7 +98,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
+                    <a href="{{route('admin_fasilitas')}}" class="nav-link {{request()->is('*adm1n/fasilitas*') ? 'active': ''}}">
                         <i class="nav-icon fas fa-tools"></i>
                         <p>
                             Sarana Prasarana

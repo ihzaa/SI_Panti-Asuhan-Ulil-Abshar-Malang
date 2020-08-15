@@ -69,7 +69,7 @@ class ManagerController extends Controller
         return view('admin.pages.manager.tambah-edit', compact('data'));
     }
 
-    public function editBlog($id, Request $request)
+    public function editPengurus($id, Request $request)
     {
         $this->validate($request, [
             'image' => ['image', 'max:500'],

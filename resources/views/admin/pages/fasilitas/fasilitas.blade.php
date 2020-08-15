@@ -6,11 +6,11 @@
 <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
 @endsection
 
-@section('judul_halaman','Pengurus')
+@section('judul_halaman','Fasilitas')
 
 @section('breadcrumb')
 <li class="breadcrumb-item active">Pages</li>
-<li class="breadcrumb-item active">Manager</li>
+<li class="breadcrumb-item active">Facilities</li>
 @endsection
 
 @section('konten')
@@ -19,34 +19,29 @@
         <div class="col-12">
             <div class="card" id="card_tabel">
                 <div class="card-header d-flex">
-                    <h3 class="card-title my-auto">Daftar Pengurus Panti Asuhan</h3>
-                    <a class="btn btn-primary btn-sm ml-auto" href="{{route('admin_tampil_halaman_tambah_pengurus')}}"><i
-                            class="fas fa-plus"></i> Tambah Pengurus</a>
+                    <h3 class="card-title my-auto">Daftar fasilitas Panti Asuhan</h3>
+                    <a class="btn btn-primary btn-sm ml-auto" href="{{route('admin_tampil_halaman_tambah_fasilitas')}}"><i
+                            class="fas fa-plus"></i> Tambah Fasilitas</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="tabel_manager" class="table table-bordered table-striped">
+                    <table id="tabel_fasilitas" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Foto Pengurus</th>
-                                <th>Nama</th>
-                                <th>Posisi</th>
-                                <th>Deskripsi Posisi</th>
+                                <th>Nama Fasilitas</th>
+                                <th>Jumlah</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data['managers'] as $d)
-                            <tr id="manager-{{$d->id}}">
+                            @foreach ($data['sarana'] as $d)
+                            <tr id="fasilitas-{{$d->id}}">
                                 <td>{{$loop->iteration}}</td>
-                                <td class="text-center"><img src="{{asset($d->image)}}" alt="" width="100">
-                                </td>
                                 <td>{{$d->name}}</td>
-                                <td>{{$d->position}}</td>
-                                <td>{{$d->position_desc}}</td>
+                                <td>{{$d->total}}</td>
                                 <td class="text-center">
-                                    <a href="{{route('admin_tampil_edit_pengurus',['id'=>$d->id])}}"
+                                    <a href="{{route('admin_tampil_edit_fasilitas',['id'=>$d->id])}}"
                                         class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom"
                                         title="Edit"><i class="fas fa-edit"></i></a>
                                     <button class="btn btn-sm btn-danger btn-hapus" data-id="{{$d->id}}"
@@ -59,10 +54,8 @@
                         <tfoot>
                             <tr>
                                 <th>No</th>
-                                <th>Foto Pengurus</th>
                                 <th>Nama</th>
-                                <th>Posisi</th>
-                                <th>Deskripsi Posisi</th>
+                                <th>Jumlah</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -87,7 +80,7 @@
 <script src="{{asset('js/vue.min.js')}}"></script>
 <script src="{{asset('js/axios.min.js')}}"></script>
 <script>
-    let table_manager = $('#tabel_manager').DataTable({
+    let table_fasilitas = $('#tabel_fasilitas').DataTable({
       "paging": true,
       "lengthChange": true,
       "searching": true,
@@ -104,7 +97,7 @@
 
     $(".btn-hapus").on('click',function(){
         Swal.fire({
-            title: 'Yakin ingin menghapus data pengurus?',
+            title: 'Yakin ingin menghapus data fasilitas?',
             text: "Data yang dihapus tidak dapat dikembalikan!",
             icon: 'warning',
             showCancelButton: true,
@@ -120,18 +113,18 @@
                 </div>
                 `);
                 let id = $(this).data('id');
-                let url = "{{route('admin_hapus_pengurus',':__id')}}";
+                let url = "{{route('admin_hapus_fasilitas',':__id')}}";
                 url = url.replace(':__id', id);
                 fetch(url)
                 .then(() =>{
                     Swal.fire(
                         'Terhapus!',
-                        'Data pengurus telah terhapus.',
+                        'Data fasilitas telah terhapus.',
                         'success'
                     );
-                    table_manager.destroy();
-                    $("#manager-"+id).remove();
-                    table_manager = $('#tabel_manager').DataTable({
+                    table_fasilitas.destroy();
+                    $("#fasilitas-"+id).remove();
+                    table_fasilitas = $('#tabel_fasilitas').DataTable({
                         "paging": true,
                         "lengthChange": true,
                         "searching": true,

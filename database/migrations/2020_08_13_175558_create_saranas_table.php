@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrphanagesTable extends Migration
+class CreateSaranasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateOrphanagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('orphanages', function (Blueprint $table) {
+        Schema::create('saranas', function (Blueprint $table) {
             $table->id();
+            $table->text('image')->nullable();
             $table->text('name');
-            $table->integer('grade');
-            $table->text('origin');
+            $table->integer('total');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateOrphanagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orphanages');
+        Schema::dropIfExists('saranas');
     }
 }
