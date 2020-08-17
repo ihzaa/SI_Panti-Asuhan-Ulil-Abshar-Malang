@@ -101,6 +101,10 @@
             <input type="text" class="form-control form-control-sm" name="nama_alias" id="nama_alias" placeholder="Nama yang ditampilkan ke publik" required>
           </div>
           <div class="form-group">
+            <label for="email" class="col-form-label col-form-label-sm">Email</label>
+            <input type="email" class="form-control form-control-sm" name="email" id="email" placeholder="Mendapatkan Konfirmasi Donasi Masuk" required>
+          </div>
+          <div class="form-group">
             <label for="donasi" class="col-form-label col-form-label-sm">Jumlah *</label>
             {{-- <input type="number" class="form-control form-control-sm" name="donasi" id="donasi" required> --}}
             <input id="donasi" type="number" name="donasi" oninput="updateInputTextDonasi(this.value)" >
@@ -476,6 +480,10 @@
     rules: {
       name: {
         required: true,
+        email: true,
+      },
+      name: {
+        required: true,
       },
       donasi: {
         required: true,
@@ -489,6 +497,10 @@
       },
     },
     messages: {
+      email: {
+        required: "Mohon masukkan alamat surel",
+        email: "mahon masukkan alamat surel valid"
+      },
       name: {
         required: "Mohon Masukan Nama",
       },

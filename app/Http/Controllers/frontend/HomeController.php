@@ -51,6 +51,7 @@ class HomeController extends Controller
       'nama_alias' => $request->nama_alias,
       'total_donasi' => $request->donasi,
       'nama_bank' => $request->bank,
+      'email' => $request->email,
     ]);
 
     return response()->json(['code' => 200, 'message' => 'Donation Created successfully', 'data' => $donasi], 200);
