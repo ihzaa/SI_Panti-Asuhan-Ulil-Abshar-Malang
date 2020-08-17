@@ -25,7 +25,7 @@
           <div class="card-tools">
             {{-- <a class="btn btn-primary btn-sm ml-auto" href="{{route('admin_tampil_halaman_tambah_blog')}}"><i
               class="fas fa-plus"></i> Tambah Postingan</a> --}}
-            <button type="button" class="btn btn-primary btn-sm ml-auto" data-toggle="modal" data-target="#modal-default">
+            <button type="button" class="btn btn-add btn-primary btn-sm ml-auto" data-toggle="modal" data-target="#modal-default">
               Tambah Anak Asuh
             </button>
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -313,6 +313,16 @@ $(document).ready(function () {
     validator.resetForm();
     $('#form_profil_anak')[0].reset();
   })
+  
+  $('.btn-add').click(function(){
+    $('.modal-title').text('Add New Record');
+    $('#action_button').val('Submit');
+    $('#action').val('Add');
+
+    validator.resetForm();
+    $('#form_profil_anak')[0].reset();
+    $('#modal-default').modal('show');
+  });
 
   $(document).on('click', '.btnEdit', function(){
     var id = $(this).data('id');
@@ -323,9 +333,10 @@ $(document).ready(function () {
       {
         $('#nama').val(data.result.nama);
         $('#umur').val(data.result.umur);
-        $('#jenKel').select(data.result.jenis_kelamin);
-        // $('#sekolah').select(data.result.sekolah);
-        // $('#kelas').select(data.result.kelas);
+        $("input[name=jenKel][value=" + data.result.jenis_kelamin + "]").prop('checked', true);
+        $("div.id_100 select").val("val2");
+        $('#sekolah').val(data.result.sekolah);
+        $('#kelas').val(data.result.kelas);
         $('#hidden_id').val(id);
         $('.modal-title').text('Ubah Data Anak');
         $('#action_button').text('Update');
