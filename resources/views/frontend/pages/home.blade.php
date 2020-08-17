@@ -6,6 +6,26 @@
 <link rel="stylesheet" href="{{asset('admin/plugins/ion-rangeslider/css/ion.rangeSlider.min.css')}}">
   <!-- bootstrap slider -->
 <link rel="stylesheet" href="{{asset('admin/plugins/bootstrap-slider/css/bootstrap-slider.min.css')}}">
+
+<style>
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #666666 !important;
+  font-size: 0.8rem;
+  opacity: 0.1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #343a40 !important;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #343a40 !important;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+</style>
 @endsection
 
 
@@ -73,21 +93,21 @@
         <form id="donasi_form">
           @csrf
           <div class="form-group">
-            <label for="name" class="col-form-label col-form-label-sm">Nama Pengirim:</label>
-            <input type="text" class="form-control form-control-sm" name="name" id="name" required>
+            <label for="name" class="col-form-label col-form-label-sm">Nama Pengirim *</label>
+            <input type="text" class="form-control form-control-sm" name="name" id="name" placeholder="Sesuaikan dengan nama rekening pengirim" required>
           </div>
           <div class="form-group">
-            <label for="nama_alias" class="col-form-label col-form-label-sm">Nama Alias:</label>
-            <input type="text" class="form-control form-control-sm" name="nama_alias" id="nama_alias" required>
+            <label for="nama_alias" class="col-form-label col-form-label-sm">Nama Samaran</label>
+            <input type="text" class="form-control form-control-sm" name="nama_alias" id="nama_alias" placeholder="Nama yang ditampilkan ke publik" required>
           </div>
           <div class="form-group">
-            <label for="donasi" class="col-form-label col-form-label-sm">Jumlah:</label>
+            <label for="donasi" class="col-form-label col-form-label-sm">Jumlah*</label>
             {{-- <input type="number" class="form-control form-control-sm" name="donasi" id="donasi" required> --}}
             <input id="donasi" type="number" name="donasi" required>
           </div>
 
           <div class="form-group">
-            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Bank</label>
+            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Bank*</label>
             <select class="custom-select my-1 mr-sm-2" name="bank" id="bank" required>
               <option value="" selected>Choose...</option>
               <option value="BNI">BNI</option>
@@ -97,7 +117,7 @@
             <div class="invalid-feedback">Example invalid custom select feedback</div>
           </div>
 
-          <h5><span class="badge badge-info">Nama pengirim di samakan dengan nomor rekening.</span></h5>
+          {{-- <h5><span class="badge badge-info">Nama pengirim di samakan dengan nomor rekening.</span></h5> --}}
 
           
       </div>
