@@ -20,6 +20,7 @@ class Donasi extends Migration
       $table->string('nama_alias');
       $table->bigInteger('total_donasi');
       $table->string('nama_bank');
+      $table->string('email')->nullable();
     });
   }
 
