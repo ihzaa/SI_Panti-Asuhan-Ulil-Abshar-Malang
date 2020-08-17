@@ -101,10 +101,10 @@
             <input type="text" class="form-control form-control-sm" name="nama_alias" id="nama_alias" placeholder="Nama yang ditampilkan ke publik" required>
           </div>
           <div class="form-group">
-            <label for="donasi" class="col-form-label col-form-label-sm">Jumlah*</label>
+            <label for="donasi" class="col-form-label col-form-label-sm">Jumlah *</label>
             {{-- <input type="number" class="form-control form-control-sm" name="donasi" id="donasi" required> --}}
-            <input id="donasi" type="number" name="donasi" required>
-            <input id="rupiah" placeholder="Masukkan Jumlah Donasi" min="0" type="text" class="form-control form-control-sm" required>
+            <input id="donasi" type="number" name="donasi" oninput="updateInputTextDonasi(this.value)" >
+            <input id="rupiah" placeholder="Masukkan Jumlah Donasi" type="text" class="form-control form-control-sm">
           </div>
 
           <div class="form-group">
@@ -361,6 +361,18 @@
 
 <script src="{{asset('js/sweetalert2.all.min.js')}}"></script>
 
+<script>
+  function updateInputTextDonasi(val){
+    // $('#donasi').data('ionRangeSlider').update({
+    //   from: ish
+    // });
+    // // var str = "Rs. 6,67,000";
+    // var res = ish.replace(/\D/g, "");
+    rupiah.value = formatRupiah(val, 'Rp. ');
+    // console.log(val);
+  }
+</script>
+
 <script type="text/javascript">
 		
   var rupiah = document.getElementById('rupiah');
@@ -370,7 +382,7 @@
     var str = this.value;
     var max = 1000000000;
     var res = str.replace(/\D/g, "");
-    console.log(res);
+    // console.log(res);
     if(res >= max){
       rupiah.value = formatRupiah('1000000000', 'Rp. ');
       // Update Slider Value From Input Standar
