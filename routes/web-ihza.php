@@ -19,7 +19,7 @@ Route::get('/adm1n/logout', 'Auth\AdminLoginController@logout')->name('logout_ad
 //PREFIX admin BERARTI NANTI URLNYA BERAWALAN /adm1n/, MISAL: domain.com/adm1n/.....
 //MIDDLEWARE YG DIPAKE AUTH:ADMIN
 Route::prefix('adm1n')->middleware('auth:admin')->group(function () {
-
+    Route::get('/testing', 'Admin\DonationController@testing');
     Route::get('', 'Admin\DashboardController@index')->name('admin_dashboard');
 
     Route::get('pages/blog', 'Admin\BlogController@index')->name('admin_pages_blog_index');
