@@ -55,8 +55,8 @@ class HomeController extends Controller
     $data['day_now'] = Carbon::now()->day;
 
     $data['blogs'] = blog::with('users:id,nama')->latest()->paginate(4);
-    // $data['coba'] = Carbon::now()->monthName;
-    return view('frontend.pages.home', $data);
+
+    return view('frontend.pages.Home.home', $data);
   }
 
   function jumlahHari($month, $year)
