@@ -14,23 +14,55 @@ class HomeController extends Controller
 {
   public function index()
   {
-    $donasi = DB::table('donasis')
+    $data['last_3month'] = DB::table('donasis')
       ->whereExists(function ($query) {
         $query->from('donasi_masuks')
           ->whereRaw('donasi_masuks.donasi_id = donasis.id');
-      });
+      })->select(
+        // DB::raw('DATE_FORMAT(created_at, "%b") as month'),
+        DB::raw('MONTHNAME(created_at) as month'),
+        DB::raw('SUM(total_donasi) as sum')
+      )
+      ->whereMonth('created_at', '<', Carbon::now()->month)
+      ->whereMonth('created_at', '>=', Carbon::now()->subMonth(3)->month)
+      ->orderBy('month', 'desc')
+      ->groupBy('month')
+      ->get();
 
-    $data['donasi'] = $donasi->select(
-      DB::raw('MONTH(created_at) as month'),
-      DB::raw('SUM(total_donasi) as sum')
-    )
+    $jml = count($data['last_3month']);
+    $data['jml_last_3month'] = $jml == 2 ? 6 : ($jml == 1 ? 12 : 4);
+
+    $data['donasi'] = DB::table('donasis')
+      ->whereExists(function ($query) {
+        $query->from('donasi_masuks')
+          ->whereRaw('donasi_masuks.donasi_id = donasis.id');
+      })->select(
+        DB::raw('MONTH(created_at) as month'),
+        DB::raw('SUM(total_donasi) as sum')
+      )
       ->whereMonth('created_at', '=', Carbon::now()->month)
       ->groupBy('month')
       ->first();
-    $data['kebutuhan'] = 10000000;
+
+
+    $data['donatur_terbaru'] = DB::table('donasis')
+      ->whereExists(function ($query) {
+        $query->from('donasi_masuks')
+          ->whereRaw('donasi_masuks.donasi_id = donasis.id');
+      })->whereMonth('created_at', '=', Carbon::now()->month)->take(3)->get();
+
+    $data['jml_hari'] = $this->jumlahHari(Carbon::now()->month, Carbon::now()->year);
+    $data['day_now'] = Carbon::now()->day;
 
     $data['blogs'] = blog::with('users:id,nama')->latest()->paginate(4);
+    // $data['coba'] = Carbon::now()->monthName;
     return view('frontend.pages.home', $data);
+  }
+
+  function jumlahHari($month, $year)
+  {
+    $hari = date('t', mktime(0, 0, 0, $month, 1, $year));
+    return $hari;
   }
   //
   public function donation(Request $request)
@@ -42,8 +74,6 @@ class HomeController extends Controller
       'donasi' => 'required',
       'bank' => 'required',
     ]);
-
-
 
     // insert data ke table books
     $donasi = Donasi::create([

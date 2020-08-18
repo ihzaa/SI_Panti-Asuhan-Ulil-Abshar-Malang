@@ -187,29 +187,28 @@
     <div class="row justify-content-center ftco-animate">
       <div class="col-md-8">
         <div class="featured-causes">
-          <div class="progress" style="height:50px">
+          <div class="progress" style="height:50px; flex-direction: column; justify-content: center;">
+             <p style="position: absolute;
+             margin-left: auto;
+             margin-right: auto;
+             left: 0;
+             right: 0;
+             text-align: center;
+             "> {{$jml_hari-$day_now}} Hari Lagi</p>
             @if ($donasi)
-              <div class="progress-bar progress-bar-striped" style="width:{{($donasi->sum/$kebutuhan)*100}}%; height:50px"></div>
+              <div class="progress-bar progress-bar-striped" style="width:{{($day_now/$jml_hari)*100}}%; height:50px"></div>
             @else
-              <div class="progress-bar progress-bar-striped" style="width:{{(0/$kebutuhan)*100}}%; height:50px"></div>
+              {{-- <div class="progress-bar progress-bar-striped" style="width:{{(0/$kebutuhan)*100}}%; height:50px"></div> --}}
             @endif
           </div>
           <div class="text mt-4 d-md-flex">
             <div class="one d-flex">
               <div class="mr-4">
                 @if ($donasi)
-                  <h2>{{intval(($donasi->sum/$kebutuhan)*100)}}%</h2>
+                  <h2>Rp <span class="number" data-number="{{$donasi->sum}}"></span> terkumpul</h2>
                 @else
-                  <h2>{{intval((0/$kebutuhan)*100)}}%</h2>
+                  {{-- <h2>{{intval((0/$kebutuhan)*100)}}%</h2> --}}
                 @endif
-              </div>
-              <div class="goal">
-                @if ($donasi)
-                  <p class="d-flex"><span>Terkumpul :</span>Rp. <span class="number" data-number="{{$donasi->sum}}">0</span></p>
-                @else
-                  <p class="d-flex"><span>Terkumpul :</span>Rp. <span class="number">0</span></p>
-                @endif
-                <p class="d-flex"><span>Kebutuhan :</span>Rp. <span class="number" data-number="{{$kebutuhan}}">0</span></p>
               </div>
             </div>
             <div class="one text-md-right">
@@ -221,9 +220,79 @@
           </div>
         </div>
       </div>
+      <div class="col-md-8" style="padding: 15px;
+      margin: 15px;">
+        <h1 style="font-size: 20px;">Donasi Terbaru</h1>
+        <div class="row">
+          @if (count($donatur_terbaru) >= 1)
+            @foreach ($donatur_terbaru as $item)
+              <div class="col-md-4">
+                <div style="background: #fff;
+                text-align: center;
+                line-height: 7px;
+                padding: 17px;
+                border-radius: 10px;
+                background: #81e2c7;
+                color: #636363;">
+                  <p style="font-weight: bold;">{{$item->nama_donatur}}</p> 
+                  <p>Rp. {{number_format($item->total_donasi)}}</p>
+                  <p>{{date('d F Y', strtotime($item->created_at))}}</p>
+                </div>
+              </div>
+            @endforeach
+          @else
+            <div class="col-md-12" style="text-align: center">
+              <p style="font-size: 1.1rem">Belum ada donasi saat ini.</p>
+            </div>
+          @endif
+      </div>
+      </div>
     </div>
   </div>
 </section>
+
+<section class="ftco-section ftco-causes">
+    <div class="container">
+        {{-- {{$last_3month}} --}}
+      <div class="row">
+        @foreach ($last_3month as $item)
+          <div class="col-md-{{$jml_last_3month}}">
+            <div class="causes causes-2 text-center ftco-animate">
+            <h2>Donasi Bulan {{$item->month}}</h2>
+              <div class="goal">
+                <p><span>Rp <span class="number" data-number="{{$item->sum}}">0</span></span> terkumpul</p>
+                <div class="progress" style="height:20px">
+                  <div class="progress-bar progress-bar-striped" style="width:100%; height:20px">Selesai</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{-- <div class="col-md-4">
+            <div class="causes causes-2 text-center ftco-animate">
+              <h2>Donasi Bulan Juni</h2>
+              <div class="goal">
+                  <p><span>Rp 3,800.000</span> terkumpul</p>
+                <div class="progress" style="height:20px">
+                  <div class="progress-bar progress-bar-striped" style="width:75%; height:20px">75%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="causes causes-2 text-center ftco-animate">
+              <h2>Donasi Bulan July</h2>
+              <div class="goal">
+                  <p><span>Rp 3,800.000</span> terkumpul</p>
+                <div class="progress" style="height:20px">
+                  <div class="progress-bar progress-bar-striped" style="width:40%; height:20px">40%</div>
+                </div>
+              </div>
+            </div>
+          </div> --}}
+        @endforeach
+      </div>
+    </div>
+  </section>
 
 <section class="ftco-section ftco-vol img" style="background-image: url(assets/aspiration/images/bg_3.jpg);">
   <div class="overlay"></div>
@@ -364,6 +433,13 @@
 <script src="{{asset('admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 
 <script src="{{asset('js/sweetalert2.all.min.js')}}"></script>
+
+<script>
+  function month(val) {
+    month = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    return month[val];
+  }
+</script>
 
 <script>
   function updateInputTextDonasi(val){
