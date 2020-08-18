@@ -35,7 +35,9 @@
             <thead>
               <tr>
                 <th>Tgl Dibuat</th>
+                <th>Email</th>
                 <th>Nama Donatur</th>
+                <th>Nama Alias</th>
                 <th>Donasi</th>
                 <th>Bank</th>
                 <th>Aksi</th>
@@ -47,7 +49,9 @@
             <tfoot>
               <tr>
                 <th>Tgl Dibuat</th>
+                <th>Email</th>
                 <th>Nama Donatur</th>
+                <th>Nama Alias</th>
                 <th>Donasi</th>
                 <th>Bank</th>
                 <th>Aksi</th>
@@ -76,7 +80,9 @@
               <thead>
                 <tr>
                   <th>Tgl Konfirmasi</th>
+                  <th>Email</th>
                   <th>Nama Donatur</th>
+                  <th>Nama Alias</th>
                   <th>Donasi</th>
                   <th>Bank</th>
                   <th>Aksi</th>
@@ -88,7 +94,9 @@
               <tfoot>
                 <tr>
                   <th>Tgl Konfirmasi</th>
+                  <th>Email</th>
                   <th>Nama Donatur</th>
+                  <th>Nama Alias</th>
                   <th>Donasi</th>
                   <th>Bank</th>
                   <th>Aksi</th>
@@ -130,8 +138,16 @@
           name: 'created_at'
         },
         {
+          data: 'email',
+          name: 'email'
+        },
+        {
           data: 'nama_donatur',
           name: 'nama_donatur'
+        },
+        {
+          data: 'nama_alias',
+          name: 'nama_alias'
         },
         {
           data: 'total_donasi',
@@ -161,8 +177,16 @@
           name: 'created_at'
         },
         {
+          data: 'email',
+          name: 'email'
+        },
+        {
           data: 'nama_donatur',
           name: 'nama_donatur'
+        },
+        {
+          data: 'nama_alias',
+          name: 'nama_alias'
         },
         {
           data: 'total_donasi',
