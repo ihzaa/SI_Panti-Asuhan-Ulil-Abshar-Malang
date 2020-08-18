@@ -33,7 +33,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('admin_pages_donasi_index')}}" class="nav-link {{request()->is('*adm1n/donasi*') ? 'active': ''}}">
+                    <a href="{{route('admin_pages_donasi_index')}}"
+                        class="nav-link {{request()->is('*adm1n/donasi*') ? 'active': ''}}">
                         <i class="fas fa-people-carry nav-icon"></i>
                         <p>
                             Donasi
@@ -49,40 +50,42 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview {{request()->is('*adm1n/pages*') ? 'menu-open' : ''}}">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            Halaman
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
+                <li class="nav-item">
+                    <a href="{{route('admin_pages_blog_index')}}"
+                        class="nav-link {{request()->is('*adm1n/pages/blog*') ? 'active': ''}}">
+                        <i class=" fas fa-copy nav-icon"></i>
+                        <p>Blog</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        
-                        <li class="nav-item">
-                            <a href="../layout/boxed.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Product</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('admin_pages_blog_index')}}"
-                                class="nav-link {{request()->is('*adm1n/pages/blog*') ? 'active': ''}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Blog</p>
-                            </a>
-                        </li>
-                        {{-- <li class="nav-item">
-                            <a href="../layout/fixed-topnav.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Contact</p>
-                            </a>
-                        </li> --}}
-                    </ul>
                 </li>
+                {{-- <li class="nav-item has-treeview {{request()->is('*adm1n/pages*') ? 'menu-open' : ''}}">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p>
+                        Halaman
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+
+                    <li class="nav-item">
+                        <a href="../layout/boxed.html" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Product</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin_pages_blog_index')}}"
+                            class="nav-link {{request()->is('*adm1n/pages/blog*') ? 'active': ''}}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Blog</p>
+                        </a>
+                    </li>
+                </ul>
+                </li> --}}
                 <li class="nav-header">Data Panti Asuhan</li>
                 <li class="nav-item">
-                    <a href="{{route('admin_profil_anak')}}" class="nav-link {{request()->is('*adm1n/profil_anak*') ? 'active': ''}}">
+                    <a href="{{route('admin_profil_anak')}}"
+                        class="nav-link {{request()->is('*adm1n/profil_anak*') ? 'active': ''}}">
                         <i class="nav-icon fas fa-child"></i>
                         <p>
                             Profil Anak
@@ -90,7 +93,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('admin_manager')}}" class="nav-link {{request()->is('*adm1n/manager*') ? 'active': ''}}">
+                    <a href="{{route('admin_manager')}}"
+                        class="nav-link {{request()->is('*adm1n/manager*') ? 'active': ''}}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Pengurus
@@ -98,7 +102,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('admin_fasilitas')}}" class="nav-link {{request()->is('*adm1n/fasilitas*') ? 'active': ''}}">
+                    <a href="{{route('admin_fasilitas')}}"
+                        class="nav-link {{request()->is('*adm1n/fasilitas*') ? 'active': ''}}">
                         <i class="nav-icon fas fa-tools"></i>
                         <p>
                             Sarana Prasarana
