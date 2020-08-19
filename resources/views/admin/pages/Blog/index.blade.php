@@ -242,10 +242,8 @@
                         if(this.tabel != ""){
                             this.tabel.clear().destroy();
                         }
-                        this.data_list = "";
+                        // this.data_list = "";
                         this.data_list = resp.data;
-                        this.remLoading();
-
                         // if(this.data_list.length == 0){
                         //     $('#tabel_kategori tbody').append(`<tr id="data-kosong" class="odd" v-if="data_list.length == 0">
                         //         <td valign="top" colspan="100%" class="dataTables_empty text-center">
@@ -254,7 +252,12 @@
                         //     </tr>`);
                         // }
                     }).then(()=>{
-                            this.tabel = $('#tabel_kategori').DataTable();
+                            this.tabel = $('#tabel_kategori').DataTable({
+                                "columnDefs": [
+                                { orderable: false, targets: [-1] }
+                                ]
+                            });
+                            this.remLoading();
                     })
                     .catch(err =>{
                         console.log('eror =' + err);
@@ -322,6 +325,9 @@
       "info": true,
       "autoWidth": true,
       "responsive": true,
+      "columnDefs": [
+        { orderable: false, targets: [1,-1] }
+        ]
     });
 
     // Enable tooltips everywhere
@@ -366,6 +372,9 @@
                         "info": true,
                         "autoWidth": true,
                         "responsive": true,
+                        "columnDefs": [
+                        { orderable: false, targets: [1,-1] }
+                        ]
                     });
                     $('#card_tabel #loading').remove();
                 })
