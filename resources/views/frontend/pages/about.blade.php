@@ -2,6 +2,16 @@
 
 @section('JudulHalaman','Tentang kami')
 
+@section('CssTambahanAfter')
+<style>
+  @media (max-width: 767px) {
+    .ftco-mission .container .row .img{
+      display:none;
+    }
+  }
+</style>
+@endsection
+
 @section('konten')
 <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{ asset('aspiration/images/panti.jpg') }});" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -60,7 +70,7 @@
     	</div>
     </section>
 
-    <section class="ftco-counter ftco-section img" id="section-counter" style="background-image: url(images/bg_2.jpg);">
+    <section class="ftco-counter ftco-section img" id="section-counter" style="background-color:var(--teal);">
     	<div class="overlay"></div>
     	<div class="container">
 				<div class="row d-md-flex align-items-center">
@@ -195,16 +205,16 @@
           <div class="col-md-6 d-flex">
         		<!-- <div class="testimony-img" style="background-image: url({{ asset('aspiration/images/testimony-img.jpg') }});"></div> -->
             <div id="carouselExampleFade" class="carousel slide carousel-fade my-auto" data-ride="carousel">
-              <div class="carousel-inner my-auto">
-                <div class="carousel-item my-auto active">
-                  <img src="{{ asset('aspiration/images/panti.jpg') }}" class="my-auto d-block w-100 h-100"  alt="foto fasilitas">
+              <div class="carousel-inner">
+                <div class="carousel-item my-auto active" style="height:370px;overflow:hidden">
+                  <img src="{{ asset('aspiration/images/panti.jpg') }}" style="bottom: 0;" class="my-auto d-block w-100 h-100"  alt="foto fasilitas">
                   <div class="carousel-caption d-none d-md-block">
                     <h4 style="font-weight:700; color:white;background-color:var(--teal);border:1px solid white"></h4>
                   </div>
                 </div>
               @foreach($data['sarana'] as $d)
                 @if($d->image != NULL)
-                <div class="carousel-item">
+                <div class="carousel-item" style="height:370px;overflow:hidden">
                   <img src="{{ asset($d->image) }}" class="d-block w-100" alt="foto fasilitas">
                   <div class="carousel-caption d-none d-md-block">
                     <h4 style="font-weight:700; color:white;background-color:var(--teal);border:1px solid white">{{ $d->name }}</h4>
