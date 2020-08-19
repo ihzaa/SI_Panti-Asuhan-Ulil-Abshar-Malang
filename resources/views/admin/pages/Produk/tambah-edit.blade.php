@@ -33,9 +33,9 @@
                             <div class="form-group col-md-12 my-auto">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="imgInp"
-                                        {{request()->is('*/manager/tambah*')?"required":""}} name="image">
+                                        {{request()->is('*/produk/tambah*')?"required":""}} name="image">
                                     <label class="custom-file-label"
-                                        for="imgInp">{{request()->is('*/manager/tambah*')?"Foto Pengurus":"Foto sampul.jpg"}}</label>
+                                        for="imgInp">{{request()->is('*/produk/tambah*')?"Foto Produk":"Foto produk.jpg"}}</label>
                                     <small class="form-text text-muted">- Ukuran max 256KB</small>
                                     <small class="form-text text-muted">- Harus berupa gambar (format: jpg, jpeg, svg,
                                         png , dll)</small>
@@ -69,7 +69,17 @@
                         <input type="text" class="form-control" id="inputWarning" name="price"
                             placeholder="Harga"
                             value="{{request()->is('*/produk/tambah*')?old('price'):$data['produk']->price}}" required>
+                            <small class="form-text text-muted">contoh: 50000</small>
                         @error('price')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <textarea type="text" class="form-control" id="inputWarning" name="hasiat"
+                            placeholder="hasiat">{{request()->is('*/produk/tambah*')?old('hasiat'):$data['produk']->hasiat}}</textarea>
+                            
+                        @error('hasiat')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>

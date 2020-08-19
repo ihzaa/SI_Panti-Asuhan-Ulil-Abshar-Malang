@@ -19,21 +19,28 @@
       </div>
     </section>
 
-    <section class="ftco-section ftco-causes" id="produk">
-    	<div class="container" >
+    <section class="ftco-section ftco-causes" >
+    	<div class="container" id="produk" >
         <div class="row">
         @if ($data->count() > 0)
         @foreach ($data as $d)
         	<div class="col-md-4">
-        		<div class="causes causes-2 text-center ftco-animate">
+        		<div class="causes causes-2 text-left ftco-animate">
         			<div class="img" style="background-image: url({{asset($d->image)}});"></div>
         			<h2>{{$d->name}}</h2>
         			<p>{{$d->desc}}</p>
-        			<div class="goal">
-        				<p><span>Rp.{{$d->price}}</span></p>	
-							</div>
-        		</div>
+        			<div class="goal ">
+                <p><span>Rp.{{$d->price}}</span></p>	
+                
+              </div>
+              <div class="causes causes-2 text-right ftco-animate">
+              <p><a href="{{route('produk_detail',['id'=>$d->id])}}"class="btn btn-primary py-2 px-3">Read more</a></p>
+            
+              </div>
+            </div>
+           
           </div>
+         
           
           @endforeach
         </div>

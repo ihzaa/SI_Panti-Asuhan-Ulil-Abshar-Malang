@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProduks extends Migration
+class CreateTableGambarDetail extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateProduks extends Migration
      */
     public function up()
     {
-        Schema::create('produks', function (Blueprint $table) {
+        Schema::create('gambar_Details', function (Blueprint $table) {
             $table->id();
             $table->text('image');
-            $table->text('name');
-            $table->text('desc');
-            $table->text('price');
-            $table->text('hasiat')->nullable();;
-
+            $table->unsignedBigInteger('produk_id');
             $table->timestamps();
+            $table->foreign('produk_id')->references('id')->on('produks')->onDelete('cascade');
         });
     }
 
@@ -32,6 +29,6 @@ class CreateProduks extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('produks');
+        Schema::dropIfExists('gambar_Details');
     }
 }
