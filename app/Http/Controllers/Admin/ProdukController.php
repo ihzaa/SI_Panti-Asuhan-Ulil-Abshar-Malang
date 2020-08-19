@@ -111,7 +111,7 @@ class ProdukController extends Controller
         
          $gambar = gambar_detail::where('produk_id', $id)->get();
         foreach ($gambar as $f) {
-            File::delete(substr($f->path, 1));
+            File::delete('assets/'.$f->image);
         }
         $produk->delete();
         return response()->json(['OK' => 200]);
