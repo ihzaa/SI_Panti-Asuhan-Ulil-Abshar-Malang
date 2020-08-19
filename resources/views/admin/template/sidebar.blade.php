@@ -43,7 +43,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{route('admin_produk')}}" class="nav-link {{request()->is('*adm1n/produk*') ? 'active': ''}}">
                         <i class="nav-icon fas fa-box-open"></i>
                         <p>
                             Produk
