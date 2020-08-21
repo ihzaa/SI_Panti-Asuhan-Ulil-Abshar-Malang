@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Frontend\blog;
 use App\Models\Frontend\Donasi;
 use App\Models\Frontend\kategori;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Frontend\manager;
 use App\Models\Frontend\sarana;
 use App\Models\Frontend\ProfilAnak;
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
@@ -63,7 +65,7 @@ class HomeController extends Controller
     $data['pengurus'] = manager::count();
     $data['anak_asuh'] = ProfilAnak::count();
     $data['sarana'] = sarana::count();
-
+    $data['bank'] = Bank::all();
     $data['blogs'] = blog::with('users:id,nama')->latest()->paginate(4);
 
     return view('frontend.pages.Home.home', $data);
@@ -94,6 +96,26 @@ class HomeController extends Controller
       'email' => $request->email,
     ]);
 
-    return response()->json(['code' => 200, 'message' => 'Donation Created successfully', 'data' => $donasi], 200);
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      // CURLOPT_URL => "https://api.callmebot.com/whatsapp.php?phone=+6287759721950&text=Halo%20Bossss&apikey=471726",
+      CURLOPT_URL => "https://api.callmebot.com/whatsapp.php?phone=+6287759721950&text=Halo%20Bossss%20ada%20donasi%20masuk%20dari%20" . $request->email . "%20silahkan%20periksa%20mobile%20banking&apikey=471726",
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "GET",
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    return response()->json([$response]);
+
+    // return response()->json(['code' => 200, 'message' => 'Donation Created successfully', 'data' => $donasi], 200);
   }
 }
