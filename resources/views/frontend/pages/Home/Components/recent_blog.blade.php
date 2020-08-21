@@ -1,4 +1,4 @@
-<section class="ftco-section" style="padding-top: 0;">
+<section class="ftco-section">
   <div class="container">
     <div class="row justify-content-center pb-5">
       <div class="col-md-10 heading-section text-center ftco-animate">

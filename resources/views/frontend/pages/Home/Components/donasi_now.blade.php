@@ -43,33 +43,35 @@
           </div>
         </div>
       </div>
-      <div class="col-md-8" style="padding: 15px;
-      margin: 15px;">
-        <h1 style="font-size: 20px;">Donasi Terbaru</h1>
-        <div class="row">
-          @if (count($donatur_terbaru) >= 1)
-            @foreach ($donatur_terbaru as $item)
-              <div class="col-md-4">
-                <div style="background: #fff;
-                text-align: center;
-                line-height: 7px;
-                padding: 17px;
-                border-radius: 10px;
-                background: #81e2c7;
-                color: #636363;">
-                  <p style="font-weight: bold;">{{$item->nama_donatur}}</p> 
-                  <p>Rp. {{number_format($item->total_donasi)}}</p>
-                  <p>{{date('d F Y', strtotime($item->created_at))}}</p>
+      @if (count($donatur_terbaru) >= 1)
+        <div class="col-md-8" style="padding: 15px;
+        margin: 15px;">
+          <h1 style="font-size: 20px;">Donasi Terbaru</h1>
+          <div class="row">
+            @if (count($donatur_terbaru) >= 1)
+              @foreach ($donatur_terbaru as $item)
+                <div class="col-md-4">
+                  <div style="background: #fff;
+                  text-align: center;
+                  line-height: 7px;
+                  padding: 17px;
+                  border-radius: 10px;
+                  background: #81e2c7;
+                  color: #636363;">
+                    <p style="font-weight: bold;">{{$item->nama_donatur}}</p> 
+                    <p>Rp. {{number_format($item->total_donasi)}}</p>
+                    <p>{{date('d F Y', strtotime($item->created_at))}}</p>
+                  </div>
                 </div>
+              @endforeach
+            @else
+              <div class="col-md-12" style="text-align: center">
+                <p style="font-size: 1.1rem">Belum ada donasi saat ini.</p>
               </div>
-            @endforeach
-          @else
-            <div class="col-md-12" style="text-align: center">
-              <p style="font-size: 1.1rem">Belum ada donasi saat ini.</p>
-            </div>
-          @endif
-      </div>
-      </div>
+            @endif
+          </div>
+        </div>
+      @endif
     </div>
   </div>
 </section>

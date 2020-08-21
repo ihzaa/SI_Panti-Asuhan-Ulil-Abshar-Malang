@@ -86,7 +86,8 @@
 
 @include('frontend.pages.Home.Components.donasi_now')
 
-<section class="ftco-section ftco-causes">
+@if(count($last_3month) > 0)
+  <section class="ftco-section ftco-causes">
     <div class="container">
         {{-- {{$last_3month}} --}}
       <div class="row">
@@ -106,57 +107,7 @@
       </div>
     </div>
   </section>
-
-{{-- <section class="ftco-section ftco-vol img" style="background-image: url(assets/aspiration/images/bg_3.jpg);">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-10 heading-section text-center ftco-animate">
-        <h2 class="mb-0"><a target="_blank" href="https://api.whatsapp.com/send?phone=6287759721950">Menjadi Donatur</a></h2>
-        <p style="color: white;">Menjadi donatur tetap yang memberikan bantuan ke panti setiap bulan.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="ftco-section ftco-causes">
-  <div class="container">
-    <div class="row justify-content-center pb-4">
-      <div class="col-md-10 heading-section text-center ftco-animate">
-        <h2 class="mb-4">Progam Donasi</h2>
-        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="causes causes-2 text-center ftco-animate">
-          <div class="img" style="background-image: url(assets/aspiration/images/zakat_fitrah.jpg);"></div>
-          <h2>Zakat Fitrah</h2>
-          <p>Untuk melakukan zakat fitrah bisa langsung datang langsung ke alamat panti asuhan atau bisa menghubungi contact person terlebih dahulu.</p>
-
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="causes causes-2 text-center ftco-animate">
-          <div class="img" style="background-image: url(assets/aspiration/images/zakat_mal.jpg);"></div>
-          <h2>Zakat Mal</h2>
-          <p>Untuk melakukan zakat mal bisa langsung datang langsung ke alamat panti asuhan atau bisa menghubungi contact person terlebih dahulu.</p>
-          
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="causes causes-2 text-center ftco-animate">
-          <div class="img" style="background-image: url(assets/aspiration/images/sedekah.png);"></div>
-          <h2>Infaq/Sedekah</h2>
-          <p>Infaq / Sedekah bisa dilakukan oleh setiap orang hanya dengan menekan tombol donasi tanpa minimum uang.</p>
-          
-        </div>
-      </div>
-    </div>
-    
-  </div>
-</section> --}}
+@endif
 
 @include('frontend.pages.Home.Components.recent_blog')
 

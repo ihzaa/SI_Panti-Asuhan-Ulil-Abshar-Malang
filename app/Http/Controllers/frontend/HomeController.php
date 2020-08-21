@@ -9,6 +9,9 @@ use App\Models\Frontend\kategori;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Frontend\manager;
+use App\Models\Frontend\sarana;
+use App\Models\Frontend\ProfilAnak;
 
 class HomeController extends Controller
 {
@@ -49,10 +52,17 @@ class HomeController extends Controller
       ->whereExists(function ($query) {
         $query->from('donasi_masuks')
           ->whereRaw('donasi_masuks.donasi_id = donasis.id');
-      })->whereMonth('created_at', '=', Carbon::now()->month)->take(3)->get();
+      })
+      ->whereMonth('created_at', '=', Carbon::now()->month)
+      ->orderBy('created_at', 'desc')
+      ->take(3)
+      ->get();
 
     $data['jml_hari'] = $this->jumlahHari(Carbon::now()->month, Carbon::now()->year);
     $data['day_now'] = Carbon::now()->day;
+    $data['pengurus'] = manager::count();
+    $data['anak_asuh'] = ProfilAnak::count();
+    $data['sarana'] = sarana::count();
 
     $data['blogs'] = blog::with('users:id,nama')->latest()->paginate(4);
 
