@@ -30,12 +30,13 @@
           </div>
 
           <div class="form-group">
+            
             <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Bank*</label>
             <select class="custom-select my-1 mr-sm-2" name="bank" id="bank" required>
               <option value="" selected>Choose...</option>
-              <option value="BNI">BNI</option>
-              <option value="BCA">BCA</option>
-              <option value="BRI">BRI</option>
+              @foreach ($bank as $item)
+                <option value="{{$item->nama_bank}}">{{$item->nama_bank}} - {{$item->no_rekening}}</option>
+              @endforeach
             </select>
             <div class="invalid-feedback">Example invalid custom select feedback</div>
           </div>
