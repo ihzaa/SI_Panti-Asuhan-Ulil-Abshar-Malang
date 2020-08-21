@@ -107,7 +107,7 @@
     </div>
   </section>
 
-<section class="ftco-section ftco-vol img" style="background-image: url(assets/aspiration/images/bg_3.jpg);">
+{{-- <section class="ftco-section ftco-vol img" style="background-image: url(assets/aspiration/images/bg_3.jpg);">
   <div class="overlay"></div>
   <div class="container">
     <div class="row justify-content-center">
@@ -156,7 +156,7 @@
     </div>
     
   </div>
-</section>
+</section> --}}
 
 @include('frontend.pages.Home.Components.recent_blog')
 
