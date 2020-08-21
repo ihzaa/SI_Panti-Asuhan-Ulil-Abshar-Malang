@@ -23,4 +23,11 @@ Route::prefix('adm1n')->middleware('auth:admin')->group(function () {
   Route::get('profil_anak/edit/{id}', 'Admin\ProfilAnakController@edit')->name('admin_profil_anak_edit');
   Route::post('profil_anak/update', 'Admin\ProfilAnakController@update')->name('admin_profil_anak_update');
   Route::get('profil_anak/delete/{id}', 'Admin\ProfilAnakController@delete')->name('admin_profil_anak_delete');
+
+  // Setting
+  Route::get('setting', 'Admin\SettingController@index')->name('admin_setting');
+  Route::post('setting/add_bank', 'Admin\SettingController@add_bank')->name('admin_setting_add_bank');
+  Route::get('setting/edit_bank/{id}', 'Admin\SettingController@bank_edit')->name('admin_setting_bank_edit');
+  Route::post('setting/update_bank', 'Admin\SettingController@bank_update')->name('admin_setting_bank_update');
+  Route::get('setting/delete_bank/{id}', 'Admin\SettingController@bank_delete')->name('admin_setting_bank_delete');
 });

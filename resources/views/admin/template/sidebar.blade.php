@@ -110,6 +110,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('admin_setting')}}"
+                        class="nav-link {{request()->is('*adm1n/setting*') ? 'active': ''}}">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Pengaturan
+                        </p>
+                    </a>
+                </li>
 
             </ul>
         </nav>
