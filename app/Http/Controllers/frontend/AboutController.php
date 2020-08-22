@@ -16,6 +16,7 @@ class AboutController extends Controller
       $data['managers'] = manager::all();
       $data['orphanages'] = ProfilAnak::all();
       $data['sarana']= sarana::all();
+      // $data['kamar']= sarana::where
 
       return view('frontend.pages.about', compact('data'));
     }

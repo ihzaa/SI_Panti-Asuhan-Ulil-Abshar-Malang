@@ -59,7 +59,7 @@
                     </div>
                     <label for="jumlah">Jumlah</label>
                     <div class="range-slider" id="jumlah">
-                      <input class="range-slider__range" name="jumlah" type="range" value="{{request()->is('*/fasilitas/tambah*')?1:$data['sarana']->total}}" min="1" max="100">
+                      <input class="range-slider__range" name="jumlah" type="range" value="{{request()->is('*/fasilitas/tambah*')?1:$data['sarana']->total}}" min="1" max="50">
                       <span class="range-slider__value">0</span>
                       @error('jumlah')
                       <div class="alert alert-danger">{{ $message }}</div>

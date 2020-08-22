@@ -37,10 +37,10 @@
 	    				<div class="row justify-content-start pb-3">
 			          <div class="col-md-12 heading-section ftco-animate">
 			          	<span class="subheading">Pesantren Panti Asuhan Putra Muhammadiyah Ulil Abshar</span>
-			            <h2 class="mb-4">Sejarah</h2>
+			            <h2 class="mb-4">Sejarah Singkat</h2>
 			            <!-- <h2 class="mb-4">We Voluntary Help for Almost <span class="number" data-number="100">0</span> Years</h2> -->
                   
-			            <p>Didirikan pada tanggal 24 Oktober 1990. Panti asuhan Ulil Abshar merupakan salah satu panti asuhan di bawah naungan PCM (Pimpinan Cabang Muhammadiyah). Panti asuhan ini berada di kecamatan Dau kabupaten Malang.Santri di panti asuhan Ulil Abshar merupakan siswa SD dan SMP.</p>
+			            <p>Pada tahun 1995 panti asuhan Ulil Abshar didirikan. Dan pada tahun 2014, Panti asuhan Ulil Abshar menjadi salah satu panti asuhan di bawah naungan PCM (Pimpinan Cabang Muhammadiyah). Panti asuhan ini berada di kecamatan Dau kabupaten Malang. yang menjadi sasaran pelayanan dari panti asuhan Ulil Abshar yaitu yatim, yatim piatu, piatu, dan dhuafa. Santri di panti asuhan Ulil Abshar merupakan siswa SD dan SMP.</p>
                   
 			          </div>
 			        </div>
@@ -75,20 +75,12 @@
     	<div class="container">
 				<div class="row d-md-flex align-items-center">
 					<div class="wrapper">
-						<div class="row">
+						<div class="row justify-content-around">
 		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 text-center">
 		              <div class="text">
 		                <strong class="number" data-number="{{ count($data['orphanages']) }}">0</strong>
 		                <span>Anak asuh</span>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center">
-		              <div class="text">
-		                <strong class="number" data-number="20">0</strong>
-		                <span>Donatur tetap</span>
 		              </div>
 		            </div>
 		          </div>
@@ -103,7 +95,7 @@
 		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 text-center">
 		              <div class="text">
-		                <strong class="number" data-number="10">0</strong>
+		                <strong class="number" data-number="4">0</strong>
 		                <span>Kamar</span>
 		              </div>
 		            </div>
@@ -118,7 +110,7 @@
       <div class="container">
         <div class="row ftco-animate justify-content-center">
         	<div class="col-md-6 d-flex">
-        		<div class="testimony-img" style="background-image: url({{ asset('aspiration/images/testimony-img.jpg') }});"></div>
+        		<div class="testimony-img" style="background-image: url({{ asset('aspiration/images/pengurus.png') }});"></div>
         	</div>
           <div class="col-md-6 py-5">
           	<div class="heading-section pb-4 pt-md-4 ftco-animate">
@@ -207,17 +199,17 @@
             <div id="carouselExampleFade" class="carousel slide carousel-fade my-auto" data-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item my-auto active" style="height:370px;overflow:hidden">
-                  <img src="{{ asset('aspiration/images/panti.jpg') }}" style="bottom: 0;" class="my-auto d-block w-100 h-100"  alt="foto fasilitas">
-                  <div class="carousel-caption d-none d-md-block">
+                  <img src="{{ asset('aspiration/images/panti.jpg') }}" style="height:370px;" class="my-auto d-block w-100 h-100"  alt="foto fasilitas">
+                  <!-- <div class="carousel-caption d-none d-md-block">
                     <h4 style="font-weight:700; color:white;background-color:var(--teal);border:1px solid white"></h4>
-                  </div>
+                  </div> -->
                 </div>
               @foreach($data['sarana'] as $d)
                 @if($d->image != NULL)
                 <div class="carousel-item" style="height:370px;overflow:hidden">
-                  <img src="{{ asset($d->image) }}" class="d-block w-100" alt="foto fasilitas">
+                  <img src="{{ asset($d->image) }}" class="d-block w-100" style="height:370px;" alt="foto fasilitas">
                   <div class="carousel-caption d-none d-md-block">
-                    <h4 style="font-weight:700; color:white;background-color:var(--teal);border:1px solid white">{{ $d->name }}</h4>
+                    <h4 style="margin: 0 auto;font-size:16px;width:fit-content;padding:0px 20px;font-weight:700; color:white;background-color:var(--teal);border:1px solid white">{{ $d->name }}</h4>
                   </div>
                 </div>
                 @endif
