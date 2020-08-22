@@ -19,7 +19,7 @@ class CreateProduks extends Migration
             $table->text('name');
             $table->text('desc');
             $table->text('price');
-            $table->text('hasiat')->nullable();;
+            
 
             $table->timestamps();
         });

@@ -53,8 +53,7 @@
 			            <h2 class="mb-4" style="color='"><u>{{$data['produk']->name}}</u></h2>
 			            <h3>Deskirpsi :</h3>
 			            <p>{{$data['produk']->desc}}</p>
-			            <h3>hasiat :</h3>
-                  <p>{{$data['produk']->hasiat}}</p>
+			            
                   <h3>harga :</h3>
                   <h4>RP.{{$data['produk']->price}}</h4>
 			          </div>

@@ -37,7 +37,7 @@ class ProdukController extends Controller
         $produk->image = $request->image;
         $produk->desc = $request->desc;
         $produk->price = $request->price;
-        $produk->hasiat = $request->hasiat;
+        
         $produk->save();
 
         //UPLOAD FOTO SAMPUL
@@ -69,15 +69,15 @@ class ProdukController extends Controller
         $this->validate($request, [
             'image' => ['image', 'max:500'],
             'name' => 'required',
-            'desc' => 'required',
-            'price' => 'required',
+            'desc' => 'required'
+            
             
         ]);
         $produk = Produk::find($id);
         $produk->name = $request->name;
         $produk->desc = $request->desc;
         $produk->price = $request->price;
-        $produk->hasiat = $request->hasiat;
+        
         if ($request->file('image') != "") {
           //UPLOAD FOTO SAMPUL
           $extension = $request->file('image')->getClientOriginalExtension();

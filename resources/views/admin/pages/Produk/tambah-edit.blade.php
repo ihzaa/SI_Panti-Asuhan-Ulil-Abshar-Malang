@@ -1,7 +1,7 @@
 @extends('admin.template.all')
 @section('judul_halaman',request()->is('*/produk/tambah*') ? 'Tambah Produk' : 'Edit Produk')
 @section('breadcrumb')
-<li class="breadcrumb-item active">Pages</li>
+
 <li class="breadcrumb-item active"><a href="{{route('admin_produk')}}">Produk</a></li>
 <li class="breadcrumb-item active">{{request()->is('*/produk/tambah*') ? 'Tambah Produk' : 'Edit produk'}}</li>
 @endsection
@@ -57,9 +57,9 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" id="inputWarning" name="desc"
-                            placeholder="deskripsi"
-                            value="{{request()->is('*/produk/tambah*')?old('deskripsi'):$data['produk']->desc}}" required>
+                        <textarea type="text" class="form-control" id="inputWarning" name="desc"
+                            placeholder="deskripsi">{{request()->is('*/produk/tambah*')?old('desc'):$data['produk']->desc}}</textarea>
+                            
                         @error('desc')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -75,14 +75,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
-                        <textarea type="text" class="form-control" id="inputWarning" name="hasiat"
-                            placeholder="hasiat">{{request()->is('*/produk/tambah*')?old('hasiat'):$data['produk']->hasiat}}</textarea>
-                            
-                        @error('hasiat')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    
 
                    
                 </div>

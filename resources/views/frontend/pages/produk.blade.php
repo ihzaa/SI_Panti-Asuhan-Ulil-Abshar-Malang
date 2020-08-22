@@ -28,11 +28,7 @@
         		<div class="causes causes-2 text-left ftco-animate">
         			<div class="img" style="background-image: url({{asset($d->image)}});"></div>
         			<h2>{{$d->name}}</h2>
-        			<p>{{$d->desc}}</p>
-        			<div class="goal ">
-                <p><span>Rp.{{$d->price}}</span></p>	
-                
-              </div>
+        			
               <div class="causes causes-2 text-right ftco-animate">
               <p><a href="{{route('produk_detail',['id'=>$d->id])}}"class="btn btn-primary py-2 px-3">Read more</a></p>
             

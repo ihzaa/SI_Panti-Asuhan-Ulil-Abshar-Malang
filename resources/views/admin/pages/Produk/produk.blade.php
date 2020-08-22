@@ -33,7 +33,7 @@
                                 <th>Nama</th>
                                 <th>deskripsi</th>
                                 <th>harga</th>
-                                <th>hasiat</th>
+                                
                                 <th>gambar detail</th>
                                 <th>Action</th>
                             </tr>
@@ -47,7 +47,6 @@
                                 <td>{{$d->name}}</td>
                                 <td>{{$d->desc}}</td>
                                 <td>{{$d->price}}</td>
-                                <td>{{$d->hasiat}}</td>
                                 <td><a class="btn btn-primary btn-sm ml-auto" href="{{route('admin_gambar_produk',['id'=>$d->id])}}">lihat gambar</a></td>
                                 <td class="text-center">
                                     <a href="{{route('admin_tampil_edit_produk',['id'=>$d->id])}}"
