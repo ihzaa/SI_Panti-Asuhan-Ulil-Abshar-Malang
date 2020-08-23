@@ -38,4 +38,8 @@ Route::prefix('adm1n')->middleware('auth:admin')->group(function () {
     Route::get('kelola-akun', 'Admin\AkunController@index')->name('admin_kelola_akun');
     Route::post('ubah-pass', 'Admin\AkunController@ubahPass')->name('admin_ubah_password');
     Route::post('ubah-nama', 'Admin\AkunController@ubahNama')->name('admin_ubah_nama');
+
+    Route::post('setting/nomer', 'Admin\SettingController@aturNomerWa')->name('admin_setting_nomer_wa');
+    Route::post('setting/apikey', 'Admin\SettingController@aturApiKey')->name('admin_setting_api_key');
+    Route::get('setting/get_nomer_wa_key', 'Admin\SettingController@getDataAdmin')->name('admin_setting_get_data');
 });
