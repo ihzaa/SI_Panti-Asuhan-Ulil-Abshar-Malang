@@ -17,9 +17,7 @@
 @endsection
 
 @section('konten')
-<form action="{{route('admin_tambah_gambar_produk',['id'=>$data['produk']->id])}}"
-    method="POST" enctype="multipart/form-data">
-    @csrf
+
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -32,6 +30,8 @@
                     <div class="row">
                         <div class="col-md-8 d-flex">
                             <div class="form-group col-md-12 my-auto">
+                            <form action="{{route('admin_tambah_gambar_produk',['id'=>$data['produk']->id])}}" method="POST" enctype="multipart/form-data">
+                            @csrf
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="imgInp" name="image"
                                         >
@@ -50,7 +50,7 @@
                             <row>
                             <button class="btn btn-primary btn-block" type="submit" style="height=40px">tambah</button>
                             </row>
-              
+                            </form>
                         </div>
               
 
@@ -58,7 +58,7 @@
                         
                     </div>
 
-</form>
+
                     
     
 
@@ -67,7 +67,7 @@
     <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="card" id="card_produk">
+            <div class="card" id="card_gambar">
                
                                
      
@@ -83,7 +83,7 @@
                         </thead>
                         <tbody>
                             @foreach ($data['gambar'] as $d)
-                            <tr id="gambar-{{$d->id}}">
+                            <tr id="gambar{{$d->id}}">
                                 <td>{{$loop->iteration}}</td>
                                 <td class="text-center"><img src="{{asset($d->image)}}" alt="" width="100">
                                 </td>
@@ -170,7 +170,7 @@
                         'success'
                     );
                     $("#gambar"+id).remove();
-                    $('#card_pgambar #loading').remove();
+                    $('#card_gambar #loading').remove();
                 })
                 .catch(err => {console.log(err);});
             }
