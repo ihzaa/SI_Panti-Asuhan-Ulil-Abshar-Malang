@@ -100,8 +100,8 @@ $.validator.setDefaults({
 
 var validator = $('#donasi_form').validate({
   rules: {
-    name: {
-      required: true,
+    email: {
+      // required: true,
       email: true,
     },
     name: {
@@ -120,8 +120,8 @@ var validator = $('#donasi_form').validate({
   },
   messages: {
     email: {
-      required: "Mohon masukkan alamat surel",
-      email: "mahon masukkan alamat surel valid"
+      // required: "Mohon masukkan alamat surel",
+      email: "Mohon masukkan alamat surel valid"
     },
     name: {
       required: "Mohon Masukan Nama",
