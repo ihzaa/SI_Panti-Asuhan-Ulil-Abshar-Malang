@@ -8,6 +8,11 @@
         </button>
       </div>
       <div class="modal-body">
+        <div id="ajaxSpinnerDemo" class="p-4 text-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
         <form id="donasi_form">
           @csrf
           <div class="form-group">
@@ -16,11 +21,11 @@
           </div>
           <div class="form-group">
             <label for="nama_alias" class="col-form-label col-form-label-sm">Nama Samaran</label>
-            <input type="text" class="form-control form-control-sm" name="nama_alias" id="nama_alias" placeholder="Nama yang ditampilkan ke publik" required>
+            <input type="text" class="form-control form-control-sm" name="nama_alias" id="nama_alias" placeholder="Opsional Nama yang ditampilkan ke publik" required>
           </div>
           <div class="form-group">
             <label for="email" class="col-form-label col-form-label-sm">Email</label>
-            <input type="email" class="form-control form-control-sm" name="email" id="email" placeholder="Mendapatkan Konfirmasi Donasi Masuk" required>
+            <input type="email" class="form-control form-control-sm" name="email" id="email" placeholder="Opsional Mendapatkan Konfirmasi Donasi Masuk">
           </div>
           <div class="form-group">
             <label for="donasi" class="col-form-label col-form-label-sm">Jumlah *</label>
