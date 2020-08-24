@@ -8,6 +8,11 @@
         </button>
       </div>
       <div class="modal-body">
+        <div id="ajaxSpinnerDemo" class="p-4 text-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
         <form id="donasi_form">
           @csrf
           <div class="form-group">

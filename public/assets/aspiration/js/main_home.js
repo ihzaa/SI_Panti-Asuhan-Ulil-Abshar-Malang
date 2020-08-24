@@ -1,3 +1,4 @@
+
 // Update Text Input if change slider
 function updateInputTextDonasi(val) {
   rupiah.value = formatRupiah(val, 'Rp. ');
@@ -46,6 +47,7 @@ function formatRupiah(angka, prefix) {
 
 
 $(function () {
+  $('div#ajaxSpinnerDemo').hide();
   bsCustomFileInput.init();
   /* BOOTSTRAP SLIDER */
   $('.slider').bootstrapSlider()
@@ -73,6 +75,8 @@ $.validator.setDefaults({
     var action_url = 'donasi';
 
     var form_data = new FormData($('#donasi_form')[0]);
+    $('div#ajaxSpinnerDemo').show();
+    $('#donasi_form').hide();
 
     $.ajax({
       url: action_url,
@@ -84,6 +88,9 @@ $.validator.setDefaults({
         $('#donasiModal').modal('hide');
         $('#donasi_form')[0].reset();
         $('#donasi').data('ionRangeSlider').reset();
+
+        $('div#ajaxSpinnerDemo').hide();
+        $('#donasi_form').show();
 
         Swal.fire(
           'Berhasil!',
