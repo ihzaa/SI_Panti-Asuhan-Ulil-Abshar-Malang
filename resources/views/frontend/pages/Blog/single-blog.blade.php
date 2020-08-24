@@ -3,23 +3,27 @@
 @section('judul_halaman',$data['blog']->judul)
 
 @section('konten')
-@section('isiHeader')
-<h2 class="mb-3 bread">Blog Details</h2>
-<p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span>
-    <span>Blog Single <i class="ion-ios-arrow-forward"></i></span></p>
-@endsection
-@include('frontend.template.header')
+@section('foto_bg')
+<section class="hero-wrap hero-wrap-2 js-fullheight"
+    style="background-image: url({{asset('aspiration/images/blog.jpg')}});" data-stellar-background-ratio="0.5">
+    @endsection
+    @section('isiHeader')
+    <h2 class="mb-3 bread">Blog Details</h2>
+    <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span>
+        <span>Blog Single <i class="ion-ios-arrow-forward"></i></span></p>
+    @endsection
+    @include('frontend.template.header')
 
-<section class="ftco-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 ftco-animate">
-                <h2 class="mb-3">{{$data['blog']->judul}}</h2>
-                <?php
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 ftco-animate">
+                    <h2 class="mb-3">{{$data['blog']->judul}}</h2>
+                    <?php
                     $d = $data['blog']->konten;
                     echo "<p>$d</p>";
                 ?>
-                {{-- <div class="tag-widget post-tag-container mb-5 mt-5">
+                    {{-- <div class="tag-widget post-tag-container mb-5 mt-5">
                     <div class="tagcloud">
                         <a href="#" class="tag-cloud-link">child</a>
                         <a href="#" class="tag-cloud-link">help</a>
@@ -28,7 +32,7 @@
                     </div>
                 </div> --}}
 
-                {{-- <div class="about-author d-flex p-4 bg-light">
+                    {{-- <div class="about-author d-flex p-4 bg-light">
                     <div class="bio mr-5">
                         <img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
                     </div>
@@ -41,7 +45,7 @@
                 </div> --}}
 
 
-                {{-- <div class="pt-5 mt-5">
+                    {{-- <div class="pt-5 mt-5">
                     <h3 class="mb-5">6 Comments</h3>
                     <ul class="comment-list">
                         <li class="comment">
@@ -168,19 +172,19 @@
                     </div>
                 </div> --}}
 
-            </div> <!-- .col-md-8 -->
-            <div class="col-lg-4 sidebar ftco-animate">
-                @include('frontend.pages.Blog.Components.searchBar')
-                @include('frontend.pages.Blog.Components.categoris')
-                {{-- @include('frontend.pages.Blog.Components.tags') --}}
+                </div> <!-- .col-md-8 -->
+                <div class="col-lg-4 sidebar ftco-animate">
+                    @include('frontend.pages.Blog.Components.searchBar')
+                    @include('frontend.pages.Blog.Components.categoris')
+                    {{-- @include('frontend.pages.Blog.Components.tags') --}}
+
+                </div>
 
             </div>
-
         </div>
-    </div>
-</section> <!-- .section -->
-@endsection
+    </section> <!-- .section -->
+    @endsection
 
-@section('JsTambahanAfter')
-<script src="{{asset('js/pages/blog-search.js')}}"></script>
-@endsection
+    @section('JsTambahanAfter')
+    <script src="{{asset('js/pages/blog-search.js')}}"></script>
+    @endsection
