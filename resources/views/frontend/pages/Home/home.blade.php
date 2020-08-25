@@ -33,6 +33,12 @@
 .red {
   color: red;
 }
+
+@media only screen and (max-width: 992px)  {
+  .bg-resp{
+    background: none !important;
+  }
+}
 </style>
 @endsection
 
@@ -56,7 +62,7 @@
 <section class="ftco-section ftco-no-pt ftco-no-pb ftco-volunteer">
   <div class="container-fluid px-md-0">
     <div class="row no-gutters">
-      <div class="col-md-6 img-volunteer" style="background-image: url(assets/aspiration/images/baca_quran.jpg);">
+      <div class="bg-resp col-md-6 img-volunteer" style="background-image: url(assets/aspiration/images/baca_quran.jpg);">
         <div class="row no-gutters justify-content-end">
           <div class="col-lg-7">
             <div class="text py-5 pl-md-4 pr-md-3">
