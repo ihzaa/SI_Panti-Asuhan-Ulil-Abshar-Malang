@@ -2,6 +2,12 @@
 
 @section('JudulHalaman','Tentang kami')
 
+@section('CssTambahanBefore')
+<!-- DataTables -->
+<link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+@endsection
+
 @section('CssTambahanAfter')
 <style>
   @media (max-width: 767px) {
@@ -176,23 +182,31 @@
 		          <h2 class="mb-0">Fasilitas Panti Asuhan</h2>
             </div>
             
-            <div class="sidebar-box ftco-animate">
-              <ul class="categories">
-            @if($data['sarana']->isEmpty())
-              <div class="item">
-                <div class="testimony-wrap">
-                  <div class="text">
-                    <p class="mb-4 mt-4">Data fasilitas belum tersedia</p>
-                  </div>
-                </div>
-              </div>
-            @endif 
-             
-            @foreach( $data['sarana'] as $d)
-              <li><a>{{$d->name}} <span style="color:black">Jumlah ({{$d->total}})</span></a></li>
-            @endforeach
-              </ul>
-            </div>
+            <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th class="th-sm" style="width: 70%">Nama Fasilitas</th>
+                  <th class="th-sm" style="width: 30%">Jumlah</th>
+                </tr>
+              </thead>
+              <tbody>
+              @foreach( $data['sarana'] as $d)
+                <tr>
+                  <td>{{$d->name}}</td>
+                  <td>{{$d->total}}</td>
+                </tr>
+                @endforeach
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Nama Fasilitas
+                  </th>
+                  <th>Jumlah
+                  </th>
+                </tr>
+              </tfoot>
+            </table>
+          
           </div>
           <div class="col-md-6 d-flex">
         		<!-- <div class="testimony-img" style="background-image: url({{ asset('aspiration/images/testimony-img.jpg') }});"></div> -->
@@ -231,4 +245,28 @@
         </div>
       </div>
     </section> <!-- .section -->
+@endsection
+
+@section('JsTambahanAfter')
+  <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+  <script src="{{asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+  <script>
+  $('#dtBasicExample').DataTable({
+    // "fnDrawCallback": function (oSettings) { 
+    //                 if ($('#dtBasicExample tr').length < 5) {
+    //                     $('.dataTables_paginate').hide();
+    //                 }
+    //             },
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": false,
+      "info": false,
+      "autoWidth": false,
+      "responsive": true,
+      "iDisplayLength": 5,
+    });
+  </script>
 @endsection

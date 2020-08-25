@@ -12,14 +12,14 @@
                     method request()->is('url') ini untuk supaya ada efek aktif
                     di navbar sesuai halaman yg sekarang dibuka
                 --}}
-                <li class="nav-item {{request()->is('/') ? "active":""}}"><a href="{{route('home')}}" class="nav-link">Home</a>
+                <li class="nav-item {{request()->is('/') ? "active":""}}"><a href="{{route('home')}}" class="nav-link">Beranda</a>
                 </li>
-                <li class="nav-item {{request()->is('about*') ? "active":""}}"><a href="{{route('about')}}" class="nav-link">About us</a></li>
-                <li class="nav-item {{request()->is('produk*') ? "active":""}}"><a href="{{route('produk')}}" class="nav-link">Product</a></li>
+                <li class="nav-item {{request()->is('about*') ? "active":""}}"><a href="{{route('about')}}" class="nav-link">Tentang kami</a></li>
+                <li class="nav-item {{request()->is('produk*') ? "active":""}}"><a href="{{route('produk')}}" class="nav-link">Produk</a></li>
                 <li class="nav-item {{request()->is('profil_anak*') ? "active":""}}"><a href="{{route('profil_anak')}}" class="nav-link">Profil Anak</a></li>
                 <li class="nav-item {{request()->is('blog*') ? "active":""}}"><a href="{{route('frontend_blog_index')}}"
                         class="nav-link">Blog</a></li>
-                <li class="nav-item {{request()->is('contact*') ? "active":""}}"><a href="{{route('frontend_contact')}}" class="nav-link">Contact</a></li>
+                <li class="nav-item {{request()->is('contact*') ? "active":""}}"><a href="{{route('frontend_contact')}}" class="nav-link">Kontak</a></li>
             </ul>
         </div>
     </div>
