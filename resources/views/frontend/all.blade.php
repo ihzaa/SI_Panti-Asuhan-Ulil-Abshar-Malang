@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="{{asset('aspiration/favicon/logo 16x16.jpg')}}" type="image/png" sizes="16x16">
     <link rel="icon" href="{{asset('aspiration/favicon/logo 32x32.jpg')}}" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{asset('aspiration/favicon/logo 16x16.jpg')}}" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="{{asset('aspiration/favicon/logo 32x32.jpg')}}" type="image/png" sizes="32x32">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600,700&display=swap" rel="stylesheet">
 
