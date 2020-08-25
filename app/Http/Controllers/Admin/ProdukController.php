@@ -82,7 +82,7 @@ class ProdukController extends Controller
           //UPLOAD FOTO SAMPUL
           $extension = $request->file('image')->getClientOriginalExtension();
           // File upload location
-          $$location = 'images/foto-produk';
+          $location = 'images/foto-produk';
           $nameUpload = 'produk'. $produk->id . '.' . $extension;
           // Upload file
           $request->file('image')->move('assets/' . $location, $nameUpload);
