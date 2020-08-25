@@ -1,8 +1,7 @@
 @extends('frontend.all')
 
-@section('CssTambahanAfter')
+@section('JudulHalaman','Kontak')
 
-@endsection
 
 @section('konten')
 @section('foto_bg')
@@ -10,9 +9,10 @@
     style="background-image: url({{asset('aspiration/images/blog.jpg')}});" data-stellar-background-ratio="0.5">
     @endsection
     @section('isiHeader')
-    <h2 class="mb-3 bread">Contact</h2>
-    <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span>
-        <span>Contact <i class="ion-ios-arrow-forward"></i></span></p>
+    <h2 class="mb-3 bread">Kontak</h2>
+    <p class="breadcrumbs"><span class="mr-2"><a href="{{route('home')}}">Beranda <i
+                    class="ion-ios-arrow-forward"></i></a></span>
+        <span>Kontak <i class="ion-ios-arrow-forward"></i></span></p>
     @endsection
     @include('frontend.template.header')
 
@@ -34,7 +34,7 @@
                             <span class="icon-phone2"></span>
                         </div>
                         <h3>Nomer Kontak</h3>
-                        <p>0813</p>
+                        <p>(0341) 464563</p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">
@@ -43,7 +43,7 @@
                             <span class="icon-paper-plane"></span>
                         </div>
                         <h3>Alamat Email</h3>
-                        <p><a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                        <p><a href="mailto:alfanajizan@gmail.com">alfanajizan@gmail.com</a></p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">
@@ -52,7 +52,7 @@
                             <span class="icon-globe"></span>
                         </div>
                         <h3>Website</h3>
-                        <p><a href="{{route('home')}}">yoursite.com</a></p>
+                        <p><a href="{{route('home')}}">panti-ulilabsharmalang.com</a></p>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin - @yield('judul_halaman')</title>
+    <link rel="icon" href="{{asset('aspiration/favicon/logo 16x16.jpg')}}" type="image/png" sizes="16x16">
+    <link rel="icon" href="{{asset('aspiration/favicon/logo 32x32.jpg')}}" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{asset('aspiration/favicon/logo 16x16.jpg')}}" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="{{asset('aspiration/favicon/logo 32x32.jpg')}}" type="image/png" sizes="32x32">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
