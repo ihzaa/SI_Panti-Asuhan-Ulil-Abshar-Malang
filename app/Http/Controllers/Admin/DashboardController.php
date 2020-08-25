@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Frontend\blog;
 use App\Models\Frontend\Donasi;
 use App\Models\Frontend\DonasiMasuk;
 use App\Models\Frontend\manager;
 use App\Models\Frontend\Produk;
 use App\Models\Frontend\ProfilAnak;
+use App\Models\Frontend\sarana;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -32,6 +34,8 @@ class DashboardController extends Controller
             $data['total_donasi'] += $total[0];
         }
 
+        $data['rekening'] = Bank::count();
+        $data['fasil'] = sarana::count();
         return view('admin.pages.dashboard', compact('data'));
     }
 }

@@ -176,27 +176,23 @@
             </div>
             <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box -->
+        <br>
         <div class="info-box mb-3 bg-danger">
-            <span class="info-box-icon"><i class="fas fa-handshake"></i></span>
+            <span class="info-box-icon"><i class="fas fa-book"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text">Donatur Tetap</span>
-                <span class="info-box-number">114,381</span>
+                <span class="info-box-text">Rekening</span>
+                <span class="info-box-number">{{$data['rekening']}}</span>
             </div>
-            <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box -->
         <div class="info-box mb-3 bg-info">
-            <span class="info-box-icon"><i class="fas fa-house-user"></i></span>
+            <span class="info-box-icon"><i class="fas fa-tools"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text">Kamar</span>
-                <span class="info-box-number">163,921</span>
+                <span class="info-box-text">Fasilitas</span>
+                <span class="info-box-number">{{$data['fasil']}}</span>
             </div>
-            <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box -->
     </div>
 </div>
 </div>
