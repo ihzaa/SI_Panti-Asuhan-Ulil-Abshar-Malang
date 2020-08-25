@@ -133,6 +133,7 @@ class BlogController extends Controller
         $blog = blog::find($id);
         $blog->judul = $request->judul;
         if ($request->file('foto_sampul') != "") {
+            File::delete('assets/' . $blog->sampul_foto);
             //UPLOAD FOTO SAMPUL
             $extension = $request->file('foto_sampul')->getClientOriginalExtension();
             // File upload location
