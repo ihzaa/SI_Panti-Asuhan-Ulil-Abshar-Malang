@@ -47,7 +47,6 @@ function formatRupiah(angka, prefix) {
 
 
 $(function () {
-  $('div#ajaxSpinnerDemo').hide();
   bsCustomFileInput.init();
   /* BOOTSTRAP SLIDER */
   $('.slider').bootstrapSlider()
@@ -75,8 +74,8 @@ $.validator.setDefaults({
     var action_url = 'donasi';
 
     var form_data = new FormData($('#donasi_form')[0]);
-    $('div#ajaxSpinnerDemo').show();
-    $('#donasi_form').hide();
+    $('#donasiModal').modal('hide');
+    $('#ftco-loader').addClass('show');
 
     $.ajax({
       url: action_url,
@@ -85,12 +84,10 @@ $.validator.setDefaults({
       contentType: false,
       processData: false,
       success: function (response) {
-        $('#donasiModal').modal('hide');
         $('#donasi_form')[0].reset();
         $('#donasi').data('ionRangeSlider').reset();
 
-        $('div#ajaxSpinnerDemo').hide();
-        $('#donasi_form').show();
+        $('#ftco-loader').removeClass('show');
 
         Swal.fire(
           'Berhasil!',
@@ -99,6 +96,7 @@ $.validator.setDefaults({
         );
       },
       error: function (response) {
+        $('#donasiModal').modal('show');
         // console.log(response.responseJSON.errors)
       }
     });

@@ -8,15 +8,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <div id="ajaxSpinnerDemo" class="p-4 text-center">
-          <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </div>
         <form id="donasi_form">
           @csrf
           <div class="form-group">
-            <label for="name" class="col-form-label col-form-label-sm">Nama Pengirim *</label>
+            <label for="name" class="col-form-label col-form-label-sm">Nama Pengirim 
+                <small class="info-label"><span class="red">*</span> </small>
+            </label>
             <input type="text" class="form-control form-control-sm" name="name" id="name" placeholder="Sesuaikan dengan nama rekening pengirim" required>
           </div>
           <div class="form-group">
@@ -28,7 +25,9 @@
             <input type="email" class="form-control form-control-sm" name="email" id="email" placeholder="Opsional Mendapatkan Konfirmasi Donasi Masuk">
           </div>
           <div class="form-group">
-            <label for="donasi" class="col-form-label col-form-label-sm">Jumlah *</label>
+            <label for="donasi" class="col-form-label col-form-label-sm">Jumlah 
+                <small class="info-label"><span class="red">*</span> </small>
+            </label>
             {{-- <input type="number" class="form-control form-control-sm" name="donasi" id="donasi" required> --}}
             <input id="donasi" type="number" name="donasi" oninput="updateInputTextDonasi(this.value)" >
             <input id="rupiah" placeholder="Masukkan Jumlah Donasi" type="text" class="form-control form-control-sm">
@@ -36,7 +35,9 @@
 
           <div class="form-group">
             
-            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Bank*</label>
+            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">
+              Bank <small class="info-label">Transfer pada no rekening yang tertera <span class="red">*</span> </small>
+            </label>
             <select class="custom-select my-1 mr-sm-2" name="bank" id="bank" required>
               <option value="" selected>Choose...</option>
               @foreach ($bank as $item)

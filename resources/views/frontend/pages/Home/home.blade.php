@@ -25,6 +25,14 @@
   font-size: 0.8rem;
   opacity: 0.7;
 }
+
+.info-label {
+  font-size: 0.68rem;
+}
+
+.red {
+  color: red;
+}
 </style>
 @endsection
 
