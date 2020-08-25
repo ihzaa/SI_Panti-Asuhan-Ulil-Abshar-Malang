@@ -176,27 +176,14 @@
             </div>
             <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box -->
-        <div class="info-box mb-3 bg-danger">
+        {{-- <div class="info-box mb-3 bg-danger">
             <span class="info-box-icon"><i class="fas fa-handshake"></i></span>
 
             <div class="info-box-content">
                 <span class="info-box-text">Donatur Tetap</span>
                 <span class="info-box-number">114,381</span>
             </div>
-            <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-        <div class="info-box mb-3 bg-info">
-            <span class="info-box-icon"><i class="fas fa-house-user"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">Kamar</span>
-                <span class="info-box-number">163,921</span>
-            </div>
-            <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
+        </div> --}}
     </div>
 </div>
 </div>
