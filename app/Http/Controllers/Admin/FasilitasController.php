@@ -32,14 +32,14 @@ class FasilitasController extends Controller
         $sarana = new sarana;
         $sarana->name = $request->name;
         $sarana->total = $request->jumlah;
-        
+        $sarana->save();
 
         if ($request->file('image') != "") {
           //UPLOAD FOTO SAMPUL
           $extension = $request->file('image')->getClientOriginalExtension();
           // File upload location
           $location = 'images/foto-fasilitas';
-          $nameUpload = $request->name . '.' . $extension;
+          $nameUpload = 'Fasilitas-' . $sarana->id . '.' . $extension;
           // Upload file
           $request->file('image')->move('assets/' . $location, $nameUpload);
           // Import CSV to Database
@@ -79,12 +79,15 @@ class FasilitasController extends Controller
         $sarana->name = $request->name;
         $sarana->total = $request->jumlah;
 
+        
+        
         if ($request->file('image') != "") {
+          unlink('assets/'.$sarana->image);
           //UPLOAD FOTO SAMPUL
           $extension = $request->file('image')->getClientOriginalExtension();
           // File upload location
           $location = 'images/foto-fasilitas';
-          $nameUpload = $request->name . '.' . $extension;
+          $nameUpload = 'Fasilitas-' . $id  . '.' . $extension;
           // Upload file
           $request->file('image')->move('assets/' . $location, $nameUpload);
           // Import CSV to Database

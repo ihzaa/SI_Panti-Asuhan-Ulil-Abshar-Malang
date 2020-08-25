@@ -81,6 +81,7 @@ class ManagerController extends Controller
         $manager->position = $request->position;
         $manager->position_desc = $request->position_desc;
         if ($request->file('image') != "") {
+          unlink('assets/'.$manager->image);
           //UPLOAD FOTO SAMPUL
           $extension = $request->file('image')->getClientOriginalExtension();
           // File upload location
