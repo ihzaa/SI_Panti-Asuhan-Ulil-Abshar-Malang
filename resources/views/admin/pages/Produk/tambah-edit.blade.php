@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" id="inputWarning" name="price" placeholder="Harga" value="{{request()->is('*/produk/tambah*')?old('price'):$data['produk']->price}}" required>
+                        <input type="number" class="form-control" id="inputWarning" name="price" placeholder="Harga" value="{{request()->is('*/produk/tambah*')?old('price'):$data['produk']->price}}" required>
                         <small class="form-text text-muted">contoh: 50000</small>
                         @error('price')
                         <div class="alert alert-danger">{{ $message }}</div>
