@@ -56,7 +56,7 @@
 
               <h3>harga :</h3>
 
-              <h4>RP.<?php
+              <h4>RP. <?php
                       $number = $data['produk']->price;
                       echo number_format("$number", 0, ",", ".")
                       ?></h4>
