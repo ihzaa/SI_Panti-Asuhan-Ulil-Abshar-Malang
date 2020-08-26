@@ -55,7 +55,11 @@
               <p>{{$data['produk']->desc}}</p>
 
               <h3>harga :</h3>
-              <h4>RP.{{$data['produk']->price}}</h4>
+
+              <h4>RP.<?php
+                      $number = $data['produk']->price;
+                      echo number_format("$number", 0, ",", ".")
+                      ?></h4>
             </div>
           </div>
         </div>
