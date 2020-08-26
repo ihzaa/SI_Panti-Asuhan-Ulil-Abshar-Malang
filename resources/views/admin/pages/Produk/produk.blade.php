@@ -20,8 +20,7 @@
             <div class="card" id="card_produk">
                 <div class="card-header d-flex">
                     <h3 class="card-title my-auto">Daftar Produk</h3>
-                    <a class="btn btn-primary btn-sm ml-auto" href="{{route('admin_tampil_halaman_tambah_produk')}}"><i
-                            class="fas fa-plus"></i> Tambah Produk</a>
+                    <a class="btn btn-primary btn-sm ml-auto" href="{{route('admin_tampil_halaman_tambah_produk')}}"><i class="fas fa-plus"></i> Tambah Produk</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -33,7 +32,7 @@
                                 <th>Nama</th>
                                 <th>deskripsi</th>
                                 <th>harga</th>
-                                
+
                                 <th>gambar detail</th>
                                 <th>Action</th>
                             </tr>
@@ -49,23 +48,19 @@
                                 <td>{{$d->price}}</td>
                                 <td><a class="btn btn-primary btn-sm ml-auto" href="{{route('admin_gambar_produk',['id'=>$d->id])}}">lihat gambar</a></td>
                                 <td class="text-center">
-                                    <a href="{{route('admin_tampil_edit_produk',['id'=>$d->id])}}"
-                                        class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom"
-                                        title="Edit"><i class="fas fa-edit"></i></a>
-                                    <button class="btn btn-sm btn-danger btn-hapus" data-id="{{$d->id}}"
-                                        data-toggle="tooltip" data-placement="bottom" title="Hapus"><i
-                                            class="fas fa-trash"></i></button>
+                                    <a href="{{route('admin_tampil_edit_produk',['id'=>$d->id])}}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fas fa-edit"></i></a>
+                                    <button class="btn btn-sm btn-danger btn-hapus" data-id="{{$d->id}}" data-toggle="tooltip" data-placement="bottom" title="Hapus"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
-                        
+
                     </table>
                 </div>
                 <!-- /.card-body -->
             </div>
         </div>
-        
+
 
     </div>
 </div>
@@ -82,24 +77,24 @@
 <script src="{{asset('js/axios.min.js')}}"></script>
 <script>
     $('#tabel_produk').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true,
-      "responsive": true,
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "responsive": true,
     });
 
     // Enable tooltips everywhere
-    $(function () {
+    $(function() {
         $('[data-toggle="tooltip"]').tooltip()
     });
 
-    $(".btn-hapus").on('click',function(){
+    $(".btn-hapus").on('click', function() {
         Swal.fire({
             title: 'hapus produk',
-            
+
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -117,16 +112,18 @@
                 let url = "{{route('admin_hapus_produk',':__id')}}";
                 url = url.replace(':__id', id);
                 fetch(url)
-                .then(() =>{
-                    Swal.fire(
-                        'Terhapus!',
-                        'produk telah terhapus.',
-                        'success'
-                    );
-                    $("#produk-"+id).remove();
-                    $('#card_produk #loading').remove();
-                })
-                .catch(err => {console.log(err);});
+                    .then(() => {
+                        Swal.fire(
+                            'Terhapus!',
+                            'produk telah terhapus.',
+                            'success'
+                        );
+                        $("#produk-" + id).remove();
+                        $('#card_produk #loading').remove();
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
             }
         });
     });
@@ -134,10 +131,10 @@
 @if(Session::get('icon'))
 <script>
     Swal.fire({
-            icon: "{{Session::get('icon')}}",
-            title: "{{Session::get('title')}}",
-            text: "{{Session::get('text')}}",
-        });
+        icon: "{{Session::get('icon')}}",
+        title: "{{Session::get('title')}}",
+        text: "{{Session::get('text')}}",
+    });
 </script>
 @endif
 @endsection

@@ -18,103 +18,99 @@
 
 @section('konten')
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Data Produk<span class="text-danger">*</span>
-                    </h3>
-                </div>
-                <div class="card-body" id="card-body-atas">
-                    <div class="row">
-                        <div class="col-md-8 d-flex">
-                            <div class="form-group col-md-12 my-auto">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    Data Produk<span class="text-danger">*</span>
+                </h3>
+            </div>
+            <div class="card-body" id="card-body-atas">
+                <div class="row">
+                    <div class="col-md-8 d-flex">
+                        <div class="form-group col-md-12 my-auto">
                             <form action="{{route('admin_tambah_gambar_produk',['id'=>$data['produk']->id])}}" method="POST" enctype="multipart/form-data">
-                            @csrf
+                                @csrf
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="imgInp" name="image"
-                                        >
-                                    <label class="custom-file-label"
-                                        for="imgInp">tambah gambar</label>
-                                       
+                                    <input type="file" class="custom-file-input" id="imgInp" name="image">
+                                    <label class="custom-file-label" for="imgInp">tambah gambar</label>
+
                                     <small class="form-text text-muted">- Ukuran max 256KB</small>
                                     <small class="form-text text-muted">- Harus berupa gambar (format: jpg, jpeg, svg,
                                         png , dll)</small>
                                 </div>
-                                
+
                                 @error('image')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
-                            </div>
-                            <row>
-                            <button class="btn btn-primary btn-block" type="submit" style="height=40px">tambah</button>
-                            </row>
-                            </form>
                         </div>
-              
-
-
-                        
+                        <row>
+                            <button class="btn btn-primary btn-block" type="submit" style="height: 40px;">tambah</button>
+                        </row>
+                        </form>
                     </div>
 
 
-                    
-    
 
 
-
-    <div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <div class="card" id="card_gambar">
-               
-                               
-     
-     <div class="card-body">
-                    <table id="tabel_gambar" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>gambar</th>
-                                
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data['gambar'] as $d)
-                            <tr id="gambar{{$d->id}}">
-                                <td>{{$loop->iteration}}</td>
-                                <td class="text-center"><img src="{{asset($d->image)}}" alt="" width="100">
-                                </td>
-                                
-                                <td class="text-center">
-                                    
-                                    <button class="btn btn-sm btn-danger btn-hapus" data-id="{{$d->id}}"
-                                        data-toggle="tooltip" data-placement="bottom" title="Hapus"><i
-                                            class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        
-                    </table>
                 </div>
-                
-                                    
+
+
+
+
+
+
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card" id="card_gambar">
+
+
+
+                                <div class="card-body">
+                                    <table id="tabel_gambar" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>gambar</th>
+
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($data['gambar'] as $d)
+                                            <tr id="gambar{{$d->id}}">
+                                                <td>{{$loop->iteration}}</td>
+                                                <td class="text-center"><img src="{{asset($d->image)}}" alt="" width="100">
+                                                </td>
+
+                                                <td class="text-center">
+
+                                                    <button class="btn btn-sm btn-danger btn-hapus" data-id="{{$d->id}}" data-toggle="tooltip" data-placement="bottom" title="Hapus"><i class="fas fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
-    </div>
-                
-            </div>
-        </div>
-        
+
 
     </div>
 </div>
-    
-   
+
+
 @endsection
 
 
@@ -128,24 +124,24 @@
 <script src="{{asset('js/axios.min.js')}}"></script>
 <script>
     $('#tabel_gambar').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true,
-      "responsive": true,
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "responsive": true,
     });
 
     // Enable tooltips everywhere
-    $(function () {
+    $(function() {
         $('[data-toggle="tooltip"]').tooltip()
     });
 
-    $(".btn-hapus").on('click',function(){
+    $(".btn-hapus").on('click', function() {
         Swal.fire({
             title: 'hapus gambar',
-            
+
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -163,16 +159,18 @@
                 let url = "{{route('admin_hapus_gambar',':__id')}}";
                 url = url.replace(':__id', id);
                 fetch(url)
-                .then(() =>{
-                    Swal.fire(
-                        'Terhapus!',
-                        'gambar telah terhapus.',
-                        'success'
-                    );
-                    $("#gambar"+id).remove();
-                    $('#card_gambar #loading').remove();
-                })
-                .catch(err => {console.log(err);});
+                    .then(() => {
+                        Swal.fire(
+                            'Terhapus!',
+                            'gambar telah terhapus.',
+                            'success'
+                        );
+                        $("#gambar" + id).remove();
+                        $('#card_gambar #loading').remove();
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
             }
         });
     });
@@ -180,10 +178,10 @@
 @if(Session::get('icon'))
 <script>
     Swal.fire({
-            icon: "{{Session::get('icon')}}",
-            title: "{{Session::get('title')}}",
-            text: "{{Session::get('text')}}",
-        });
+        icon: "{{Session::get('icon')}}",
+        title: "{{Session::get('title')}}",
+        text: "{{Session::get('text')}}",
+    });
 </script>
 @endif
 
@@ -192,12 +190,13 @@
 <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
 <script>
     bsCustomFileInput.init();
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function(e) {
-            $('#blah').attr('src', e.target.result);
+                $('#blah').attr('src', e.target.result);
             }
 
             reader.readAsDataURL(input.files[0]); // convert to base64 string
