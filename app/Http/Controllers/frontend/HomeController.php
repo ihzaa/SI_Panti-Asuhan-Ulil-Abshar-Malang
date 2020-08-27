@@ -97,11 +97,11 @@ class HomeController extends Controller
             'email' => $request->email,
         ]);
 
-
+        $strnama = str_replace(" ", "%20", $request->name);
         $curl = curl_init();
         $telp = telepon::find(1);
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.callmebot.com/whatsapp.php?phone=$telp->no_telp&text=Halo%20Bossss%20ada%20donasi%20masuk%20dari%20" . $request->name . "%20silahkan%20periksa%20mobile%20banking&apikey=$telp->key",
+            CURLOPT_URL => "https://api.callmebot.com/whatsapp.php?phone=$telp->no_telp&text=Halo%20Bossss%20ada%20donasi%20masuk%20dari%20$strnama%20silahkan%20periksa%20mobile%20banking&apikey=$telp->key",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
