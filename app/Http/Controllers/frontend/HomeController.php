@@ -101,7 +101,6 @@ class HomeController extends Controller
         $curl = curl_init();
         $telp = telepon::find(1);
         curl_setopt_array($curl, array(
-            // CURLOPT_URL => "https://api.callmebot.com/whatsapp.php?phone=+6287759721950&text=Halo%20Bossss&apikey=471726",
             CURLOPT_URL => "https://api.callmebot.com/whatsapp.php?phone=$telp->no_telp&text=Halo%20Bossss%20ada%20donasi%20masuk%20dari%20" . $request->name . "%20silahkan%20periksa%20mobile%20banking&apikey=$telp->key",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",

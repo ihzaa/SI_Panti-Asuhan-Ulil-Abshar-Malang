@@ -49,7 +49,7 @@ class DonasiController extends Controller
         $data['keterangan'] = 'Donasi Bulan ' . $bulan[$month] . ' ' . $year;
         $pdf = PDF::loadview('Exportable.donasi', compact('data'));
         $pdf->setPaper('A4', 'landscape');
-        return $pdf->download('donasi tahun ' . $year . '.pdf');
+        return $pdf->download('donasi bulan ' . $bulan[$month] . ' tahun ' . $year . '.pdf');
     }
 
     public function cek($year)
