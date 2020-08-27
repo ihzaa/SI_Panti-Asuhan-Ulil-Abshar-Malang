@@ -53,7 +53,6 @@
             <div class="small-box bg-secondary">
                 <div class="inner">
                     <h3>{{$data['blog']}}</h3>
-
                     <p>Blog</p>
                 </div>
                 <div class="icon">
@@ -61,88 +60,71 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-warning">
-                <div class="inner">
-                    <h3>000</h3>
-
-                    <p>Kamar</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-house-user"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-danger">
-                <div class="inner">
-                    <h3>000</h3>
-
-                    <p>Donatur Tetap</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-handshake"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-success">
-                <div class="inner">
-                    <h3>{{$data['pengurus']}}</h3>
-
-        <p>Donasi Masuk</p>
     </div>
-    <div class="icon">
-        <i class="fas fa-user"></i>
-    </div>
-</div>
-</div>
-<div class="col-lg-3 col-6">
-    <!-- small card -->
-    <div class="small-box bg-info">
-        <div class="inner">
-            <h3>{{$data['anak']}}</h3>
-
-            <p>Donasi</p>
-        </div>
-        <div class="icon">
-            <i class="fas fa-child"></i>
-        </div>
-    </div>
-</div> --}}
-</div>
-<div class="row">
-    <div class="col-lg-8">
-        <div class="card">
-            <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                    <h3 class="card-title">Donasi tahun {{date("Y")}}</h3>
-                    {{-- <a href="javascript:void(0);">View Report</a> --}}
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="info-box mb-3" id="card_recap">
+                <div class="overlay dark" id="loading_recap">
+                    <i class="fas fa-2x fa-sync-alt fa-spin"></i>
                 </div>
+                <div class="info-box-content">
+                    <span class="info-box-text mb-2"><strong>Rekapitulas Donasi</strong></span>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="tahun">Tahun</label>
+                        </div>
+                        <select class="custom-select" id="tahun">
+                            <option selected value="xx">Pilih tahun...</option>
+                        </select>
+                        <div class="input-group-append">
+                            <a class="btn btn-success disabled" href="#" id="btn_unduh_tahun" target="_blank">Unduh</a>
+                        </div>
+                    </div>
+                    <fieldset disabled id="form_bulan">
+                        <div class="input-group mt-2">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="bulan">Bulan</label>
+                            </div>
+                            <select class="custom-select" id="bulan">
+                                <option selected value="xx">Pilih bulan...</option>
+                            </select>
+                            <div class="input-group-append">
+                                <a class="btn btn-success disabled" href="#" id="btn_unduh_bulan"
+                                    target="_blank">Unduh</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- /.info-box-content -->
             </div>
-            <div class="card-body">
-                <div class="d-flex">
-                    <p class="d-flex flex-column">
-                        <span class="text-bold text-lg">Rp. {{number_format($data['total_donasi'], 0, '.', '.')}}</span>
-                        <span>Total Donasi Diterima</span>
-                    </p>
-                    {{-- <p class="ml-auto d-flex flex-column text-right">
+            <div class="card">
+                <div class="card-header border-0">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="card-title"><strong>Donasi tahun {{date("Y")}}</strong></h3>
+                        {{-- <a href="javascript:void(0);">View Report</a> --}}
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex">
+                        <p class="d-flex flex-column">
+                            <span class="text-bold text-lg">Rp.
+                                {{number_format($data['total_donasi'], 0, '.', '.')}}</span>
+                            <span>Total Donasi Diterima</span>
+                        </p>
+                        {{-- <p class="ml-auto d-flex flex-column text-right">
                             <span class="text-success">
                                 <i class="fas fa-arrow-up"></i> 12.5%
                             </span>
                             <span class="text-muted">Since last week</span>
                         </p> --}}
-                </div>
-                <!-- /.d-flex -->
+                    </div>
+                    <!-- /.d-flex -->
 
-                <div class="position-relative mb-4">
-                    <canvas id="chart_donasi" height="150"></canvas>
-                </div>
+                    <div class="position-relative mb-4">
+                        <canvas id="chart_donasi" height="150"></canvas>
+                    </div>
 
-                {{-- <div class="d-flex flex-row justify-content-end">
+                    {{-- <div class="d-flex flex-row justify-content-end">
                         <span class="mr-2">
                             <i class="fas fa-square text-primary"></i> This Week
                         </span>
@@ -151,50 +133,50 @@
                             <i class="fas fa-square text-gray"></i> Last Week
                         </span>
                     </div> --}}
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+        <div class="col-md-4">
+            <!-- Info Boxes Style 2 -->
+            <div class="info-box mb-3 bg-primary">
+                <span class="info-box-icon"><i class="fas fa-hand-holding-heart"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Donasi Masuk</span>
+                    <span class="info-box-number">{{$data['donasi_masuk']}}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            <div class="info-box mb-3 bg-success">
+                <span class="info-box-icon"><i class="fas fa-check-circle"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Donasi yang Belum Dikonfirmasi</span>
+                    <span class="info-box-number">{{$data['donasi_belum']}}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <br>
+            <div class="info-box mb-3 bg-danger">
+                <span class="info-box-icon"><i class="fas fa-book"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Rekening</span>
+                    <span class="info-box-number">{{$data['rekening']}}</span>
+                </div>
+            </div>
+            <div class="info-box mb-3 bg-info">
+                <span class="info-box-icon"><i class="fas fa-tools"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Fasilitas</span>
+                    <span class="info-box-number">{{$data['fasil']}}</span>
+                </div>
             </div>
         </div>
-        <!-- /.card -->
     </div>
-    <div class="col-md-4">
-        <!-- Info Boxes Style 2 -->
-        <div class="info-box mb-3 bg-primary">
-            <span class="info-box-icon"><i class="fas fa-hand-holding-heart"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">Donasi Masuk</span>
-                <span class="info-box-number">{{$data['donasi_masuk']}}</span>
-            </div>
-            <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-        <div class="info-box mb-3 bg-success">
-            <span class="info-box-icon"><i class="fas fa-check-circle"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">Donasi yang Belum Dikonfirmasi</span>
-                <span class="info-box-number">{{$data['donasi_belum']}}</span>
-            </div>
-            <!-- /.info-box-content -->
-        </div>
-        <br>
-        <div class="info-box mb-3 bg-danger">
-            <span class="info-box-icon"><i class="fas fa-book"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">Rekening</span>
-                <span class="info-box-number">{{$data['rekening']}}</span>
-            </div>
-        </div>
-        <div class="info-box mb-3 bg-info">
-            <span class="info-box-icon"><i class="fas fa-tools"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">Fasilitas</span>
-                <span class="info-box-number">{{$data['fasil']}}</span>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 
 @endsection
@@ -225,5 +207,68 @@
         }
     }
 });
+
+$(document).ready(function(){
+    fetch("{{route('all_user_get_tahun_donasi')}}")
+    .then(response => response.json())
+    .then(data => {
+        for(let i = 0; i < data.length ; i++){
+            $('#tahun').append(`
+            <option value="${data[i].year}">${data[i].year}</option>
+            `);
+        }
+        $('#loading_recap').hide();
+    });
+    const bulan = ['','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+    $('#tahun').on('change',function(){
+        let val = $('#tahun').val();
+        if(val != "xx"){
+            $('#loading_recap').show();
+            let download_tahun_url = "{{route('all_user_downlaod_donasi_tahun',['_tahunnn_'])}}";
+            download_tahun_url = download_tahun_url.replace('_tahunnn_',val);
+            $('#btn_unduh_tahun').attr('href',download_tahun_url);
+            $('#bulan').html('');
+            $('#bulan').append(`<option value="xx">Pilih bulan...</option>`);
+            let url = "{{route('all_user_get_bulan_donasi_per_tahun',['_year_'])}}"
+            url = url.replace('_year_', val);
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                for(let i = 0; i < data.length ; i++){
+                    $('#bulan').append(`
+                    <option value="${data[i].month}">${bulan[data[i].month]}</option>
+                    `);
+                }
+                $('#btn_unduh_bulan').addClass('disabled');
+                $('#btn_unduh_tahun').removeClass('disabled');
+                $('#form_bulan').removeAttr('disabled');
+                $('#loading_recap').hide();
+            });
+        }else{
+            $('#btn_unduh_bulan').addClass('disabled');
+            $('#btn_unduh_tahun').addClass('disabled');
+            $('#btn_unduh_tahun').attr('href','#');
+            $('#form_bulan').attr('disabled','');
+        }
+    });
+
+    $('#bulan').on('change',function(){
+        $('#loading_recap').show();
+        let year = $('#tahun').val();
+        let val = $('#bulan').val();
+        if(val != "xx"){
+            let url_bln = "{{route('all_user_downlaod_donasi_bulan',['month'=>'__bulan','year'=>'_tahunnn_'])}}";
+            url_bln = url_bln.replace('__bulan',val);
+            url_bln = url_bln.replace('_tahunnn_',year);
+            $('#btn_unduh_bulan').attr('href',url_bln);
+            $('#btn_unduh_bulan').removeClass('disabled');
+        }else{
+            $('#btn_unduh_bulan').attr('href',"#");
+            $('#btn_unduh_bulan').addClass('disabled');
+        }
+        $('#loading_recap').hide();
+    });
+});
+
 </script>
 @endsection

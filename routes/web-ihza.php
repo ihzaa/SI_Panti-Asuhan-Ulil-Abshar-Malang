@@ -13,6 +13,16 @@ Route::get('/adm1n/login', 'Auth\AdminLoginController@loginGet')->name('login_ad
 Route::post('/adm1n/login', 'Auth\AdminLoginController@loginPost')->name('login_admin_post')->middleware('guest');
 Route::get('/adm1n/logout', 'Auth\AdminLoginController@logout')->name('logout_admin');
 
+Route::get('all/donasi/get/tahun', 'frontend\DonasiController@getAllYear')->name('all_user_get_tahun_donasi');
+Route::get('all/donasi/get/month/{year}', 'frontend\DonasiController@getAllMonthByYear')->name('all_user_get_bulan_donasi_per_tahun');
+Route::get('all/donasi/download/tahun/{year}', 'frontend\DonasiController@downloadDonasiByYear')->name('all_user_downlaod_donasi_tahun');
+Route::get('all/donasi/download/bulan/{month}/{year}', 'frontend\DonasiController@downloadDonasiByMonth')->name('all_user_downlaod_donasi_bulan');
+
+//test aja ini
+Route::get('cek/donasi/download/tahun/{year}', 'frontend\DonasiController@cek')->name('cek_downlaod_donasi_tahun');
+
+Route::get('cek/donasi/download/bulan/{month}/{year}', 'frontend\DonasiController@cekb')->name('cek_downlaod_donasi_bulan');
+
 
 //INI CONTOH ROUTE DGN MIDDLEWARE ADMIN
 //JADI ROUTE2 DIBAWAH HARUS LOGIN DULU SEBAGAI ADMIN BARU BISA DIBUKA
