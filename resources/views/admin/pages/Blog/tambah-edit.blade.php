@@ -185,6 +185,7 @@
                     $('.selectpicker').selectpicker();
                     $('#loading').remove();
                 }else{
+                    $('#loading').remove();
                     Swal.fire(
                         'Maaf!',
                         'Kategori sudah ada.',

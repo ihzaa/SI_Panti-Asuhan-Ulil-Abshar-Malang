@@ -29,7 +29,7 @@ class DonaturEmailKonfirmasi extends Mailable
      */
     public function build()
     {
-        return $this->from(['address' => 'pantiasuhanulilabshar@gmail.com', 'name' => 'Pantiasuhanulilabshar'])->subject('Konfirmasi Donasi Diterima')
+        return $this->from(['address' => 'test@panti-ulilabsharmalang.com', 'name' => 'Pantiasuhanulilabshar'])->subject('Konfirmasi Donasi Diterima')
             ->view('emails.KonfirmasiDonasiDiterima');
         // return $this->from(['address' => 'no-reply@panti-ulilabsharmalang.com', 'name' => 'Panti asuhan ulil abshar'])->subject('Konfirmasi Donasi Diterima')
         // ->view('emails.KonfirmasiDonasiDiterima');
