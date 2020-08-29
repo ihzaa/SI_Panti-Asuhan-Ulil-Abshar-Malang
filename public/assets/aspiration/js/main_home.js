@@ -123,7 +123,7 @@ $(function () {
       },
       bank: {
         required: "Mohon Masukan Bank Tujuan",
-      }
+      },
     },
     errorElement: 'span',
     errorPlacement: function (error, element) {
@@ -183,6 +183,9 @@ $(function () {
         contentType: false,
         processData: false,
         success: function (response) {
+          $('.mt-5 .progress-bar').css('width', '50%');
+          $('.mt-5 .progress-bar').html('Step 1 of 2');
+
           $('#myTab a[href="#biodata"]').tab('show');
           $('#donasi-continue').show();
           $('#submit-donasi').hide();

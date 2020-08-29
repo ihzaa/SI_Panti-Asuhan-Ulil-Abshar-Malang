@@ -25,15 +25,19 @@
               <label for="name" class="col-form-label col-form-label-sm">Nama Pengirim 
                   <small class="info-label"><span class="red">*</span> </small>
               </label>
-              <input type="text" class="form-control form-control-sm" name="name" id="name" placeholder="Sesuaikan dengan nama rekening pengirim" required>
+              <input type="text" class="form-control form-control-sm" name="name" id="name" placeholder="Masukkan Nama Asli" required>
             </div>
             <div class="form-group">
               <label for="nama_alias" class="col-form-label col-form-label-sm">Nama Samaran</label>
-              <input type="text" class="form-control form-control-sm" name="nama_alias" id="nama_alias" placeholder="Opsional Nama yang ditampilkan ke publik" required>
+              <input type="text" class="form-control form-control-sm" name="nama_alias" id="nama_alias" placeholder="Masukkan Nama Samaran" required>
+            </div>
+            <div class="form-group">
+              <label for="alamat" class="col-form-label col-form-label-sm">Alamat</label>
+              <input type="text" class="form-control form-control-sm" name="alamat" id="alamat" placeholder="Masukkan Alamat Rumah" required>
             </div>
             <div class="form-group">
               <label for="email" class="col-form-label col-form-label-sm">Email</label>
-              <input type="email" class="form-control form-control-sm" name="email" id="email" placeholder="Opsional Mendapatkan Konfirmasi Donasi Masuk">
+              <input type="email" class="form-control form-control-sm" name="email" id="email" placeholder="Masukkan Alamat Email">
             </div>
 
           </div>
