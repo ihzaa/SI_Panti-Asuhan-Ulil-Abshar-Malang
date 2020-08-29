@@ -43,6 +43,13 @@
             background: none !important;
         }
     }
+
+    [aria-hidden="true"] {
+      opacity: 0;
+      position: absolute;
+      z-index: -9999;
+      pointer-events: none;
+    }
 </style>
 @endsection
 
@@ -99,7 +106,7 @@
                     </p>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-black py-3 px-4" data-toggle="modal"
-                        data-target="#donasiModal">
+                        data-target="#donasiModal" id="donasiToggle">
                         Donasi Sekarang
                     </button>
                 </div>

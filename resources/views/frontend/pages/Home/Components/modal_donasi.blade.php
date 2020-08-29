@@ -49,16 +49,24 @@
               <input id="rupiah" placeholder="Masukkan Jumlah Donasi" type="text" class="form-control form-control-sm" required>
             </div>
 
+            <input type="text" id="copy-rek" value="" aria-hidden="true">
             <div class="form-group">
               <label for="bank">
                 Bank <small class="info-label">Transfer pada no rekening yang tertera <span class="red">*</span> </small>
               </label>
-              <select class="custom-select my-1 mr-sm-2" name="bank" id="bank" required>
-                <option value="" selected>Choose...</option>
-                @foreach ($bank as $item)
-                  <option value="{{$item->nama_bank}}">{{$item->nama_bank}} - {{$item->no_rekening}}</option>
-                @endforeach
-              </select>
+              <div class="input-group">
+                <select class="custom-select" name="bank" id="bank" required>
+                  <option value="" selected>Choose...</option>
+                  @foreach ($bank as $item)
+                    <option value='{{ $item }}'>
+                      {{$item->nama_bank}} - {{$item->no_rekening}}
+                    </option>
+                  @endforeach
+                </select>
+                <div class="input-group-append">
+                  <button type="button" value="copy" onclick="copyToClipboard('copy-rek')" class="btn btn-outline-secondary"><span class="icon icon-copy"></span></button>
+                </div>
+              </div>
               {{-- <input type="text" class="form-text" id='campaignName'></input> --}}
             </div>
             {{-- <button class="btn btn-secondary" id="infoContinue">Continue</button> --}}

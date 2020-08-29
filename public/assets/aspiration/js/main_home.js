@@ -65,6 +65,17 @@ $(function () {
   })
 });
 
+$("select#bank").on("change", function () {    //when selected value changed
+  let value = JSON.parse($(this).val())['no_rekening'];
+  $("#copy-rek").val(value);
+  // $("input[type=text]").val($(this).val());  //change value in textbox
+})
+
+function copyToClipboard(id) {
+  document.getElementById(id).select();
+  document.execCommand('copy');
+}
+
 $(function () {
   // $('#donasiToggle').click(function () {
   //   $('#donasiModal').modal({
@@ -172,6 +183,10 @@ $(function () {
         contentType: false,
         processData: false,
         success: function (response) {
+          $('#myTab a[href="#biodata"]').tab('show');
+          $('#donasi-continue').show();
+          $('#submit-donasi').hide();
+
           $('#donasi_form')[0].reset();
           $('#donasi').data('ionRangeSlider').reset();
 
