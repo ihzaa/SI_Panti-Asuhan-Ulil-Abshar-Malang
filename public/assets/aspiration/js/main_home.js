@@ -65,90 +65,129 @@ $(function () {
   })
 });
 
-$("#donasi_form").submit(function (e) {
-  e.preventDefault();
-});
+$(function () {
+  // $('#donasiToggle').click(function () {
+  //   $('#donasiModal').modal({
+  //     backdrop: 'static'
+  //   });
+  // });
 
-$.validator.setDefaults({
-  submitHandler: function () {
-    var action_url = 'donasi';
+  $("#donasi_form").submit(function (e) {
+    e.preventDefault();
+  });
 
-    var form_data = new FormData($('#donasi_form')[0]);
-    $('#donasiModal').modal('hide');
-    $('#ftco-loader').addClass('show');
-
-    $.ajax({
-      url: action_url,
-      type: "POST",
-      data: form_data,
-      contentType: false,
-      processData: false,
-      success: function (response) {
-        $('#donasi_form')[0].reset();
-        $('#donasi').data('ionRangeSlider').reset();
-
-        $('#ftco-loader').removeClass('show');
-
-        Swal.fire(
-          'Berhasil!',
-          'Donasi anda akan kami periksa terlebih dahulu.',
-          'success'
-        );
+  var validator_donasi_form = $('#donasi_form');
+  validator_donasi_form.validate({
+    rules: {
+      email: {
+        // required: true,
+        email: true,
       },
-      error: function (response) {
-        $('#donasiModal').modal('show');
-        // console.log(response.responseJSON.errors)
+      name: {
+        required: true,
+      },
+      nama_alias: {
+        required: true
+      },
+      donasi: {
+        required: true,
+        min: 100000,
+      },
+      bank: {
+        required: true,
       }
-    });
-  }
-});
+    },
+    messages: {
+      email: {
+        // required: "Mohon masukkan alamat surel",
+        email: "Mohon masukkan alamat surel valid"
+      },
+      name: {
+        required: "Mohon Masukan Nama",
+      },
+      nama_alias: "Beri tanda '-' untuk mengosongkan",
+      donasi: {
+        required: "Mohon Tentukan Donasi",
+        min: "Minimal donasi Rp. 100.000"
+      },
+      bank: {
+        required: "Mohon Masukan Bank Tujuan",
+      }
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
 
-var validator = $('#donasi_form').validate({
-  rules: {
-    email: {
-      // required: true,
-      email: true,
-    },
-    name: {
-      required: true,
-    },
-    donasi: {
-      required: true,
-      min: 100000,
-    },
-    bank: {
-      required: true,
-    },
-    nama_alias: {
-      required: true
-    },
-  },
-  messages: {
-    email: {
-      // required: "Mohon masukkan alamat surel",
-      email: "Mohon masukkan alamat surel valid"
-    },
-    name: {
-      required: "Mohon Masukan Nama",
-    },
-    donasi: {
-      required: "Mohon Tentukan Donasi",
-      min: "Minimal donasi Rp. 100.000"
-    },
-    bank: {
-      required: "Mohon Masukan Bank Tujuan",
-    },
-    nama_alias: "Beri tanda '-' untuk mengosongkan"
-  },
-  errorElement: 'span',
-  errorPlacement: function (error, element) {
-    error.addClass('invalid-feedback');
-    element.closest('.form-group').append(error);
-  },
-  highlight: function (element, errorClass, validClass) {
-    $(element).addClass('is-invalid');
-  },
-  unhighlight: function (element, errorClass, validClass) {
-    $(element).removeClass('is-invalid');
-  }
+  $('#submit-donasi').hide();
+  $('#donasi-continue').click(function (e) {
+    if (validator_donasi_form.valid()) {
+      // e.preventDefault();
+      $('.progress-bar').css('width', '100%');
+      $('.progress-bar').html('Step 2 of 2');
+      $('.link-donasi').removeClass('disabled');
+      $('#donasi-continue').hide();
+      $('#submit-donasi').show();
+      $('#myTab a[href="#info-donasi"]').tab('show');
+    }
+  });
+
+  $('.link-bio').click(function (e) {
+    $('#donasi-continue').show();
+    $('#submit-donasi').hide();
+  })
+
+  $('.link-donasi').click(function (e) {
+    if (!validator_donasi_form.valid()) {
+      $('.link-donasi').addClass('disabled');
+      $('#myTab a[href="#biodata"]').tab('show');
+    } else {
+      $('#donasi-continue').hide();
+      $('#submit-donasi').show();
+    }
+  });
+
+  $('#submit-donasi').click(function (e) {
+    if (validator_donasi_form.valid()) {
+      console.log('submit');
+
+      var action_url = 'donasi';
+
+      var form_data = new FormData($('#donasi_form')[0]);
+      $('#donasiModal').modal('hide');
+      $('#ftco-loader').addClass('show');
+
+      $.ajax({
+        url: action_url,
+        type: "POST",
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          $('#donasi_form')[0].reset();
+          $('#donasi').data('ionRangeSlider').reset();
+
+          $('#ftco-loader').removeClass('show');
+
+          Swal.fire(
+            'Berhasil!',
+            'Donasi anda akan kami periksa terlebih dahulu.',
+            'success'
+          );
+        },
+        error: function (response) {
+          $('#donasiModal').modal('show');
+          // console.log(response.responseJSON.errors)
+        }
+      });
+    }
+  });
 });
