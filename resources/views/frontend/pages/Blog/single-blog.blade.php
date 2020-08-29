@@ -5,7 +5,7 @@
 @section('konten')
 @section('foto_bg')
 <section class="hero-wrap hero-wrap-2 js-fullheight"
-    style="background-image: url({{asset('aspiration/images/bg_blog_contact3.JPG')}});" data-stellar-background-ratio="0.5">
+    style="background-image: url({{asset('aspiration/images/bg_blog_contact3.jpg')}});" data-stellar-background-ratio="0.5">
     @endsection
     @section('isiHeader')
     <h2 class="mb-3 bread">Blog Details</h2>

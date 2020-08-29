@@ -43,8 +43,8 @@
                                 <td class="text-center"><img src="{{asset($blog->sampul_foto)}}" alt="" width="150">
                                 </td>
                                 <td>{{$blog->jumlah_dibaca}}</td>
-                                <td>{{\Carbon\Carbon::parse($blog->created_at)->toDayDateTimeString()}}</td>
-                                <td>{{\Carbon\Carbon::parse($blog->updated_at)->toDayDateTimeString()}}</td>
+                                <td>{{\Carbon\Carbon::parse($blog->created_at)->translatedFormat("l, d F Y h:i a")}}</td>
+                                <td>{{\Carbon\Carbon::parse($blog->updated_at)->translatedFormat("l, d F Y h:i a")}}</td>
                                 <td class="text-center">
                                     <a href="{{route('admin_edit_blog_index',['id'=>$blog->id])}}"
                                         class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom"
@@ -335,7 +335,7 @@
         $('[data-toggle="tooltip"]').tooltip()
     });
 
-    $(".btn-hapus").on('click',function(){
+    $(document).on('click',".btn-hapus",function(){
         Swal.fire({
             title: 'Yakin menghapus postingan blog?',
             text: "Postingan yang dihapus tidak dapat dikembalikan!",
