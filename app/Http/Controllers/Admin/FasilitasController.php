@@ -25,7 +25,7 @@ class FasilitasController extends Controller
     public function tambahData(Request $request)
     {
         $this->validate($request, [
-            'image' => ['image', 'max:500'],
+            'image' => ['image', 'max:1500','dimensions:min_width=560'],
             'name' => 'required',
             'jumlah' => 'required'
         ]);
@@ -71,7 +71,7 @@ class FasilitasController extends Controller
     public function editFasilitas($id, Request $request)
     {
         $this->validate($request, [
-            'image' => ['image', 'max:500'],
+            'image' => ['image', 'max:1500', 'dimensions:min_width=560'],
             'name' => 'required',
             'jumlah' => 'required'
         ]);

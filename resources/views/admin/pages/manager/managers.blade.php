@@ -102,7 +102,7 @@
         $('[data-toggle="tooltip"]').tooltip()
     });
 
-    $(".btn-hapus").on('click',function(){
+    $(document).on('click',".btn-hapus",function(){
         Swal.fire({
             title: 'Yakin ingin menghapus data pengurus?',
             text: "Data yang dihapus tidak dapat dikembalikan!",
