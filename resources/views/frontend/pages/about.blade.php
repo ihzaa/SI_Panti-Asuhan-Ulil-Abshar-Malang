@@ -209,10 +209,8 @@
           
           </div>
           <div class="col-md-6 d-flex">
-        		<!-- <div class="testimony-img" style="background-image: url({{ asset('aspiration/images/testimony-img.jpg') }});"></div> -->
-            <div id="carouselExampleFade" class="carousel slide carousel-fade my-auto" data-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item my-auto active" style="height:370px;overflow:hidden">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade my-auto" style="overflow:hidden;" data-ride="carousel">
+                <div class="carousel-item active">
                   <img src="{{ asset('aspiration/images/bg_blog_contact3.jpg') }}" style="height:370px;" class="my-auto d-block w-100"  alt="foto fasilitas">
                   <!-- <div class="carousel-caption d-none d-md-block">
                     <h4 style="font-weight:700; color:white;background-color:var(--teal);border:1px solid white"></h4>
@@ -220,8 +218,10 @@
                 </div>
               @foreach($data['sarana'] as $d)
                 @if($d->image != NULL)
-                <div class="carousel-item" style="height:370px;overflow:hidden">
-                  <img src="{{ asset($d->image) }}" class="d-block w-100" style="height:370px;" alt="foto fasilitas">
+                <div class="carousel-item" style="height:370px;width:100%;">
+                  <img src="{{ asset($d->image) }}" class="d-block w-100" style="min-height:370px;position:relative;
+    top:50%;
+    transform: translateY(-50%);" alt="foto fasilitas">
                   <div class="carousel-caption d-none d-md-block">
                     <h4 style="margin: 0 auto;font-size:16px;width:fit-content;padding:0px 20px;font-weight:700; color:white;background-color:var(--teal);border:1px solid white">{{ $d->name }}</h4>
                   </div>
