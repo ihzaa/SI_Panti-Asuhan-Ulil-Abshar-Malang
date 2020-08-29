@@ -36,7 +36,7 @@
                                     <input type="file" class="custom-file-input" id="imgInp" name="image">
                                     <label class="custom-file-label"
                                         for="imgInp">{{request()->is('*/fasilitas/tambah*')?"Foto Fasilitas":"Foto sampul.jpg"}}</label>
-                                    <small class="form-text text-muted">- Ukuran max 1.5 MB</small>
+                                    <small class="form-text text-muted">- Ukuran max 500KB</small>
                                     <small class="form-text text-muted">- Harus berupa gambar (format: jpg, jpeg, svg, png , dll)</small>
                                     <small class="form-text text-muted">- Lebar foto minimal 560</small>
                                     <small class="form-text text-muted">- Tidak wajib diisi</small>
