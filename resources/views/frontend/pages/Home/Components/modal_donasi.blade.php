@@ -39,15 +39,6 @@
           </div>
           <div class="tab-pane fade" id="info-donasi" role="tabpanel">
             {{-- <h4>Informasi Donasi</h4> --}}
-            <div class="form-group">
-              <label for="donasi" class="col-form-label col-form-label-sm">Jumlah 
-                  <small class="info-label"><span class="red">*</span> </small>
-              </label>
-              {{-- <label for="campaignName">Jumlah Donasi</label> --}}
-              {{-- <input type="number" class="form-text" id='campaignName'></input> --}}
-              <input id="donasi" type="number" name="donasi" oninput="updateInputTextDonasi(this.value)">
-              <input id="rupiah" placeholder="Masukkan Jumlah Donasi" type="text" class="form-control form-control-sm" required>
-            </div>
 
             <input type="text" id="copy-rek" value="" aria-hidden="true">
             <div class="form-group">
@@ -67,9 +58,17 @@
                   <button type="button" value="copy" onclick="copyToClipboard('copy-rek')" class="btn btn-outline-secondary"><span class="icon icon-copy"></span></button>
                 </div>
               </div>
-              {{-- <input type="text" class="form-text" id='campaignName'></input> --}}
             </div>
-            {{-- <button class="btn btn-secondary" id="infoContinue">Continue</button> --}}
+            
+            <div class="form-group">
+              <label for="donasi" class="col-form-label col-form-label-sm">Jumlah 
+                  <small class="info-label"><span class="red">*</span> </small>
+              </label>
+              {{-- <label for="campaignName">Jumlah Donasi</label> --}}
+              {{-- <input type="number" class="form-text" id='campaignName'></input> --}}
+              <input id="donasi" type="number" name="donasi" oninput="updateInputTextDonasi(this.value)">
+              <input id="rupiah" placeholder="Masukkan Jumlah Donasi" type="text" class="form-control form-control-sm" required>
+            </div>
           </div>
         </div>
         <div class="progress mt-5">

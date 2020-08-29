@@ -142,8 +142,8 @@ $(function () {
   $('#donasi-continue').click(function (e) {
     if (validator_donasi_form.valid()) {
       // e.preventDefault();
-      $('.progress-bar').css('width', '100%');
-      $('.progress-bar').html('Step 2 of 2');
+      $('.mt-5 .progress-bar').css('width', '100%');
+      $('.mt-5 .progress-bar').html('Step 2 of 2');
       $('.link-donasi').removeClass('disabled');
       $('#donasi-continue').hide();
       $('#submit-donasi').show();
