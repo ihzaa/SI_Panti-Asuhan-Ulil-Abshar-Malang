@@ -159,7 +159,8 @@ class DonationController extends Controller
                 'title' => "Terima kasih $request->nama_asli atas donasi anda",
                 'total' => $request->rupiah,
                 'bank' => $request->bank,
-                'nama' => $request->nama_asli
+                'nama' => $request->nama_asli,
+                'tgl' => Carbon::parse($donasi->created_at)->translatedFormat("l, d F Y h:i a")
             ];
             Mail::to($donasi->email)->send(new \App\Mail\Donatur\DonaturEmailKonfirmasi($details));
         }

@@ -596,9 +596,9 @@ Sizes: [
                                                                         style="color:#5F5F5F;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;">
                                                                         Detail Donasi</h3>
                                                                     @if ($details['tgl_buat'] != '')
-                                                                      <div mc:edit="body"
-                                                                      style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
-                                                                      Tanggal Donasi : {{$details['tgl_buat']}}</div>
+                                                                    <div mc:edit="body"
+                                                                        style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
+                                                                        Tanggal Donasi : {{$details['tgl_buat']}}</div>
                                                                     @endif
                                                                     <div mc:edit="body"
                                                                         style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
@@ -608,7 +608,9 @@ Sizes: [
                                                                         Bank : {{$details['bank']}}</div>
                                                                     <div mc:edit="body"
                                                                         style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
-                                                                        Total Donasi : {{$details['total']}}</div>
+                                                                        Total Donasi : Rp.
+                                                                        {{number_format($details['total'], 0, '.', '.')}}
+                                                                    </div>
                                                                     <div mc:edit="body"
                                                                         style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
                                                                         Tanggal Donasi : {{$details['tgl']}}</div>
@@ -632,7 +634,7 @@ Sizes: [
             <tr>
                 <td align="center" valign="top">
                     <!-- CENTERING TABLE // -->
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#007bff">
                         <tr>
                             <td align="center" valign="top">
                                 <!-- FLEXIBLE CONTAINER // -->
@@ -646,10 +648,17 @@ Sizes: [
                                                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                             <tr>
                                                                 <td valign="top" class="textContent">
-                                                                    <!-- <h3 style="color:#5F5F5F;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;">Message Title</h3> -->
                                                                     <div
-                                                                        style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;margin-top:3px;color:#5F5F5F;line-height:135%;">
-                                                                        Ucapan terima kasih yang lebay</div>
+                                                                        style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;margin-top:3px;color:#FFFFFF;line-height:135%;">
+                                                                        Dari Abu Hurairah Ra, dia berkata, “Rasulullah
+                                                                        SAW bersabda: Tidaklah seorang hamba memasuki
+                                                                        waktu pagi pada setiap harinya, kecuali ada dua
+                                                                        malaikat yang turun. Salah satunya memohon, ‘Ya
+                                                                        Allah, berikanlah ganti bagi dermawan yang
+                                                                        menyedekahkan hartanya.’ Dan satu lagi memohon:
+                                                                        ‘Ya Allah, musnahkanlah harta si bakhil.” (HR Al
+                                                                        Bukhari dan Muslim).
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                         </table>
