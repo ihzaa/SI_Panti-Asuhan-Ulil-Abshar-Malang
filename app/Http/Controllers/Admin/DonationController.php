@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Frontend\Donasi;
 use App\Models\Frontend\DonasiMasuk;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -96,7 +97,8 @@ class DonationController extends Controller
                 'title' => "Terima kasih $donasi->nama_donatur atas donasi anda",
                 'total' => $donasi->total_donasi,
                 'bank' => $donasi->nama_bank,
-                'nama' => $donasi->nama_donatur
+                'nama' => $donasi->nama_donatur,
+                'tgl' => Carbon::parse($donasi->created_at)->translatedFormat("l, d F Y h:i a")
             ];
             Mail::to($donasi->email)->send(new \App\Mail\Donatur\DonaturEmailKonfirmasi($details));
         }
