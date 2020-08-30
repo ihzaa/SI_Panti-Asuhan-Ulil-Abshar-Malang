@@ -265,7 +265,12 @@ $('#action_button').click(function (e) {
 
     var form_data = new FormData($('#form_tambah_donasi')[0]);
     $('#modal-default').modal('hide');
-    $('#ftco-loader').addClass('show');
+    
+    $('.card_tabel').append(`
+      <div class="overlay dark loading">
+          <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+      </div>`
+    );
 
     $.ajax({
       url: action_url,
@@ -277,7 +282,7 @@ $('#action_button').click(function (e) {
         
         $('#form_tambah_donasi')[0].reset();
 
-        $('#ftco-loader').removeClass('show');
+        $('.loading').remove();
 
         $('#tabel_donasi_masuk').DataTable().ajax.reload();
 
@@ -312,10 +317,16 @@ $('body').on('click', '.confirmDonation', function () {
       let id = $(this).data('id');
       let url = "{{route('admin_donasi_konfirmasi',':__id')}}";
       url = url.replace(':__id', id);
+      $('.card_tabel').append(`
+        <div class="overlay dark loading">
+            <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+        </div>`
+      );
       fetch(url)
         .then(() => {
           $('#tabel_donasi').DataTable().ajax.reload();
           $('#tabel_donasi_masuk').DataTable().ajax.reload();
+          $('.loading').remove();
           Swal.fire(
             'Success!',
             'Konfirmasi donasi telah dilakukan.',

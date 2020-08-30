@@ -71,6 +71,7 @@
 <!-- /.row -->
 </div>
 
+{{-- Modal Tambah Anak --}}
 <div class="modal fade" id="modal-default">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -315,8 +316,8 @@ $(document).ready(function () {
   })
   
   $('.btn-add').click(function(){
-    $('.modal-title').text('Add New Record');
-    $('#action_button').val('Submit');
+    $('.modal-title').text('Tambah Anak');
+    $('#action_button').text('Submit');
     $('#action').val('Add');
 
     validator.resetForm();

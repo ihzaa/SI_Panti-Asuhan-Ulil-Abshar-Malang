@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card card_tabel">
   <div class="card-header">
     <h3 class="card-title">Donasi Masuk</h3>
 
