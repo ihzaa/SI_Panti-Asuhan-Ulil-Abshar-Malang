@@ -8,5 +8,5 @@ class Donasi extends Model
 {
   //
   protected $table = 'donasis';
-  protected $fillable = ['nama_donatur', 'nama_alias', 'alamat', 'total_donasi', 'nama_bank', 'email'];
+  protected $fillable = ['created_at', 'nama_donatur', 'nama_alias', 'alamat', 'total_donasi', 'nama_bank', 'email'];
 }

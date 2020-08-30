@@ -12,6 +12,7 @@ Route::post('donasi', 'frontend\HomeController@donation')->name('send_donasi');
 Route::prefix('adm1n')->middleware('auth:admin')->group(function () {
   // Donasi
   Route::get('donasi', 'Admin\DonationController@index')->name('admin_pages_donasi_index');
+  Route::post('donasi/add', 'Admin\DonationController@store')->name('admin_pages_donasi_add');
   Route::get('donasi_masuk', 'Admin\DonationController@donasi_masuk')->name('admin_pages_donasi_masuk');
   Route::get('donasi/konfirmasi/{id}', 'Admin\DonationController@confirmation')->name('admin_donasi_konfirmasi');
   Route::get('donasi/konfirmasi/batal/{id}', 'Admin\DonationController@cancel_confirmation')->name('admin_donasi_konfirmasi_cancel');
