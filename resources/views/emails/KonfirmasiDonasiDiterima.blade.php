@@ -595,6 +595,11 @@ Sizes: [
                                                                     <h3 mc:edit="header"
                                                                         style="color:#5F5F5F;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;">
                                                                         Detail Donasi</h3>
+                                                                    @if ($details['tgl_buat'] != '')
+                                                                      <div mc:edit="body"
+                                                                      style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
+                                                                      Tanggal Donasi : {{$details['tgl_buat']}}</div>
+                                                                    @endif
                                                                     <div mc:edit="body"
                                                                         style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
                                                                         Nama : {{$details['nama']}}</div>

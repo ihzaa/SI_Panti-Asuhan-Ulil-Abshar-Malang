@@ -95,6 +95,7 @@ class DonationController extends Controller
     $donasi = Donasi::find($id);
     if ($donasi->email != "") {
       $details = [
+        'tgl_buat' => '',
         'title' => "Terima kasih $donasi->nama_donatur atas donasi anda",
         'total' => $donasi->total_donasi,
         'bank' => $donasi->nama_bank,
@@ -152,6 +153,7 @@ class DonationController extends Controller
 
     if ($request->email != "") {
       $details = [
+        'tgl_buat' => $request->date_create,
         'title' => "Terima kasih $request->nama_asli atas donasi anda",
         'total' => $request->rupiah,
         'bank' => $request->bank,
