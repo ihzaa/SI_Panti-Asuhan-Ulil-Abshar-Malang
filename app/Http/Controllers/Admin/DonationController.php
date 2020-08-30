@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Frontend\Donasi;
 use App\Models\Frontend\DonasiMasuk;
 use Carbon\Carbon;
@@ -45,7 +46,8 @@ class DonationController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('admin.pages.donasi');
+        $data['bank'] = Bank::all();
+        return view('admin.pages.Donasi.donasi', $data);
     }
 
     public function donasi_masuk(Request $request)
@@ -94,6 +96,7 @@ class DonationController extends Controller
         $donasi = Donasi::find($id);
         if ($donasi->email != "") {
             $details = [
+                'tgl_buat' => '',
                 'title' => "Terima kasih $donasi->nama_donatur atas donasi anda",
                 'total' => $donasi->total_donasi,
                 'bank' => $donasi->nama_bank,
@@ -125,5 +128,42 @@ class DonationController extends Controller
             'nama' => "Ihza AHmad"
         ];
         Mail::to("ihzaahmad0@gmail.com")->send(new \App\Mail\Donatur\DonaturEmailKonfirmasi($details));
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'nama_asli' => 'required',
+            'nama_alias' => 'required',
+            'donasi' => 'required',
+            // 'bank' => 'required',
+            'alamat' => 'required'
+        ]);
+
+        // insert data ke table books
+        $donasi = Donasi::create([
+            'created_at' => $request->date_create,
+            'nama_donatur' => $request->nama_asli,
+            'nama_alias' => $request->nama_alias,
+            'total_donasi' => $request->rupiah,
+            'nama_bank' => $request->bank,
+            'email' => $request->email,
+            'alamat' => $request->alamat
+        ]);
+
+        DonasiMasuk::create(['donasi_id' => $donasi->id]);
+
+        if ($request->email != "") {
+            $details = [
+                'tgl_buat' => $request->date_create,
+                'title' => "Terima kasih $request->nama_asli atas donasi anda",
+                'total' => $request->rupiah,
+                'bank' => $request->bank,
+                'nama' => $request->nama_asli
+            ];
+            Mail::to($donasi->email)->send(new \App\Mail\Donatur\DonaturEmailKonfirmasi($details));
+        }
+
+        return $request;
     }
 }
