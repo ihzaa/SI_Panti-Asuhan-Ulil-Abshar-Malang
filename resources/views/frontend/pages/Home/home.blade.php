@@ -56,7 +56,7 @@
 
 @section('konten')
 <!--  -->
-<div class="hero-wrap" style="background-image: url('assets/aspiration/images/bg_4.jpg');"
+<div class="hero-wrap" style="background-image: url('assets/aspiration/images/home.JPG');"
     data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
@@ -66,8 +66,8 @@
                 data-scrollax=" properties: { translateY: '70%' }">
                 {{-- <div class="play-video d-flex align-items-center justify-content-center"><a href="https://vimeo.com/45830194"
             class="popup-vimeo"><span class="icon"><i class="ion-ios-play "></i></span></a></div> --}}
-                <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Ulurkan tanganmu untuk
-                    membuat dunia lebih baik</h1>
+                {{-- <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Ulurkan tanganmu untuk
+                    membuat dunia lebih baik</h1> --}}
             </div>
         </div>
     </div>
