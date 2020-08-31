@@ -25,7 +25,7 @@
           <div class="card-tools">
             {{-- <a class="btn btn-primary btn-sm ml-auto" href="{{route('admin_tampil_halaman_tambah_blog')}}"><i
               class="fas fa-plus"></i> Tambah Postingan</a> --}}
-            <button type="button" class="btn btn-add btn-primary btn-sm ml-auto" data-toggle="modal" data-target="#modal-default">
+            <button type="button" class="btn btn-add btn-primary btn-sm ml-auto" data-toggle="modal" data-target="#modal-add">
               Tambah Anak Asuh
             </button>
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -72,20 +72,18 @@
 </div>
 
 {{-- Modal Tambah Anak --}}
-<div class="modal fade" id="modal-default">
+<div class="modal fade" id="modal-add">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Tambah Anak</h4>
+        <h4 class="modal-title">Tambah Data Anak</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form role="form" id="form_profil_anak">
+        <form role="form" id="form_tambah_anak">
           @csrf
-          <input type="hidden" name="action" id="action" value="Add" />
-          <input type="hidden" name="hidden_id" id="hidden_id" />
           <div class="form-group">
             <label for="exampleInputEmail1">Nama</label>
             <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukan nama">
@@ -135,7 +133,79 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" id='reset_modal' data-dismiss="modal">Close</button>
-          <button type="submit" id='action_button' class="btn btn-primary">Submit</button>
+          <button type="submit" id='add_button' class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+{{-- Modal Edit Anak --}}
+<div class="modal fade" id="modal-update">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Ubah Data Anak</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="form_update_anak">
+          @csrf
+          <input type="hidden" name="hidden_id" id="hidden_id" />
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nama</label>
+            <input type="text" name="nama" class="form-control" id="nama_edit" placeholder="Masukan nama">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Foto</label>
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" name="foto" class="custom-file-input" id="foto_edit">
+                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Umur</label>
+            <input type="number" name="umur" min="1" max="150" class="form-control" id="umur_edit" placeholder="Umur">
+          </div>
+          
+          <div class="form-group">
+            <label for="exampleInputPassword1">Jenis Kelamin</label>
+            <div class="form-check">
+              <input id='radio_check_laki_edit' value="1" class="form-check-input" type="radio" name="jenKel_edit">
+              <label for='radio_check_laki_edit' class="form-check-label">Laki - Laki</label>
+            </div>
+            <div class="form-check">
+              <input id='radio_check_perempuan_edit' value="0" class="form-check-input" type="radio" name="jenKel_edit">
+              <label for='radio_check_perempuan_edit' class="form-check-label">Perempuan</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="exampleInputPassword1">Sekolah</label>
+                <input type="text" name="sekolah" class="form-control" id="sekolah_edit" placeholder="Sekolah">
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="exampleInputPassword1">Kelas</label>
+                <input type="number" min="1" max="12" name="kelas" class="form-control" id="kelas_edit" placeholder="Kelas">
+              </div>
+            </div>
+          </div>
+          
+        
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" id='reset_modal' data-dismiss="modal">Close</button>
+          <button type="submit" id='update_button' class="btn btn-primary">Update</button>
         </div>
       </form>
     </div>
@@ -199,64 +269,16 @@ $(document).ready(function () {
   
   bsCustomFileInput.init();
 
-  $("#form_profil_anak").submit(function(e) {
+  $("#form_tambah_anak").submit(function(e) {
     e.preventDefault();
   });
-  
-  $.validator.setDefaults({
-    submitHandler: function () {
-      var action_url = 'profil_anak/create';
 
-      if($('#action').val() == 'Add')
-      {
-        action_url = 'profil_anak/create';;
-      }
-
-      if($('#action').val() == 'Edit')
-      {
-        action_url = 'profil_anak/update';;
-      }
-      
-      var form_data = new FormData($('#form_profil_anak')[0]);
-
-      $.ajax({
-        url: action_url,
-        type:"POST",
-        data: form_data,
-        contentType: false,
-        processData: false,
-        success:function(response)
-        {
-          $('#tabel_anak').DataTable().ajax.reload();
-          $('#modal-default').modal('hide');
-          $('#form_profil_anak')[0].reset();
-          if($('#action').val() == 'Add')
-          {
-            Swal.fire(
-            'Berhasil!',
-            'Jumlah anak asuh bertambah.',
-            'success'
-          );
-          }
-
-          if($('#action').val() == 'Edit')
-          {
-            Swal.fire(
-            'Berhasil!',
-            'Update data anak selesai.',
-            'success'
-          );
-          }
-          
-        },
-        error: function(response) {
-          // console.log(response.responseJSON.errors)
-        }
-      });
-    }
+  $("#form_update_anak").submit(function(e) {
+    e.preventDefault();
   });
 
-  var validator = $('#form_profil_anak').validate({
+  var form_tambah_anak = $('#form_tambah_anak');
+  form_tambah_anak.validate({
     rules: {
       nama: {
         required: true,
@@ -310,19 +332,121 @@ $(document).ready(function () {
     }
   });
 
-  $('#reset_modal').click(function() {
-    validator.resetForm();
-    $('#form_profil_anak')[0].reset();
-  })
-  
-  $('.btn-add').click(function(){
-    $('.modal-title').text('Tambah Anak');
-    $('#action_button').text('Submit');
-    $('#action').val('Add');
+  var form_update_anak = $('#form_update_anak');
+  form_update_anak.validate({
+    rules: {
+      nama: {
+        required: true,
+      },
+      umur: {
+        required: true,
+      },
+      jenKel: {
+        required: true
+      },
+      sekolah: {
+        required: true
+      },
+      kelas: {
+        required: true,
+        min: 1,
+        max: 12
+      },
+    },
+    messages: {
+      nama: {
+        required: "Mohon Masukan Nama",
+      },
+      umur: {
+        required: "Mohon Masukan Umur",
+      },
+      terms: "Mohon Pilih Jenis Kelamin",
+      sekolah: "Mohon Masukan Sekolah",
+      kelas: {
+        required: "Mohon Masukan Kelas",
+        min: "Minimal masukan 1",
+        max: "Maximal masukan 12"
+      }
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
 
-    validator.resetForm();
-    $('#form_profil_anak')[0].reset();
-    $('#modal-default').modal('show');
+  $('#add_button').click(function (e) {
+    if (form_tambah_anak.valid()) {
+
+      var action_url = 'profil_anak/create';
+
+      var form_data = new FormData($('#form_tambah_anak')[0]);
+      // $('#donasiModal').modal('hide');
+      // $('#ftco-loader').addClass('show');
+
+      $.ajax({
+        url: action_url,
+        type: "POST",
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          $('#tabel_anak').DataTable().ajax.reload();
+          $('#modal-add').modal('hide');
+          $('#form_tambah_anak')[0].reset();
+
+          Swal.fire(
+            'Berhasil!',
+            'Jumlah anak asuh bertambah.',
+            'success'
+          );
+        },
+        error: function (response) {
+          // $('#donasiModal').modal('show');
+          // console.log(response.responseJSON.errors)
+        }
+      });
+    }
+  });
+
+  $('#update_button').click(function (e) {
+    if (form_update_anak.valid()) {
+
+      var action_url = 'profil_anak/update';
+
+      var form_data = new FormData($('#form_update_anak')[0]);
+      // $('#donasiModal').modal('hide');
+      // $('#ftco-loader').addClass('show');
+
+      $.ajax({
+        url: action_url,
+        type: "POST",
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          $('#tabel_anak').DataTable().ajax.reload();
+          $('#modal-update').modal('hide');
+          $('#form_update_anak')[0].reset();
+          
+          Swal.fire(
+            'Berhasil!',
+            'Update data anak selesai.',
+            'success'
+          );
+        },
+        error: function (response) {
+          // $('#donasiModal').modal('show');
+          // console.log(response.responseJSON.errors)
+        }
+      });
+    }
   });
 
   $(document).on('click', '.btnEdit', function(){
@@ -332,21 +456,20 @@ $(document).ready(function () {
       dataType:"json",
       success:function(data)
       {
-        $('#nama').val(data.result.nama);
-        $('#umur').val(data.result.umur);
-        $("input[name=jenKel][value=" + data.result.jenis_kelamin + "]").prop('checked', true);
-        $("div.id_100 select").val("val2");
-        $('#sekolah').val(data.result.sekolah);
-        $('#kelas').val(data.result.kelas);
+        $('#nama_edit').val(data.result.nama);
+        $('#umur_edit').val(data.result.umur);
+        $("input[name=jenKel_edit][value=" + data.result.jenis_kelamin + "]").prop('checked', true);
+        // $("div.id_100 select").val("val2");
+        $('#sekolah_edit').val(data.result.sekolah);
+        $('#kelas_edit').val(data.result.kelas);
         $('#hidden_id').val(id);
-        $('.modal-title').text('Ubah Data Anak');
-        $('#action_button').text('Update');
-        $('#action').val('Edit');
-        $('#modal-default').modal('show');
+        // $('.modal-title').text('Ubah Data Anak');
+        // $('#action_button').text('Update');
+        // $('#action').val('Edit');
+        $('#modal-update').modal('show');
       }
     })
   });
-
 
   // Delete Anak
   $("body").on('click', '.btnDelete', function(){
@@ -376,11 +499,6 @@ $(document).ready(function () {
           }
       });
   });
-
-  // $('#form_profil_anak').on('submit', function(e) {
-  //   e.preventDefault();
-  //   console.log(this)
-  // });
 });
 </script>
 @endsection
