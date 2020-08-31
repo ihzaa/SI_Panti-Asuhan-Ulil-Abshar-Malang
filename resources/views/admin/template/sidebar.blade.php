@@ -41,9 +41,18 @@
                         </p>
                     </a>
                 </li>
-
                 <li class="nav-item">
-                    <a href="{{route('admin_produk')}}" class="nav-link {{request()->is('*adm1n/produk*') ? 'active': ''}}">
+                    <a href="{{route('admin_pengeluaran')}}"
+                        class="nav-link {{request()->is('*pengeluaran*') ? 'active': ''}}">
+                        <i class="nav-icon fas fa-cart-arrow-down"></i>
+                        <p>
+                            Pengeluaran
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('admin_produk')}}"
+                        class="nav-link {{request()->is('*adm1n/produk*') ? 'active': ''}}">
                         <i class="nav-icon fas fa-box-open"></i>
                         <p>
                             Produk
