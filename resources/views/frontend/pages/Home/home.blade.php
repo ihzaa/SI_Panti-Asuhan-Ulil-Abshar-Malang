@@ -56,7 +56,7 @@
 
 @section('konten')
 <!--  -->
-<div class="hero-wrap" style="background-image: url('assets/aspiration/images/home.JPG');"
+<div class="hero-wrap" style="background-image: url('assets/aspiration/images/home.jpg');"
     data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
