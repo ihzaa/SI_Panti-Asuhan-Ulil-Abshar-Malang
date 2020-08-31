@@ -20,7 +20,7 @@ class ProdukController extends Controller
 
     public function HalamanTambah()
     {
-        return view('admin.pages.produk.tambah-edit');
+        return view('admin.pages.Produk.tambah-edit');
     }
 
     public function create(Request $request)
@@ -61,7 +61,7 @@ class ProdukController extends Controller
     {
         $data = array();
         $data['produk'] = Produk::find($id);
-        return view('admin.pages.produk.tambah-edit', compact('data'));
+        return view('admin.pages.Produk.tambah-edit', compact('data'));
     }
 
     public function edit($id, Request $request)
@@ -124,7 +124,7 @@ class ProdukController extends Controller
         $data = array();
         $data['produk'] = produk::find($id);
         $data['gambar'] = gambar_detail::where('produk_id', $id)->get();
-        return view('admin.pages.produk.gambar-detail', compact('data'));
+        return view('admin.pages.Produk.gambar-detail', compact('data'));
     }
 
     public function tambahgambar($id, Request $request)

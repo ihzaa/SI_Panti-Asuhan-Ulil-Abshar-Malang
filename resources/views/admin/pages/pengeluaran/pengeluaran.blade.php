@@ -6,49 +6,43 @@
 <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
 @endsection
 
-@section('judul_halaman','produk')
+@section('judul_halaman','pengeluaran')
 
 @section('breadcrumb')
-<li class="breadcrumb-item active">Pages</li>
-<li class="breadcrumb-item active">produk</li>
+
+<li class="breadcrumb-item active">pengeluaran</li>
 @endsection
 
 @section('konten')
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="card" id="card_produk">
+            <div class="card" id="card_pengeluaran">
                 <div class="card-header d-flex">
-                    <h3 class="card-title my-auto">Daftar Produk</h3>
-                    <a class="btn btn-primary btn-sm ml-auto" href="{{route('admin_tampil_halaman_tambah_produk')}}"><i class="fas fa-plus"></i> Tambah Produk</a>
+                    <h3 class="card-title my-auto">Daftar pengeluaran</h3>
+                    <a class="btn btn-primary btn-sm ml-auto" href="{{route('admin_tampil_halaman_tambah_pengeluaran')}}"><i class="fas fa-plus"></i> Tambah Pengeluaran</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="tabel_produk" class="table table-bordered table-striped">
+                    <table id="tabel_pengeluaran" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>gambar</th>
-                                <th>Nama</th>
-                                <th>deskripsi</th>
-                                <th>harga</th>
+                                <th>pengeluaran</th>
+                                <th>Nominal</th>
 
-                                <th>gambar detail</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data['produk'] as $d)
-                            <tr id="produk-{{$d->id}}">
+                            @foreach ($data['pengeluaran'] as $d)
+                            <tr id="pengeluaran-{{$d->id}}">
                                 <td>{{$loop->iteration}}</td>
-                                <td class="text-center"><img src="{{asset($d->image)}}" alt="" width="100">
-                                </td>
-                                <td>{{$d->name}}</td>
-                                <td>{{$d->desc}}</td>
-                                <td>{{$d->price}}</td>
-                                <td><a class="btn btn-primary btn-sm ml-auto" href="{{route('admin_gambar_produk',['id'=>$d->id])}}">lihat gambar</a></td>
+                                <td>{{$d->nama_keperluan}}</td>
+                                <td>{{$d->nominal}}</td>
+
                                 <td class="text-center">
-                                    <a href="{{route('admin_tampil_edit_produk',['id'=>$d->id])}}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fas fa-edit"></i></a>
+                                    <a href="{{route('admin_tampil_edit_pengeluaran',['id'=>$d->id])}}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fas fa-edit"></i></a>
                                     <button class="btn btn-sm btn-danger btn-hapus" data-id="{{$d->id}}" data-toggle="tooltip" data-placement="bottom" title="Hapus"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
@@ -76,7 +70,7 @@
 <script src="{{asset('js/vue.min.js')}}"></script>
 <script src="{{asset('js/axios.min.js')}}"></script>
 <script>
-    $('#tabel_produk').DataTable({
+    $('#tabel_pengeluaran').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -93,7 +87,7 @@
 
     $(document).on('click', ".btn-hapus", function() {
         Swal.fire({
-            title: 'hapus produk',
+            title: 'hapus pengeluaran',
 
             icon: 'warning',
             showCancelButton: true,
@@ -103,23 +97,23 @@
             cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.value) {
-                $('#card_produk').append(`
+                $('#card_pengeluaran').append(`
                 <div class="overlay dark" id="loading">
                     <i class="fas fa-2x fa-sync-alt fa-spin"></i>
                 </div>
                 `);
                 let id = $(this).data('id');
-                let url = "{{route('admin_hapus_produk',':__id')}}";
+                let url = "{{route('admin_hapus_pengeluaran',':__id')}}";
                 url = url.replace(':__id', id);
                 fetch(url)
                     .then(() => {
                         Swal.fire(
                             'Terhapus!',
-                            'produk telah terhapus.',
+                            'pengeluaran telah terhapus.',
                             'success'
                         );
-                        $("#produk-" + id).remove();
-                        $('#card_produk #loading').remove();
+                        $("#pengeluaran-" + id).remove();
+                        $('#card_pengeluaran #loading').remove();
                     })
                     .catch(err => {
                         console.log(err);
