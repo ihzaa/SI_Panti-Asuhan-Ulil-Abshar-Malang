@@ -28,9 +28,10 @@
             <thead>
                 <tr>
                     <th style="width: 5%;">No</th>
-                    <th style="width: 20%;">pengeluaran</th>
-                    <th style="width: 20%;">tanggal</th>
-                    <th style="width: 20%;">Nominal</th>
+                    <th style="width: 20%;">Tanggal</th>
+                    <th style="width: 20%;">Keterangan</th>
+                    <th style="width: 20%;">Pemasukan</th>
+                    <th style="width: 20%;">Pengeluaran</th>
 
 
                 </tr>
@@ -38,24 +39,41 @@
             <tbody>
                 @php
                 $i=1;
+                $totalPemasukan = 0;
+                $totalPengeluaran = 0;
                 $total = 0;
                 @endphp
                 @foreach($data['pengeluaran'] as $p)
                 <tr>
                     <td>{{ $i++ }}</td>
-                    <td>{{$p->nama_keperluan}}</td>
-                    <td>{{Carbon\Carbon::parse($p->created_at)->format('d-m-Y')}}</td>
-                    <td>Rp. {{number_format($p->nominal, 0, '.', '.')}}</td>
-
+                    <td>{{Carbon\Carbon::parse($p->tanggal)->format('d-m-Y')}}</td>
+                    @if($p->pemasukan != '-')
+                    <td>Dari {{$p->keterangan}}</td>
+                    <td>Rp. {{number_format($p->pemasukan, 0, '.', '.')}}</td>
+                    @else
+                    <td>{{$p->keterangan}}</td>
+                    <td>-</td>
+                    @endif
+                    @if($p->pengeluaran != '-')
+                    <td>Rp. {{number_format($p->pengeluaran, 0, '.', '.')}}</td>
+                    @else
+                    <td>- </td>
+                    @endif
                     @php
-                    $total += $p->nominal;
+                    if($p->pemasukan != '-'){
+                      $totalPemasukan += $p->pemasukan;
+                    }
+                    if($p->pengeluaran != '-'){
+                      $totalPengeluaran += $p->pengeluaran;
+                    }
                     @endphp
                 </tr>
 
                 @endforeach
                 <tr>
-                    <td colspan="3" class="text-right"><strong>Total</strong></td>
-                    <td colspan="3"><strong>Rp. {{number_format($total, 0, '.', '.')}}</strong></td>
+                    <td colspan="3" class="text-center"><strong>Total</strong></td>
+                    <td colspan="1"><strong>Rp. {{number_format($totalPemasukan, 0, '.', '.')}}</strong></td>
+                    <td colspan="1"><strong>Rp. {{number_format($totalPengeluaran, 0, '.', '.')}}</strong></td>
                 </tr>
 
             </tbody>
