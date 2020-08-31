@@ -19,9 +19,8 @@ Route::get('all/donasi/download/tahun/{year}', 'frontend\DonasiController@downlo
 Route::get('all/donasi/download/bulan/{month}/{year}', 'frontend\DonasiController@downloadDonasiByMonth')->name('all_user_downlaod_donasi_bulan');
 
 //test aja ini
-Route::get('cek/donasi/download/tahun/{year}', 'frontend\DonasiController@cek')->name('cek_downlaod_donasi_tahun');
-
-Route::get('cek/donasi/download/bulan/{month}/{year}', 'frontend\DonasiController@cekb')->name('cek_downlaod_donasi_bulan');
+// Route::get('cek/donasi/download/tahun/{year}', 'frontend\DonasiController@cek')->name('cek_downlaod_donasi_tahun');
+// Route::get('cek/donasi/download/bulan/{month}/{year}', 'frontend\DonasiController@cekb')->name('cek_downlaod_donasi_bulan');
 
 
 //INI CONTOH ROUTE DGN MIDDLEWARE ADMIN
@@ -52,4 +51,7 @@ Route::prefix('adm1n')->middleware('auth:admin')->group(function () {
     Route::post('setting/nomer', 'Admin\SettingController@aturNomerWa')->name('admin_setting_nomer_wa');
     Route::post('setting/apikey', 'Admin\SettingController@aturApiKey')->name('admin_setting_api_key');
     Route::get('setting/get_nomer_wa_key', 'Admin\SettingController@getDataAdmin')->name('admin_setting_get_data');
+
+    Route::get('donasi/download/tahun/{year}', 'frontend\DonasiController@downloadDonasiByYear')->name('admin_downlaod_donasi_tahun');
+    Route::get('donasi/download/bulan/{month}/{year}', 'frontend\DonasiController@downloadDonasiByMonth')->name('admin_downlaod_donasi_bulan');
 });

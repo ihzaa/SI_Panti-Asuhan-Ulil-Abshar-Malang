@@ -28,11 +28,16 @@
             <thead>
                 <tr>
                     <th style="width: 5%;">No</th>
+                    @if ($data['adm1n'])
                     <th style="width: 20%;">Nama Rekening</th>
-                    <th style="width: 20%;">Nama Alias</th>
-                    <th style="width: 20%;">Donasi</th>
-                    <th style="width: 15%;">Bank</th>
-                    <th style="width: 20%;">Tanggal Donasi</th>
+                    @endif
+                    <th style="width: 15%;">Nama Alias</th>
+                    @if ($data['adm1n'])
+                    <th style="width: 20%">Alamat</th>
+                    @endif
+                    <th style="width: 15%;">Donasi</th>
+                    <th style="width: 10%;">Bank</th>
+                    <th style="width: 15%;">Tanggal Donasi</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,8 +48,13 @@
                 @foreach($data['donasi'] as $p)
                 <tr>
                     <td>{{ $i++ }}</td>
+                    @if ($data['adm1n'])
                     <td>{{$p->nama_donatur}}</td>
+                    @endif
                     <td>{{$p->nama_alias}}</td>
+                    @if ($data['adm1n'])
+                    <td>{{$p->alamat}}</td>
+                    @endif
                     <td>Rp. {{number_format($p->total_donasi, 0, '.', '.')}}</td>
                     <td>{{$p->nama_bank}}</td>
                     <td>{{Carbon\Carbon::parse($p->created_at)->format('d-m-Y')}}</td>
@@ -54,8 +64,8 @@
                 </tr>
                 @endforeach
                 <tr>
-                    <td colspan="3" class="text-right"><strong>Total</strong></td>
-                    <td colspan="3"><strong>Rp. {{number_format($total, 0, '.', '.')}}</strong></td>
+                    <td colspan="{{$data['adm1n'] ? '4':'2'}}" class="text-right"><strong>Total</strong></td>
+                    <td colspan="{{$data['adm1n'] ? '3':'3'}}"><strong>Rp. {{number_format($total, 0, '.', '.')}}</strong></td>
                 </tr>
             </tbody>
         </table>
