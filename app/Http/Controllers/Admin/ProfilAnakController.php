@@ -78,22 +78,28 @@ class ProfilAnakController extends Controller
 
   public function update(Request $request)
   {
-    // if ($files = $request->file('foto')) {
-    //   $destinationPath = 'assets/images/foto_anak_panti'; // upload path
-    //   $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-    //   $files->move($destinationPath, $profileImage);
-    //   $image = "images/foto_anak_panti/$profileImage";
-    // }
+    $profilAnak = ProfilAnak::whereId($request->hidden_id);
+
+    if ($request->file('foto') != "") {
+      if ($files = $request->file('foto')) {
+        $destinationPath = 'assets/images/foto_anak_panti'; // upload path
+        $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+        $files->move($destinationPath, $profileImage);
+        $image = "images/foto_anak_panti/$profileImage";
+      }
+    } else {
+      $image = $profilAnak->first()->foto_path;
+    }
 
     $form_data = array(
       'nama' => $request->nama,
-      // 'foto_path' => $image,
+      'foto_path' => $image,
       'jenis_kelamin' => $request->jenKel_edit,
       'umur' => $request->umur,
       'sekolah' => $request->sekolah,
       'kelas' => $request->kelas,
     );
-    ProfilAnak::whereId($request->hidden_id)->update($form_data);
+    $profilAnak->update($form_data);
   }
 
   public function delete($id)
