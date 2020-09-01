@@ -58,6 +58,7 @@ class ProfilAnakController extends Controller
 
     $profileAnak = ProfilAnak::create([
       'nama' => $request->nama,
+      'alamat_asal' => $request->alamat_asal,
       'foto_path' => $image,
       'jenis_kelamin' => $request->jenKel,
       'umur' => $request->umur,
@@ -94,6 +95,7 @@ class ProfilAnakController extends Controller
 
     $form_data = array(
       'nama' => $request->nama,
+      'alamat_asal' => $request->alamat_asal,
       'foto_path' => $image,
       'jenis_kelamin' => $request->jenKel_edit,
       'umur' => $request->umur,

@@ -47,10 +47,13 @@
                       <th style="width: 10%">
                           Foto
                       </th>
+                      <th style="width:15%">
+                        Alamat
+                      </th>
                       <th style="width: 10%">
                           Umur
                       </th>
-                      <th style="width: 8%" class="text-center">
+                      <th style="width: 9%" class="text-center">
                           Jenis Kelamin
                       </th>
                       <th style="width: 20%" class="text-center">Sekolah / Kelas</th>
@@ -87,6 +90,10 @@
           <div class="form-group">
             <label for="exampleInputEmail1">Nama</label>
             <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukan nama">
+          </div>
+          <div class="form-group">
+            <label for="alamat_asal">Alamat Asal</label>
+            <input type="text" name="alamat_asal" class="form-control" id="alamat_asal" placeholder="Masukan Alamat">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Foto</label>
@@ -159,6 +166,10 @@
           <div class="form-group">
             <label for="exampleInputEmail1">Nama</label>
             <input type="text" name="nama" class="form-control" id="nama_edit" placeholder="Masukan nama">
+          </div>
+          <div class="form-group">
+            <label for="alamat_asal">Alamat Asal</label>
+            <input type="text" name="alamat_asal" class="form-control" id="alamat_asal_edit" placeholder="Masukan Alamat">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Foto</label>
@@ -249,6 +260,10 @@ $(document).ready(function () {
         name: 'image'
       },
       {
+        data: 'alamat_asal',
+        name: 'alamat_asal'
+      },
+      {
         data: 'umur',
         name: 'umur'
       },
@@ -288,6 +303,9 @@ $(document).ready(function () {
       nama: {
         required: true,
       },
+      alamat_asal: {
+        required: true
+      },
       foto: {
         required: true,
         accept:"image/*",
@@ -311,6 +329,9 @@ $(document).ready(function () {
     messages: {
       nama: {
         required: "Mohon Masukan Nama",
+      },
+      alamat_asal: {
+        required: "Mohon masukkan alamat asal",
       },
       foto: {
         required: "Mohon Upload Foto",
@@ -347,6 +368,9 @@ $(document).ready(function () {
       nama: {
         required: true,
       },
+      alamat_asal: {
+        required: true
+      },
       foto: {
         accept:"image/*",
         filesize: 256000,
@@ -369,6 +393,9 @@ $(document).ready(function () {
     messages: {
       nama: {
         required: "Mohon Masukan Nama",
+      },
+      alamat_asal: {
+        required: "Mohon masukkan alamat asal",
       },
       foto: {
         filesize: "Ukuran file tidak boleh lebih 256kb",
@@ -474,6 +501,7 @@ $(document).ready(function () {
       success:function(data)
       {
         $('#nama_edit').val(data.result.nama);
+        $('#alamat_asal_edit').val(data.result.alamat_asal);
         $('#umur_edit').val(data.result.umur);
         $("input[name=jenKel_edit][value=" + data.result.jenis_kelamin + "]").prop('checked', true);
         // $("div.id_100 select").val("val2");

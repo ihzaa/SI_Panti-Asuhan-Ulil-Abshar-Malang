@@ -17,6 +17,7 @@ class CreateProfilAnaksTable extends Migration
       $table->id();
       $table->timestamps();
       $table->string('nama');
+      $table->string('alamat_asal');
       $table->text('foto_path');
       $table->string('jenis_kelamin');
       $table->tinyInteger('umur');
