@@ -177,7 +177,7 @@
             let val = $('#tahun').val();
             if (val != "xx") {
                 $('#ftco-loader').addClass('show');
-                let download_tahun_url = "{{route('cek_downlaod_donasi_tahun',['_tahunnn_'])}}";
+                let download_tahun_url = "{{route('all_user_downlaod_donasi_tahun',['_tahunnn_'])}}";
                 download_tahun_url = download_tahun_url.replace('_tahunnn_', val);
                 $('#btn_unduh_tahun').attr('href', download_tahun_url);
                 $('#bulan').html('');
@@ -209,7 +209,7 @@
             let year = $('#tahun').val();
             let val = $('#bulan').val();
             if (val != "xx") {
-                let url_bln = "{{route('cek_downlaod_donasi_bulan',['month'=>'__bulan','year'=>'_tahunnn_'])}}";
+                let url_bln = "{{route('all_user_downlaod_donasi_bulan',['month'=>'__bulan','year'=>'_tahunnn_'])}}";
                 url_bln = url_bln.replace('__bulan', val);
                 url_bln = url_bln.replace('_tahunnn_', year);
                 $('#btn_unduh_bulan').attr('href', url_bln);
