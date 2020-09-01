@@ -84,7 +84,7 @@
             </div>
             <div class="form-group">
               <label for="bank">Bank</label>
-              <select class="custom-select" name="bank" id="bank" required>
+              <select class="custom-select" name="bank" id="bank">
                 <option value="" selected>Choose...</option>
                 @foreach ($bank as $item)
                   <option value='{{ $item->nama_bank }}'>
@@ -211,7 +211,7 @@ var validator_donasi_form = $('#form_tambah_donasi');
 validator_donasi_form.validate({
   rules: {
     email: {
-      required: true,
+      required: false,
       email: true,
     },
     nama_asli: {
@@ -225,7 +225,7 @@ validator_donasi_form.validate({
       // min: 100000,
     },
     alamat: {
-      required: true,
+      required: false,
     }
   },
   messages: {
