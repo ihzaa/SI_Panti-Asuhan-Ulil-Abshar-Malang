@@ -52,7 +52,7 @@
                                 <td>Rp. @{{d.nom_tampil}}</td>
                                 <td>@{{d.waktu}}</td>
                                 <td><button class="btn btn-sm btn-warning"
-                                        @click="edit(d.id,d.nama_keperluan,d.nominal,d.waktu)" data-toggle="tooltip"
+                                        @click="edit(d.id,d.nama_keperluan,d.nom_tampil,d.waktu)" data-toggle="tooltip"
                                         data-placement="bottom" title="Hapus"><i class="fas fa-edit"></i></button>
                                     <button class="btn btn-sm btn-danger" @click="hapus(d.id)" data-toggle="tooltip"
                                         data-placement="bottom" title="Hapus"><i class="fas fa-trash"></i></button></td>
@@ -88,7 +88,7 @@
                     <h3 class="mb-0">@{{title_modal}}</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                      </button>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -134,7 +134,10 @@
 <script src="{{asset('js/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{asset('js/vue.min.js')}}"></script>
 <script>
-    $(document).on("keyup","#nominal", function( event ) {
+    $(document).on("keyup","#nominal",nominalK
+        );
+
+        function nominalK() {
             // When user select text in the document, also abort.
             var selection = window.getSelection().toString();
             if ( selection !== '' ) {
@@ -159,7 +162,6 @@
                         return ( input === 0 ) ? "" : input.toLocaleString( "en-US" );
                     } );
         }
-        );
     $(document).ready(function () {
         $.fn.datepicker.defaults.format = 'dd/mm/yyyy';
         $('.datepicker').datepicker();
@@ -199,6 +201,10 @@
                                 "ordering": true,
                                 "info": true,
                                 "autoWidth": true,
+                                "responsive": true,
+                                columnDefs: [
+                                    { responsivePriority: 1, targets: -1 },
+                                ]
                             });
                     })
                     .then( ()=>{
