@@ -183,17 +183,32 @@
             },
             methods: {
                 tampilData: function(){
-                    this.data_list = [];
-                    fetch("{{route('admin_get_all_pengeluaran_dong')}}")
+                    var myHeaders = new Headers();
+                    myHeaders.append('pragma', 'no-cache');
+                    myHeaders.append('cache-control', 'no-cache');
+                    var myInit = {
+                        method: 'GET',
+                        headers: myHeaders,
+                    };
+                    fetch("{{route('admin_get_all_pengeluaran_dong')}}", myInit)
                     .then(response => response.json())
                     .then(data =>
                         {
                             if(this.table != ""){
                                 this.table.clear().destroy();
                             }
-                            this.data_list = data;
+                            this.data_list = [];
+                            return data;
                         }
-                    ).then( ()=>{
+                    )
+                    .then(data =>
+                        {
+                            console.log(data);
+                            this.data_list = data;
+                            return data;
+                        }
+                    )
+                    .then( (data)=>{
                             this.table = $('#tabel_pengeluaran').DataTable({
                                 "paging": true,
                                 "lengthChange": true,
@@ -265,6 +280,11 @@
                             .then(data =>{
                                 if(data == "ok"){
                                     this.tampilData();
+                                    Swal.fire(
+                                        'Berhasil!',
+                                        'pengeluaran telah berhasil ditambahkan.',
+                                        'success'
+                                    );
                                 }
                             }).catch(err => {
                                 console.log(err);

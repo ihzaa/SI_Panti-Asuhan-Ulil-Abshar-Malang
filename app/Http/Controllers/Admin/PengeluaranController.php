@@ -15,7 +15,7 @@ class PengeluaranController extends Controller
     {
         // $data['pengeluaran'] = Pengeluaran::all();
         // return view('admin.pages.Pengeluaran.Pengeluaran', compact('data'));
-        return view('admin.pages.Pengeluaran.Pengeluaran');
+        return view('admin.pages.pengeluaran.pengeluaran');
     }
 
     public function getAll()
