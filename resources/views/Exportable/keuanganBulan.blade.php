@@ -43,7 +43,7 @@
                 $totalPengeluaran = 0;
                 $total = 0;
                 @endphp
-                @foreach($data['pengeluaran'] as $p)
+                @foreach($data['keuangan'] as $p)
                 <tr>
                     <td>{{ $i++ }}</td>
                     <td>{{Carbon\Carbon::parse($p->tanggal)->format('d-m-Y')}}</td>
