@@ -35,12 +35,20 @@ class PengeluaranController extends Controller
     public function downloadPengeluaranByYear($year)
     {
         set_time_limit(300);
-        $pengeluaran = pengeluaran::pluck('id');
-        $data['pengeluaran'] = pengeluaran::whereIn('id', $pengeluaran)->whereYear('created_at', '=', $year)->orderBy('created_at')->get();
-        $data['keterangan'] = 'pengeluaran Tahun ' . $year;
+        // $pengeluaran = pengeluaran::pluck('id');
+        // $data['pengeluaran'] = pengeluaran::whereIn('id', $pengeluaran)->whereYear('created_at', '=', $year)->orderBy('created_at')->get();
+        $data['tahun']= $year;
+        $data['pemasukan']= DB::select("SELECT MONTH(d.created_at) as bulan, SUM(d.total_donasi) as pemasukan FROM donasi_masuks dm LEFT JOIN donasis d ON dm.donasi_id=d.id WHERE d.id IS NOT NULL AND YEAR(d.created_at) = ".$year." GROUP BY bulan ORDER BY bulan");
+        $data['pengeluaran']= DB::select("SELECT MONTH(created_at) as bulan, SUM(nominal) as pengeluaran FROM pengeluarans WHERE YEAR(created_at) = ".$year." GROUP BY bulan ORDER BY bulan");
+
+      //  dd($data['pemasukan'],$data['pengeluaran']);
+
+        $data['keterangan'] = 'Keuangan Tahun ' . $year;
+        $data['bulan'] = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        // return view('Exportable.keuanganTahun', compact('data'));
         $pdf = PDF::loadview('Exportable.Pengeluaran', compact('data'));
         $pdf->setPaper('A4', 'landscape');
-        return $pdf->download('pengeluaran tahun ' . $year . '.pdf');
+        return $pdf->download('keuangan tahun ' . $year . '.pdf');
     }
 
     public function downloadPengeluaranByMonth($month, $year)
@@ -49,10 +57,10 @@ class PengeluaranController extends Controller
         // $data['pengeluaran'] = pengeluaran::whereIn('id', $pengeluaran)->whereMonth('created_at', $month)->whereYear('created_at', '=', $year)->orderBy('created_at')->get();
         $data['pengeluaran']= DB::select("SELECT d.created_at as tanggal, d.nama_alias as keterangan, d.total_donasi as pemasukan, '-' as pengeluaran FROM donasi_masuks dm LEFT JOIN donasis d ON dm.donasi_id=d.id WHERE d.id IS NOT NULL UNION SELECT created_at, nama_keperluan, '-', nominal FROM pengeluarans ORDER BY tanggal");
         $bulan = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-        $data['keterangan'] = 'pengeluaran Bulan ' . $bulan[$month] . ' ' . $year;
+        $data['keterangan'] = 'Keuangan Bulan ' . $bulan[$month] . ' ' . $year;
         $pdf = PDF::loadview('Exportable.Pengeluaran', compact('data'));
         $pdf->setPaper('A4', 'landscape');
-        return $pdf->download('pengeluaran bulan ' . $bulan[$month] . ' tahun ' . $year . '.pdf');
+        return $pdf->download('keuangan bulan ' . $bulan[$month] . ' tahun ' . $year . '.pdf');
     }
 
     public function cek($year)
