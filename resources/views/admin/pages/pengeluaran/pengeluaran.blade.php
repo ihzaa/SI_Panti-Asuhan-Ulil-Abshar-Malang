@@ -101,12 +101,12 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Rp.</span>
                         </div>
-                        <input type="text" id="nominal" class="form-control" placeholder="Nominal" v-model="nominal">
+                        <input type="text" id="nominal" autocomplete="off" class="form-control" placeholder="Nominal" v-model="nominal">
                         <span id="nominal-error" class="error invalid-feedback">Nominal Tidak Boleh Kosong</span>
 
                     </div>
                     <div class="input-group date mt-3" data-provide="datepicker">
-                        <input type="text" class="form-control datepicker" id="tanggal" placeholder="Tanggal">
+                        <input type="text" class="form-control datepicker" autocomplete="off" id="tanggal" placeholder="Tanggal">
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>
