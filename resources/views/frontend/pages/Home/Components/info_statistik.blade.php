@@ -33,7 +33,7 @@
           <div class="icon"><span class="flaticon-open-book"></span></div>
           <div class="media-body">
             <h3 class="heading mb-3">Kamar</h3>
-          <p> {{$pengurus}} </p>
+          <p> 4 </p>
           </div>
         </div>
       </div>

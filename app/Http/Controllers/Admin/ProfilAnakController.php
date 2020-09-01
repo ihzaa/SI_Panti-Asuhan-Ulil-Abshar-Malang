@@ -87,6 +87,7 @@ class ProfilAnakController extends Controller
         $files->move($destinationPath, $profileImage);
         $image = "images/foto_anak_panti/$profileImage";
       }
+      File::delete('assets/' . $profilAnak->first()->foto_path);
     } else {
       $image = $profilAnak->first()->foto_path;
     }
