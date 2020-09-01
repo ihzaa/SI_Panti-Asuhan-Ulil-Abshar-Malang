@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="el-card-content">
-                <h4 class="m-b-0">{{$row->nama}}</h4> <span class="text-muted">{{$row->sekolah}}</span>
+                <p class="m-b-0">{{$row->nama}}</p> <span class="text-muted sekolah">{{$row->sekolah}}</span>
                 </div>
             </div>
         </div>
