@@ -300,8 +300,8 @@
                     confirmButtonText: 'Ya, Hapus!',
                     cancelButtonText: 'Batal'
                 }).then((result) => {
-                    $('#loading').show();
                     if (result.value) {
+                        $('#loading').show();
                         let url = "{{route('admin_hapus_pengeluaran_dong',':__id')}}";
                         url = url.replace(':__id', id);
                         fetch(url)
