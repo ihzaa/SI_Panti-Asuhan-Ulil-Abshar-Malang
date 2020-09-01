@@ -54,4 +54,9 @@ Route::prefix('adm1n')->middleware('auth:admin')->group(function () {
 
     Route::get('donasi/download/tahun/{year}', 'frontend\DonasiController@downloadDonasiByYear')->name('admin_downlaod_donasi_tahun');
     Route::get('donasi/download/bulan/{month}/{year}', 'frontend\DonasiController@downloadDonasiByMonth')->name('admin_downlaod_donasi_bulan');
+
+    Route::get('pengeluaran/get/all', 'Admin\PengeluaranController@getAll')->name('admin_get_all_pengeluaran_dong');
+    Route::post('pengeluaran/tambah', 'Admin\PengeluaranController@tambah')->name('admin_tambah_pengeluaran_dong');
+    Route::post('pengeluaran/edit', 'Admin\PengeluaranController@edit_dong')->name('admin_edit_pengeluaran_dong');
+    Route::get('pengeluaran/hapus/{id}', 'Admin\PengeluaranController@hapus_dong')->name('admin_hapus_pengeluaran_dong');
 });
