@@ -223,6 +223,7 @@
 <script src="{{asset('js/sweetalert2.all.min.js')}}"></script>
 
 <script src="{{asset('admin/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+<script src="{{asset('admin/plugins/jquery-validation/additional-methods.min.js')}}"></script>
 <script src="{{asset('admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 
 
@@ -277,6 +278,10 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
+  $.validator.addMethod('filesize', function (value, element, param) {
+    return this.optional(element) || (element.files[0].size <= param)
+  }, 'File size must be less than {0}');
+
   var form_tambah_anak = $('#form_tambah_anak');
   form_tambah_anak.validate({
     rules: {
@@ -285,6 +290,8 @@ $(document).ready(function () {
       },
       foto: {
         required: true,
+        accept:"image/*",
+        filesize: 256000,
       },
       umur: {
         required: true,
@@ -307,6 +314,8 @@ $(document).ready(function () {
       },
       foto: {
         required: "Mohon Upload Foto",
+        filesize: "Ukuran file tidak boleh lebih 256kb",
+        accept: "Mohon masukkan file berupa gambar"
       },
       umur: {
         required: "Mohon Masukan Umur",
@@ -338,6 +347,10 @@ $(document).ready(function () {
       nama: {
         required: true,
       },
+      foto: {
+        accept:"image/*",
+        filesize: 256000,
+      },
       umur: {
         required: true,
       },
@@ -356,6 +369,10 @@ $(document).ready(function () {
     messages: {
       nama: {
         required: "Mohon Masukan Nama",
+      },
+      foto: {
+        filesize: "Ukuran file tidak boleh lebih 256kb",
+        accept: "Mohon masukkan file berupa gambar"
       },
       umur: {
         required: "Mohon Masukan Umur",
