@@ -25,7 +25,7 @@ class ManagerController extends Controller
     public function tambahData(Request $request)
     {
         $this->validate($request, [
-            'image' => ['required', 'image', 'max:500'],
+            'image' => ['required', 'image', 'max:256'],
             'name' => 'required',
             'position' => 'required'
         ]);
@@ -72,7 +72,7 @@ class ManagerController extends Controller
     public function editPengurus($id, Request $request)
     {
         $this->validate($request, [
-            'image' => ['image', 'max:500'],
+            'image' => ['image', 'max:256'],
             'name' => 'required',
             'position' => 'required'
         ]);
