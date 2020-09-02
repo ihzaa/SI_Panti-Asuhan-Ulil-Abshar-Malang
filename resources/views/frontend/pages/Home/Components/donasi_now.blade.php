@@ -119,7 +119,7 @@
         <div class="col-md-8" style="padding: 15px;margin: 15px;">
             <div class="info-box mb-3" id="card_recap">
                 <div class="info-box-content">
-                    <span class="info-box-text mb-2"><strong>Rekapitulas pengeluaran</strong></span>
+                    <span class="info-box-text mb-2"><strong>Rekapitulas Keuangan</strong></span>
                     <div class="row">
                         <div class="col-md-6 mb-2">
                             <div class="input-group">
@@ -221,7 +221,7 @@
         });
     });
 </script>
-<!-- pengeluaran -->
+<!-- keuangan -->
 <script>
     document.addEventListener("DOMContentLoaded", function(event) {
         fetch("{{route('all_user_get_tahun_Pengeluaran')}}")
