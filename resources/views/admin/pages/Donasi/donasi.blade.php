@@ -122,7 +122,13 @@
 
 <script>
 $(document).ready(function () {
-
+  $('#reservationdate').datetimepicker
+    ({
+    format:'DD-MM-YYYY hh:mm',
+    icons:{
+      time:'far fa-clock'
+    }
+  });
 
 $('#tabel_donasi').DataTable({
   processing: true,
@@ -211,39 +217,27 @@ var validator_donasi_form = $('#form_tambah_donasi');
 validator_donasi_form.validate({
   rules: {
     email: {
-      required: false,
       email: true,
     },
     nama_asli: {
       required: true,
     },
-    nama_alias: {
-      required: true
-    },
     donasi: {
       required: true,
       // min: 100000,
-    },
-    alamat: {
-      required: false,
     }
   },
   messages: {
     email: {
-      required: "Mohon masukkan alamat surel",
       email: "Mohon masukkan alamat surel valid"
     },
     nama_asli: {
       required: "Mohon Masukan Nama",
     },
-    nama_alias: "Beri tanda '-' untuk mengosongkan",
     donasi: {
       required: "Mohon Tentukan Donasi",
       // min: "Minimal donasi Rp. 100.000"
-    },
-    alamat: {
-      required: "Mohon Masukan Bank Tujuan",
-    },
+    }
   },
   errorElement: 'span',
   errorPlacement: function (error, element) {
@@ -288,7 +282,7 @@ $('#action_button').click(function (e) {
 
         Swal.fire(
           'Berhasil!',
-          'Donasi anda akan kami periksa terlebih dahulu.',
+          'Record donasi berhasil ditambahkan.',
           'success'
         );
         console.log(response);
