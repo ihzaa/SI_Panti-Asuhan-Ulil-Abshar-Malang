@@ -97,9 +97,6 @@ $(function () {
       name: {
         required: true,
       },
-      nama_alias: {
-        required: true
-      },
       donasi: {
         required: true,
         min: 100000,
@@ -116,7 +113,6 @@ $(function () {
       name: {
         required: "Mohon Masukan Nama",
       },
-      nama_alias: "Beri tanda '-' untuk mengosongkan",
       donasi: {
         required: "Mohon Tentukan Donasi",
         min: "Minimal donasi Rp. 100.000"
