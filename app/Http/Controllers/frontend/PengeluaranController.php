@@ -46,7 +46,7 @@ class PengeluaranController extends Controller
         $data['keterangan'] = 'Keuangan Tahun ' . $year;
         $data['bulan'] = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
         // return view('Exportable.keuanganTahun', compact('data'));
-        $pdf = PDF::loadview('Exportable.Pengeluaran', compact('data'));
+        $pdf = PDF::loadview('Exportable.keuanganTahun', compact('data'));
         $pdf->setPaper('A4', 'landscape');
         return $pdf->download('keuangan tahun ' . $year . '.pdf');
     }
@@ -55,10 +55,10 @@ class PengeluaranController extends Controller
     {
         // $pengeluaran = pengeluaran::pluck('id');
         // $data['pengeluaran'] = pengeluaran::whereIn('id', $pengeluaran)->whereMonth('created_at', $month)->whereYear('created_at', '=', $year)->orderBy('created_at')->get();
-        $data['pengeluaran']= DB::select("SELECT d.created_at as tanggal, d.nama_alias as keterangan, d.total_donasi as pemasukan, '-' as pengeluaran FROM donasi_masuks dm LEFT JOIN donasis d ON dm.donasi_id=d.id WHERE d.id IS NOT NULL UNION SELECT created_at, nama_keperluan, '-', nominal FROM pengeluarans ORDER BY tanggal");
+        $data['keuangan']= DB::select("SELECT d.created_at as tanggal, d.nama_alias as keterangan, d.total_donasi as pemasukan, '-' as pengeluaran FROM donasi_masuks dm LEFT JOIN donasis d ON dm.donasi_id=d.id WHERE d.id IS NOT NULL UNION SELECT created_at, nama_keperluan, '-', nominal FROM pengeluarans ORDER BY tanggal");
         $bulan = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
         $data['keterangan'] = 'Keuangan Bulan ' . $bulan[$month] . ' ' . $year;
-        $pdf = PDF::loadview('Exportable.Pengeluaran', compact('data'));
+        $pdf = PDF::loadview('Exportable.keuanganBulan', compact('data'));
         $pdf->setPaper('A4', 'landscape');
         return $pdf->download('keuangan bulan ' . $bulan[$month] . ' tahun ' . $year . '.pdf');
     }
