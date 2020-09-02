@@ -83,10 +83,7 @@ class HomeController extends Controller
     // untuk validasi form
     $this->validate($request, [
       'name' => 'required',
-      'nama_alias' => 'required',
       'donasi' => 'required',
-      'bank' => 'required',
-      'alamat' => 'required'
     ]);
 
     // insert data ke table books

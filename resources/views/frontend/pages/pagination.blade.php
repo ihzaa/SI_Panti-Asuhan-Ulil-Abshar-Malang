@@ -8,7 +8,7 @@
                 <div class="el-card-avatar el-overlay-1"> 
                   @if ($row->foto_path != '')
                     <div style="width: auto; height: 265px;">
-                      <img style="width: auto; height: 100%;" src="{{asset($row->foto_path)}}" alt="user">
+                      <img style="width: auto; height: 100%; margin: auto;" src="{{asset($row->foto_path)}}" alt="user">
                     </div>
                   @else
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user">

@@ -43,8 +43,10 @@
                                 <td class="text-center"><img src="{{asset($blog->sampul_foto)}}" alt="" width="150">
                                 </td>
                                 <td>{{$blog->jumlah_dibaca}}</td>
-                                <td>{{\Carbon\Carbon::parse($blog->created_at)->translatedFormat("l, d F Y h:i a")}}</td>
-                                <td>{{\Carbon\Carbon::parse($blog->updated_at)->translatedFormat("l, d F Y h:i a")}}</td>
+                                <td>{{\Carbon\Carbon::parse($blog->created_at)->translatedFormat("l, d F Y h:i a")}}
+                                </td>
+                                <td>{{\Carbon\Carbon::parse($blog->updated_at)->translatedFormat("l, d F Y h:i a")}}
+                                </td>
                                 <td class="text-center">
                                     <a href="{{route('admin_edit_blog_index',['id'=>$blog->id])}}"
                                         class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom"
@@ -237,13 +239,20 @@
                 tampilData: function(){
                     this.openLoading();
                     this.data_list = [];
-                    axios.get("{{route('admin_get_all_kategori')}}")
+                    var myHeaders = new Headers();
+                    myHeaders.append('pragma', 'no-cache');
+                    myHeaders.append('cache-control', 'no-cache');
+                    var myInit = {
+                        headers: myHeaders,
+                    };
+                    fetch("{{route('admin_get_all_kategori')}}",myInit)
+                    .then(response => response.json())
                     .then(resp =>{
                         if(this.tabel != ""){
                             this.tabel.clear().destroy();
                         }
                         // this.data_list = "";
-                        this.data_list = resp.data;
+                        this.data_list = resp;
                         // if(this.data_list.length == 0){
                         //     $('#tabel_kategori tbody').append(`<tr id="data-kosong" class="odd" v-if="data_list.length == 0">
                         //         <td valign="top" colspan="100%" class="dataTables_empty text-center">

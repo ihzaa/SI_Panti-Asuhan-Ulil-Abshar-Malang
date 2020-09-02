@@ -7,13 +7,13 @@ Route::get('/produk/{id}', 'frontend\ProdukController@produk_detail')->name('pro
 
 Route::get('all/pengeluaran/get/tahun', 'frontend\PengeluaranController@getAllYear')->name('all_user_get_tahun_Pengeluaran');
 Route::get('all/pengeluaran/get/month/{year}', 'frontend\PengeluaranController@getAllMonthByYear')->name('all_user_get_bulan_Pengeluaran_per_tahun');
-Route::get('all/pengeluaran/download/tahun/{year}', 'frontend\PengeluaranController@downloadPengeluaranByYear')->name('all_user_downlaod_Pengeluaran_tahun');
-Route::get('all/pengeluaran/download/bulan/{month}/{year}', 'frontend\PengeluaranController@downloadPengeluaranByMonth')->name('all_user_downlaod_Pengeluaran_bulan');
+Route::get('all/pengeluaran/download/tahun/{year}', 'frontend\PengeluaranController@downloadPengeluaranByYear')->name('all_user_download_Pengeluaran_tahun');
+Route::get('all/pengeluaran/download/bulan/{month}/{year}', 'frontend\PengeluaranController@downloadPengeluaranByMonth')->name('all_user_download_Pengeluaran_bulan');
 
 //test aja ini
-Route::get('cek/pengeluaran/download/tahun/{year}', 'frontend\PengeluaranController@cek')->name('cek_downlaod_Pengeluaran_tahun');
+Route::get('cek/pengeluaran/download/tahun/{year}', 'frontend\PengeluaranController@cek')->name('cek_download_Pengeluaran_tahun');
 
-Route::get('cek/pengeluaran/download/bulan/{month}/{year}', 'frontend\PengeluaranController@cekb')->name('cek_downlaod_Pengeluaran_bulan');
+Route::get('cek/pengeluaran/download/bulan/{month}/{year}', 'frontend\PengeluaranController@cekb')->name('cek_download_Pengeluaran_bulan');
 
 
 
