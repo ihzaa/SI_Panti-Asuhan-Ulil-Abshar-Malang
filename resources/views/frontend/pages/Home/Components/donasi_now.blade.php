@@ -19,7 +19,8 @@
               text-align: center;
               "> {{$jml_hari-$day_now}} Hari Lagi</p>
                         @if ($donasi)
-                        <div class="progress-bar progress-bar-striped" style="width:{{($day_now/$jml_hari)*100}}%; height:50px"></div>
+                        <div class="progress-bar progress-bar-striped"
+                            style="width:{{($day_now/$jml_hari)*100}}%; height:50px"></div>
                         @else
                         {{-- <div class="progress-bar progress-bar-striped" style="width:{{(0/$kebutuhan)*100}}%;
                         height:50px">
@@ -88,7 +89,8 @@
                                     <option selected value="xx">Pilih tahun...</option>
                                 </select>
                                 <div class="input-group-append">
-                                    <a class="btn btn-success disabled" href="#" id="btn_unduh_tahun" target="_blank">Unduh</a>
+                                    <a class="btn btn-success disabled" href="#" id="btn_unduh_tahun"
+                                        target="_blank">Unduh</a>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +104,8 @@
                                         <option selected value="xx">Pilih bulan...</option>
                                     </select>
                                     <div class="input-group-append">
-                                        <a class="btn btn-success disabled" href="#" id="btn_unduh_bulan" target="_blank">Unduh</a>
+                                        <a class="btn btn-success disabled" href="#" id="btn_unduh_bulan"
+                                            target="_blank">Unduh</a>
                                     </div>
                                 </div>
                             </fieldset>
@@ -119,7 +122,7 @@
         <div class="col-md-8" style="padding: 15px;margin: 15px;">
             <div class="info-box mb-3" id="card_recap">
                 <div class="info-box-content">
-                    <span class="info-box-text mb-2"><strong>Rekapitulas pengeluaran</strong></span>
+                    <span class="info-box-text mb-2"><strong>Rekapitulas Keuangan</strong></span>
                     <div class="row">
                         <div class="col-md-6 mb-2">
                             <div class="input-group">
@@ -130,7 +133,8 @@
                                     <option selected value="xx">Pilih tahun...</option>
                                 </select>
                                 <div class="input-group-append">
-                                    <a class="btn btn-success disabled" href="#" id="btn_unduh_tahun1" target="_blank">Unduh</a>
+                                    <a class="btn btn-success disabled" href="#" id="btn_unduh_tahun1"
+                                        target="_blank">Unduh</a>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +148,8 @@
                                         <option selected value="xx">Pilih bulan...</option>
                                     </select>
                                     <div class="input-group-append">
-                                        <a class="btn btn-success disabled" href="#" id="btn_unduh_bulan1" target="_blank">Unduh</a>
+                                        <a class="btn btn-success disabled" href="#" id="btn_unduh_bulan1"
+                                            target="_blank">Unduh</a>
                                     </div>
                                 </div>
                             </fieldset>
@@ -162,8 +167,14 @@
     </div>
 </section>
 <script>
+    var myHeaders = new Headers();
+        myHeaders.append('pragma', 'no-cache');
+        myHeaders.append('cache-control', 'no-cache');
+        var myInit = {
+            headers: myHeaders,
+        };
     document.addEventListener("DOMContentLoaded", function(event) {
-        fetch("{{route('all_user_get_tahun_donasi')}}")
+        fetch("{{route('all_user_get_tahun_donasi')}}",myInit)
             .then(response => response.json())
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
@@ -184,7 +195,7 @@
                 $('#bulan').append(`<option value="xx">Pilih bulan...</option>`);
                 let url = "{{route('all_user_get_bulan_donasi_per_tahun',['_year_'])}}"
                 url = url.replace('_year_', val);
-                fetch(url)
+                fetch(url,myInit)
                     .then(response => response.json())
                     .then(data => {
                         for (let i = 0; i < data.length; i++) {
@@ -221,10 +232,10 @@
         });
     });
 </script>
-<!-- pengeluaran -->
+<!-- keuangan -->
 <script>
     document.addEventListener("DOMContentLoaded", function(event) {
-        fetch("{{route('all_user_get_tahun_Pengeluaran')}}")
+        fetch("{{route('all_user_get_tahun_Pengeluaran')}}",myInit)
             .then(response => response.json())
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
@@ -245,7 +256,7 @@
                 $('#bulan1').append(`<option value="xx">Pilih bulan...</option>`);
                 let url = "{{route('all_user_get_bulan_Pengeluaran_per_tahun',['_year_'])}}"
                 url = url.replace('_year_', val);
-                fetch(url)
+                fetch(url,myInit)
                     .then(response => response.json())
                     .then(data => {
                         for (let i = 0; i < data.length; i++) {
