@@ -203,7 +203,6 @@
                     )
                     .then(data =>
                         {
-                            console.log(data);
                             this.data_list = data;
                             return data;
                         }
