@@ -43,23 +43,37 @@
                 $totalPengeluaran = 0;
                 $total = 0;
                 @endphp
-                @if(count($data['pemasukan']) > count($data['pengeluaran']))
+                @foreach($data['hasil'] as $k => $d)
+                <tr>
+                    <td>{{ $i++ }}</td>
+                    <td>{{$data['bulan'][$k]}} {{$data['tahun']}} </td>
+                    <td>Rp. {{number_format($d[0], 0, '.', '.')}}</td>
+                    <td>Rp. {{number_format($d[1], 0, '.', '.')}}</td>
+                    @php
+                    $totalPemasukan += $d[0];
+                    $totalPengeluaran +=$d[1];
+                    @endphp
+                </tr>
+
+                @endforeach
+
+                {{-- @if(count($data['pemasukan']) > count($data['pengeluaran']))
                 @foreach($data['pemasukan'] as $d)
                 <tr>
                     <td>{{ $i++ }}</td>
-                    <td>{{$data['bulan'][$d->bulan]}} {{$data['tahun']}} </td>
-                    <td>Rp. {{number_format($d->pemasukan, 0, '.', '.')}}</td>
-                    @if(empty($data['pengeluaran'][$index]->pengeluaran))
-                    <td>Rp. 0</td>
-                    @else
-                    <td>Rp. {{number_format($data['pengeluaran'][$index]->pengeluaran, 0, '.', '.')}}</td>
-                    @endif
-                    @php
-                      $totalPemasukan += $d->pemasukan;
-                      if(!empty($data['pengeluaran'][$index]->pengeluaran)){
-                        $totalPengeluaran += $data['pengeluaran'][$index++]->pengeluaran;
-                      }
-                    @endphp
+                <td>{{$data['bulan'][$d->bulan]}} {{$data['tahun']}} </td>
+                <td>Rp. {{number_format($d->pemasukan, 0, '.', '.')}}</td>
+                @if(empty($data['pengeluaran'][$index]->pengeluaran))
+                <td>Rp. 0</td>
+                @else
+                <td>Rp. {{number_format($data['pengeluaran'][$index]->pengeluaran, 0, '.', '.')}}</td>
+                @endif
+                @php
+                $totalPemasukan += $d->pemasukan;
+                if(!empty($data['pengeluaran'][$index]->pengeluaran)){
+                $totalPengeluaran += $data['pengeluaran'][$index++]->pengeluaran;
+                }
+                @endphp
                 </tr>
 
                 @endforeach
@@ -75,15 +89,15 @@
                     @endif
                     <td>Rp. {{number_format($d->pengeluaran, 0, '.', '.')}}</td>
                     @php
-                      $totalPengeluaran += $d->pengeluaran;
-                      if(!empty($data['pemasukan'][$index]->pemasukan)){
-                        $totalPemasukan += $data['pemasukan'][$index++]->pemasukan;
-                      }
+                    $totalPengeluaran += $d->pengeluaran;
+                    if(!empty($data['pemasukan'][$index]->pemasukan)){
+                    $totalPemasukan += $data['pemasukan'][$index++]->pemasukan;
+                    }
                     @endphp
                 </tr>
 
                 @endforeach
-                @endif
+                @endif --}}
 
                 <tr>
                     <td colspan="2" class="text-center"><strong>Total</strong></td>

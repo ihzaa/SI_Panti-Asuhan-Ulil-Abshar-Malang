@@ -31,7 +31,7 @@ class PengeluaranController extends Controller
         // $pengeluaran = pengeluaran::pluck('id');
         // $data = pengeluaran::selectRaw('month(created_at) month')
         //     ->groupBy('month')->whereIn('id', $pengeluaran)->whereYear('created_at', '=', $year)->get();
-        $data = DB::select("SELECT z.month FROM (SELECT MONTH(d.created_at) AS month FROM donasi_masuks dm LEFT JOIN donasis d ON dm.donasi_id=d.id WHERE d.id IS NOT NULL AND YEAR(d.created_at) = ".$year." UNION SELECT MONTH(created_at) FROM pengeluarans WHERE YEAR(created_at) = ".$year.") AS z GROUP BY z.month");
+        $data = DB::select("SELECT z.month FROM (SELECT MONTH(d.created_at) AS month FROM donasi_masuks dm LEFT JOIN donasis d ON dm.donasi_id=d.id WHERE d.id IS NOT NULL AND YEAR(d.created_at) = " . $year . " UNION SELECT MONTH(created_at) FROM pengeluarans WHERE YEAR(created_at) = " . $year . ") AS z GROUP BY z.month");
 
         // dd($data);
 
@@ -48,7 +48,20 @@ class PengeluaranController extends Controller
         $data['pengeluaran'] = DB::select("SELECT MONTH(created_at) as bulan, SUM(nominal) as pengeluaran FROM pengeluarans WHERE YEAR(created_at) = " . $year . " GROUP BY bulan ORDER BY bulan");
 
         //  dd($data['pemasukan'],$data['pengeluaran']);
-
+        $hasil = array(1 => [0, 0], 2 => [0, 0], 3 => [0, 0], 4 => [0, 0], 5 => [0, 0], 6 => [0, 0], 7 => [0, 0], 8 => [0, 0], 9 => [0, 0], 10 => [0, 0], 11 => [0, 0], 12 => [0, 0]);
+        
+        foreach ($data['pemasukan'] as $d) {
+            $hasil[$d->bulan][0] = $d->pemasukan;
+        }
+        foreach ($data['pengeluaran'] as $d) {
+            $hasil[$d->bulan][1] = $d->pengeluaran;
+        }
+        for ($i = 1; $i <= 12; $i++) {
+            if ($hasil[$i] == [0, 0]) {
+                unset($hasil[$i]);
+            }
+        }
+        $data['hasil'] = $hasil;
         $data['keterangan'] = 'Keuangan Tahun ' . $year;
         $data['bulan'] = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
         // return view('Exportable.keuanganTahun', compact('data'));
@@ -78,6 +91,21 @@ class PengeluaranController extends Controller
         $data['pengeluaran'] = DB::select("SELECT MONTH(created_at) as bulan, SUM(nominal) as pengeluaran FROM pengeluarans WHERE YEAR(created_at) = " . $year . " GROUP BY bulan ORDER BY bulan");
 
         //  dd($data['pemasukan'],$data['pengeluaran']);
+        $hasil = array(1 => [0, 0], 2 => [0, 0], 3 => [0, 0], 4 => [0, 0], 5 => [0, 0], 6 => [0, 0], 7 => [0, 0], 8 => [0, 0], 9 => [0, 0], 10 => [0, 0], 11 => [0, 0], 12 => [0, 0]);
+
+        foreach ($data['pemasukan'] as $d) {
+            $hasil[$d->bulan][0] = $d->pemasukan;
+        }
+        foreach ($data['pengeluaran'] as $d) {
+            $hasil[$d->bulan][1] = $d->pengeluaran;
+        }
+        for ($i = 1; $i <= 12; $i++) {
+            if ($hasil[$i] == [0, 0]) {
+                unset($hasil[$i]);
+            }
+        }
+        $data['hasil'] = $hasil;
+        // dd($data['hasil']);
 
         $data['keterangan'] = 'Keuangan Tahun ' . $year;
         $data['bulan'] = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
