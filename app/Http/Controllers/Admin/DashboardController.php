@@ -11,6 +11,7 @@ use App\Models\Frontend\manager;
 use App\Models\Frontend\Produk;
 use App\Models\Frontend\ProfilAnak;
 use App\Models\Frontend\sarana;
+use App\Models\Pengeluaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -33,7 +34,18 @@ class DashboardController extends Controller
             array_push($data['donasi'], $total[0] == null ? "0" : $total[0]);
             $data['total_donasi'] += $total[0];
         }
-
+        $pengeluaran = Pengeluaran::whereMonth('created_at', date("m"))->pluck('nominal');
+        $data['total_pengeluaran_bulan'] = 0;
+        foreach ($pengeluaran as $p) {
+            $data['total_pengeluaran_bulan'] += $p;
+        }
+        $data['total_pengeluaran_bulan_cnt'] = Pengeluaran::whereMonth('created_at', date("m"))->count();
+        $pengeluaran = Pengeluaran::whereYear('created_at', date("Y"))->pluck('nominal');
+        $data['total_pengeluaran_tahun'] = 0;
+        foreach ($pengeluaran as $p) {
+            $data['total_pengeluaran_tahun'] += $p;
+        }
+        $data['total_pengeluaran_tahun_cnt'] = Pengeluaran::whereYear('created_at', date("Y"))->count();
         $data['rekening'] = Bank::count();
         $data['fasil'] = sarana::count();
         return view('admin.pages.dashboard', compact('data'));

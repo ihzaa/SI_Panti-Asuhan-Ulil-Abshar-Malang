@@ -201,6 +201,28 @@
                 <!-- /.info-box-content -->
             </div>
             <br>
+            <div class="info-box mb-3 bg-secondary">
+                <span class="info-box-icon"><i class="fas fa-cart-arrow-down"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Pengeluaran Bulan
+                        {{\Carbon\Carbon::now()->translatedFormat("F")}}</span>
+                    <span class="info-box-number">Rp.
+                        {{number_format($data['total_pengeluaran_bulan'], 0, '.', '.')}} untuk {{$data['total_pengeluaran_bulan_cnt']}} pengeluaran</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <div class="info-box mb-3 bg-dark">
+                <span class="info-box-icon"><i class="fa fa-shopping-cart"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Pengeluaran Tahun {{date("Y")}}</span>
+                    <span class="info-box-number">Rp.
+                        {{number_format($data['total_pengeluaran_tahun'], 0, '.', '.')}} untuk {{$data['total_pengeluaran_tahun_cnt']}} pengeluaran</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <br>
             <div class="info-box mb-3 bg-danger">
                 <span class="info-box-icon"><i class="fas fa-book"></i></span>
 
@@ -320,6 +342,12 @@
 </script>
 <!-- keuangan -->
 <script>
+    var myHeaders = new Headers();
+        myHeaders.append('pragma', 'no-cache');
+        myHeaders.append('cache-control', 'no-cache');
+        var myInit = {
+            headers: myHeaders,
+        };
     document.addEventListener("DOMContentLoaded", function(event) {
         fetch("{{route('all_user_get_tahun_Pengeluaran')}}",myInit)
             .then(response => response.json())
