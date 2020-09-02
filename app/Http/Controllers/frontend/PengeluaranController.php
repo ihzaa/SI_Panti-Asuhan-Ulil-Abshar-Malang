@@ -16,19 +16,25 @@ class PengeluaranController extends Controller
 
     public function getAllYear()
     {
-        $pengeluaran = pengeluaran::pluck('id');
-        $pengeluaran1 = pengeluaran::selectRaw('year(created_at) year')
-            ->groupBy('year')
-            ->whereIn('id', $pengeluaran)
-            ->get();
+        // $pengeluaran = pengeluaran::pluck('id');
+        // $pengeluaran1 = pengeluaran::selectRaw('year(created_at) year')
+        //     ->groupBy('year')
+        //     ->whereIn('id', $pengeluaran)
+        //     ->get();
+        $pengeluaran1 = DB::select("SELECT z.year FROM (SELECT YEAR(d.created_at) AS year FROM donasi_masuks dm LEFT JOIN donasis d ON dm.donasi_id=d.id WHERE d.id IS NOT NULL UNION SELECT YEAR(created_at) FROM pengeluarans) AS z GROUP BY z.year");
+
         return $pengeluaran1;
     }
 
     public function getAllMonthByYear($year)
     {
-        $pengeluaran = pengeluaran::pluck('id');
-        $data = pengeluaran::selectRaw('month(created_at) month')
-            ->groupBy('month')->whereIn('id', $pengeluaran)->whereYear('created_at', '=', $year)->get();
+        // $pengeluaran = pengeluaran::pluck('id');
+        // $data = pengeluaran::selectRaw('month(created_at) month')
+        //     ->groupBy('month')->whereIn('id', $pengeluaran)->whereYear('created_at', '=', $year)->get();
+        $data = DB::select("SELECT z.month FROM (SELECT MONTH(d.created_at) AS month FROM donasi_masuks dm LEFT JOIN donasis d ON dm.donasi_id=d.id WHERE d.id IS NOT NULL AND YEAR(d.created_at) = ".$year." UNION SELECT MONTH(created_at) FROM pengeluarans WHERE YEAR(created_at) = ".$year.") AS z GROUP BY z.month");
+
+        // dd($data);
+
         return $data;
     }
 
