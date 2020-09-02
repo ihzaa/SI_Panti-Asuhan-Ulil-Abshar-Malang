@@ -231,9 +231,7 @@
             labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
             datasets: [{
                 label: 'Total donasi',
-                data: {
-                    !!json_encode($data['donasi']) !!
-                },
+                data: {!!json_encode($data['donasi']) !!},
                 borderWidth: 1,
                 fill: false,
                 borderColor: 'rgba(15, 255, 135, 1)'
