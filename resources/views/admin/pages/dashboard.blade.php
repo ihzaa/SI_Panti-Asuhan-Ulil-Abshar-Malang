@@ -89,7 +89,8 @@
                                 <option selected value="xx">Pilih bulan...</option>
                             </select>
                             <div class="input-group-append">
-                                <a class="btn btn-success disabled" href="#" id="btn_unduh_bulan" target="_blank">Unduh</a>
+                                <a class="btn btn-success disabled" href="#" id="btn_unduh_bulan"
+                                    target="_blank">Unduh</a>
                             </div>
                         </div>
                     </fieldset>
@@ -124,7 +125,8 @@
                                 <option selected value="xx">Pilih bulan...</option>
                             </select>
                             <div class="input-group-append">
-                                <a class="btn btn-success disabled" href="#" id="btn_unduh_bulan1" target="_blank">Unduh</a>
+                                <a class="btn btn-success disabled" href="#" id="btn_unduh_bulan1"
+                                    target="_blank">Unduh</a>
                             </div>
                         </div>
                     </fieldset>
@@ -249,7 +251,13 @@
     });
 
     $(document).ready(function() {
-        fetch("{{route('all_user_get_tahun_donasi')}}")
+        var myHeaders = new Headers();
+        myHeaders.append('pragma', 'no-cache');
+        myHeaders.append('cache-control', 'no-cache');
+        var myInit = {
+            headers: myHeaders,
+        };
+        fetch("{{route('all_user_get_tahun_donasi')}}",myInit)
             .then(response => response.json())
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
@@ -271,7 +279,7 @@
                 $('#bulan').append(`<option value="xx">Pilih bulan...</option>`);
                 let url = "{{route('all_user_get_bulan_donasi_per_tahun',['_year_'])}}"
                 url = url.replace('_year_', val);
-                fetch(url)
+                fetch(url,myInit)
                     .then(response => response.json())
                     .then(data => {
                         for (let i = 0; i < data.length; i++) {
@@ -313,7 +321,7 @@
 <!-- keuangan -->
 <script>
     document.addEventListener("DOMContentLoaded", function(event) {
-        fetch("{{route('all_user_get_tahun_Pengeluaran')}}")
+        fetch("{{route('all_user_get_tahun_Pengeluaran')}}",myInit)
             .then(response => response.json())
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
@@ -334,7 +342,7 @@
                 $('#bulan1').append(`<option value="xx">Pilih bulan...</option>`);
                 let url = "{{route('all_user_get_bulan_Pengeluaran_per_tahun',['_year_'])}}"
                 url = url.replace('_year_', val);
-                fetch(url)
+                fetch(url,myInit)
                     .then(response => response.json())
                     .then(data => {
                         for (let i = 0; i < data.length; i++) {
