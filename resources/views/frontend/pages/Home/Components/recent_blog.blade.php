@@ -3,7 +3,7 @@
     <div class="row justify-content-center pb-5">
       <div class="col-md-10 heading-section text-center ftco-animate">
         <h2 class="mb-4">Blog Saat Ini</h2>
-        
+
       </div>
     </div>
     <div class="row">
@@ -25,7 +25,7 @@
                 <div class="meta mb-2">
                   <div>
                     <a href="{{route('frontend_single_blog',['id'=>$d->id])}}">
-                      {{\Carbon\Carbon::parse($d->created_at)->formatLocalized("%A, %d %B %Y") }}
+                      {{\Carbon\Carbon::parse($d->created_at)->translatedFormat("l, d F Y") }}
                     </a>
                   </div>
                   <div>
@@ -53,7 +53,7 @@
                 <div class="meta">
                   <div>
                     <a href="{{route('frontend_single_blog',['id'=>$d->id])}}">
-                      {{\Carbon\Carbon::parse($d->created_at)->formatLocalized("%A, %d %B %Y") }}
+                      {{\Carbon\Carbon::parse($d->created_at)->translatedFormat("l, d F Y") }}
                     </a>
                   </div>
                   <div>
@@ -67,10 +67,10 @@
             </div>
           @endif
         @endforeach
-        
-        
+
+
       </div>
     </div>
-    
+
   </div>
 </section>
