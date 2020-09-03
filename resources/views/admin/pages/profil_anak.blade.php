@@ -38,26 +38,26 @@
           <table id="tabel_anak" class="table table-striped projects">
               <thead>
                   <tr>
-                      <th style="width: 1%">
+                      <th>
                           #
                       </th>
-                      <th style="width:15%">
+                      <th>
                           Nama
                       </th>
-                      <th style="width: 10%">
+                      <th>
                           Foto
                       </th>
-                      <th style="width:15%">
+                      <th>
                         Alamat
                       </th>
-                      <th style="width: 10%">
+                      <th>
                           Umur
                       </th>
-                      <th style="width: 9%" class="text-center">
+                      <th class="text-center">
                           Jenis Kelamin
                       </th>
-                      <th style="width: 20%" class="text-center">Sekolah / Kelas</th>
-                      <th style="width: 10%">Aksi</th>
+                      <th class="text-center">Sekolah / Kelas</th>
+                      <th>Aksi</th>
                   </tr>
               </thead>
               <tbody>
@@ -243,6 +243,7 @@ $(document).ready(function () {
   $('#tabel_anak').DataTable({
     processing: true,
     serverSide: true,
+    responsive: true,
     ajax: {
       url: "{{ route('admin_profil_anak') }}",
     },

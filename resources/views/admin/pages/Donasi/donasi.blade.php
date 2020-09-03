@@ -133,6 +133,7 @@ $(document).ready(function () {
 $('#tabel_donasi').DataTable({
   processing: true,
   serverSide: true,
+  responsive: true,
   ajax: {
     url: "{{ route('admin_pages_donasi_index') }}",
   },
@@ -172,6 +173,7 @@ $('#tabel_donasi').DataTable({
 $('#tabel_donasi_masuk').DataTable({
   processing: true,
   serverSide: true,
+  responsive: true,
   ajax: {
     url: "{{ route('admin_pages_donasi_masuk') }}",
   },
