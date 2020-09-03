@@ -37,7 +37,7 @@ class DonationController extends Controller
           return $btn;
         })
         ->addColumn('created_at', function ($row) {
-          return \Carbon\Carbon::parse($row->created_at)->toDayDateTimeString();
+          return \Carbon\Carbon::parse($row->created_at)->translatedFormat("l, d F Y h:i a");
         })
         ->addColumn('total_donasi', function ($row) {
           $hasil_rupiah = "Rp " . number_format($row->total_donasi, 2, ',', '.');
@@ -69,7 +69,7 @@ class DonationController extends Controller
           return $btn;
         })
         ->addColumn('created_at', function ($row) {
-          return \Carbon\Carbon::parse($row->created_at)->toDayDateTimeString();
+          return \Carbon\Carbon::parse($row->created_at)->translatedFormat("l, d F Y h:i a");
         })
         ->addColumn('total_donasi', function ($row) {
           $hasil_rupiah = "Rp " . number_format($row->total_donasi, 2, ',', '.');
