@@ -141,6 +141,7 @@
                         </ol>
                     </div>
                 </div>
+                @yield('tombol_tambah_donasi')
             </div><!-- /.container-fluid -->
         </section>
         <!-- Content Header (Page header) -->

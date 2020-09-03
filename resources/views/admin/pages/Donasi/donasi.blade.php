@@ -24,6 +24,17 @@
 <li class="breadcrumb-item active">Donasi</li>
 @endsection
 
+@section('tombol_tambah_donasi')
+<div class="row">
+  <div class="col-sm-12">
+      <button type="button" class="btn btn-add btn-primary btn-sm ml-auto" data-toggle="modal" data-target="#modal-default" style="font-size: 16px;
+      padding: 6px 30px;">
+        Tambah Donasi
+      </button>
+  </div>
+</div>
+@endsection
+
 @section('konten')
 <div class="container-fluid">
   <div class="row">
