@@ -170,6 +170,11 @@
             formData.append('data', $('#tambah_kategori').val());
             axios.post("{{route('admin_tambah_blog_kategori')}}", {
                 data: $('#tambah_kategori').val(),
+                headers : {
+                    'Cache-Control': 'no-cache',
+                    'Pragma': 'no-cache',
+                    'Expires': '0',
+                }
             })
             .then(function (response) {
                 if(response.data.status){

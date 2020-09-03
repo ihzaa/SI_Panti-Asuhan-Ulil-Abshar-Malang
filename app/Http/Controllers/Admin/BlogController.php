@@ -82,7 +82,7 @@ class BlogController extends Controller
                 'path' => $path,
                 'blog_id' => $blog->id
             ]);
-            file_put_contents(public_path() . $path, $data);
+            File::put('assets/images/blog/' . $image_name, $data);
             $img->removeattribute('src');
             $img->setattribute('src', $path);
         }
@@ -165,7 +165,7 @@ class BlogController extends Controller
                     'path' => $path,
                     'blog_id' => $blog->id
                 ]);
-                file_put_contents(public_path() . $path, $data);
+                File::put('assets/images/blog/' . $image_name, $data);
                 $img->removeattribute('src');
                 $img->setattribute('src', $path);
             }

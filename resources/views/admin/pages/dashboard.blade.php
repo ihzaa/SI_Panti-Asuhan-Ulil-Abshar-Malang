@@ -1,7 +1,9 @@
 @extends('admin.template.all')
 
 @section('judul_halaman',"Dashboard")
-
+@section('CssTambahanAfter')
+<link rel="stylesheet" href="{{asset('css/loading.min.css')}}">
+@endsection
 @section('breadcrumb')
 <li class="breadcrumb-item active">Dashboard</li>
 @endsection
@@ -11,54 +13,62 @@
     <div class="row d-flex justify-content-center">
         <div class="col-lg-3 col-6">
             <!-- small card -->
-            <div class="small-box bg-success">
-                <div class="inner">
-                    <h3>{{$data['pengurus']}}</h3>
+            <a href="{{route('admin_manager')}}">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>{{$data['pengurus']}}</h3>
 
-                    <p>Pengurus</p>
+                        <p>Pengurus</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-user"></i>
+                    </div>
                 </div>
-                <div class="icon">
-                    <i class="fas fa-user"></i>
-                </div>
-            </div>
+            </a>
         </div>
         <div class="col-lg-3 col-6">
             <!-- small card -->
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h3>{{$data['anak']}}</h3>
+            <a href="{{route('admin_profil_anak')}}">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>{{$data['anak']}}</h3>
 
-                    <p>Anak Asuh</p>
+                        <p>Anak Asuh</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-child"></i>
+                    </div>
                 </div>
-                <div class="icon">
-                    <i class="fas fa-child"></i>
-                </div>
-            </div>
+            </a>
         </div>
         <div class="col-lg-3 col-6">
             <!-- small card -->
-            <div class="small-box bg-primary">
-                <div class="inner">
-                    <h3>{{$data['produk']}}</h3>
+            <a href="{{route('admin_produk')}}">
+                <div class="small-box bg-primary">
+                    <div class="inner">
+                        <h3>{{$data['produk']}}</h3>
 
-                    <p>Produk</p>
+                        <p>Produk</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
                 </div>
-                <div class="icon">
-                    <i class="fas fa-box-open"></i>
-                </div>
-            </div>
+            </a>
         </div>
         <div class="col-lg-3 col-6">
             <!-- small card -->
-            <div class="small-box bg-secondary">
-                <div class="inner">
-                    <h3>{{$data['blog']}}</h3>
-                    <p>Blog</p>
+            <a href="{{route('admin_pages_blog_index')}}">
+                <div class="small-box bg-secondary">
+                    <div class="inner">
+                        <h3>{{$data['blog']}}</h3>
+                        <p>Blog</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-blog"></i>
+                    </div>
                 </div>
-                <div class="icon">
-                    <i class="fas fa-blog"></i>
-                </div>
-            </div>
+            </a>
         </div>
     </div>
     <div class="row">
@@ -180,65 +190,77 @@
             <!-- /.card -->
         </div>
         <div class="col-md-4">
-            <!-- Info Boxes Style 2 -->
-            <div class="info-box mb-3 bg-primary">
-                <span class="info-box-icon"><i class="fas fa-hand-holding-heart"></i></span>
+            <a href="{{route('admin_pages_donasi_index')}}">
+                <div class="info-box mb-3 bg-danger ld ld-breath">
+                    <span class="info-box-icon"><i class="fas fa-check-circle"></i></span>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">Donasi Masuk</span>
-                    <span class="info-box-number">{{$data['donasi_masuk']}}</span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Donasi yang Belum Dikonfirmasi</span>
+                        <span class="info-box-number">{{$data['donasi_belum']}}</span>
+                    </div>
+                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            <div class="info-box mb-3 bg-success">
-                <span class="info-box-icon"><i class="fas fa-check-circle"></i></span>
+            </a>
+            <a href="{{route('admin_pages_donasi_index')}}">
+                <div class="info-box mb-3 bg-primary">
+                    <span class="info-box-icon"><i class="fas fa-hand-holding-heart"></i></span>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">Donasi yang Belum Dikonfirmasi</span>
-                    <span class="info-box-number">{{$data['donasi_belum']}}</span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Donasi Masuk</span>
+                        <span class="info-box-number">{{$data['donasi_masuk']}}</span>
+                    </div>
+                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box-content -->
-            </div>
+            </a>
             <br>
-            <div class="info-box mb-3 bg-secondary">
-                <span class="info-box-icon"><i class="fas fa-cart-arrow-down"></i></span>
+            <a href="{{route('admin_pengeluaran')}}">
+                <div class="info-box mb-3 bg-secondary">
+                    <span class="info-box-icon"><i class="fas fa-cart-arrow-down"></i></span>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">Total Pengeluaran Bulan
-                        {{\Carbon\Carbon::now()->translatedFormat("F")}}</span>
-                    <span class="info-box-number">Rp.
-                        {{number_format($data['total_pengeluaran_bulan'], 0, '.', '.')}} untuk {{$data['total_pengeluaran_bulan_cnt']}} pengeluaran</span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total Pengeluaran Bulan
+                            {{\Carbon\Carbon::now()->translatedFormat("F")}}</span>
+                        <span class="info-box-number">Rp.
+                            {{number_format($data['total_pengeluaran_bulan'], 0, '.', '.')}} untuk
+                            {{$data['total_pengeluaran_bulan_cnt']}} pengeluaran</span>
+                    </div>
+                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box-content -->
-            </div>
-            <div class="info-box mb-3 bg-dark">
-                <span class="info-box-icon"><i class="fa fa-shopping-cart"></i></span>
+            </a>
+            <a href="{{route('admin_pengeluaran')}}">
+                <div class="info-box mb-3 bg-dark">
+                    <span class="info-box-icon"><i class="fa fa-shopping-cart"></i></span>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">Total Pengeluaran Tahun {{date("Y")}}</span>
-                    <span class="info-box-number">Rp.
-                        {{number_format($data['total_pengeluaran_tahun'], 0, '.', '.')}} untuk {{$data['total_pengeluaran_tahun_cnt']}} pengeluaran</span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total Pengeluaran Tahun {{date("Y")}}</span>
+                        <span class="info-box-number">Rp.
+                            {{number_format($data['total_pengeluaran_tahun'], 0, '.', '.')}} untuk
+                            {{$data['total_pengeluaran_tahun_cnt']}} pengeluaran</span>
+                    </div>
+                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box-content -->
-            </div>
+            </a>
             <br>
-            <div class="info-box mb-3 bg-danger">
-                <span class="info-box-icon"><i class="fas fa-book"></i></span>
+            <a href="{{route('admin_setting')}}">
+                <div class="info-box mb-3 bg-success">
+                    <span class="info-box-icon"><i class="fas fa-book"></i></span>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">Rekening</span>
-                    <span class="info-box-number">{{$data['rekening']}}</span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Rekening</span>
+                        <span class="info-box-number">{{$data['rekening']}}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="info-box mb-3 bg-info">
-                <span class="info-box-icon"><i class="fas fa-tools"></i></span>
+            </a>
+            <a href="{{route('admin_fasilitas')}}">
+                <div class="info-box mb-3 bg-info">
+                    <span class="info-box-icon"><i class="fas fa-tools"></i></span>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">Fasilitas</span>
-                    <span class="info-box-number">{{$data['fasil']}}</span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Fasilitas</span>
+                        <span class="info-box-number">{{$data['fasil']}}</span>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </div>
