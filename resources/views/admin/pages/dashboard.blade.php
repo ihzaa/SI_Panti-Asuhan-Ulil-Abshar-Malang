@@ -12,31 +12,28 @@
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">
         <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <a href="{{route('admin_manager')}}">
-                <div class="small-box bg-success">
+            <a href="{{route('admin_pages_donasi_index')}}">
+                <div class="small-box bg-danger ld ld-breath">
                     <div class="inner">
-                        <h3>{{$data['pengurus']}}</h3>
-
-                        <p>Pengurus</p>
+                        <h3>{{$data['donasi_belum']}}</h3>
+                        <p>Donasi yang Belum Dikonfirmasi</p>
                     </div>
                     <div class="icon">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-check-circle"></i>
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <a href="{{route('admin_profil_anak')}}">
+            <a href="{{route('admin_pages_donasi_index')}}">
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>{{$data['anak']}}</h3>
+                        <h3>{{$data['donasi_masuk']}}</h3>
 
-                        <p>Anak Asuh</p>
+                        <p>Donasi Masuk</p>
                     </div>
                     <div class="icon">
-                        <i class="fas fa-child"></i>
+                        <i class="fas fa-hand-holding-heart"></i>
                     </div>
                 </div>
             </a>
@@ -190,26 +187,24 @@
             <!-- /.card -->
         </div>
         <div class="col-md-4">
-            <a href="{{route('admin_pages_donasi_index')}}">
-                <div class="info-box mb-3 bg-danger ld ld-breath">
-                    <span class="info-box-icon"><i class="fas fa-check-circle"></i></span>
+            <a href="{{route('admin_manager')}}">
+                <div class="info-box mb-3 bg-success">
+                    <span class="info-box-icon"><i class="fas fa-user"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Donasi yang Belum Dikonfirmasi</span>
-                        <span class="info-box-number">{{$data['donasi_belum']}}</span>
+                        <span class="info-box-text">Pengurus</span>
+                        <span class="info-box-number">{{$data['pengurus']}}</span>
                     </div>
-                    <!-- /.info-box-content -->
                 </div>
             </a>
-            <a href="{{route('admin_pages_donasi_index')}}">
+            <a href="{{route('admin_profil_anak')}}">
                 <div class="info-box mb-3 bg-primary">
-                    <span class="info-box-icon"><i class="fas fa-hand-holding-heart"></i></span>
+                    <span class="info-box-icon"><i class="fas fa-child"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Donasi Masuk</span>
-                        <span class="info-box-number">{{$data['donasi_masuk']}}</span>
+                        <span class="info-box-text">Anak Asuh</span>
+                        <span class="info-box-number">{{$data['anak']}}</span>
                     </div>
-                    <!-- /.info-box-content -->
                 </div>
             </a>
             <br>
