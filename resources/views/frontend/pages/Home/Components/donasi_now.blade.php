@@ -61,7 +61,11 @@
                   border-radius: 10px;
                   background: #81e2c7;
                   color: #636363;">
-                        <p style="font-weight: bold;">{{$item->nama_donatur}}</p>
+                        @if ($item->nama_alias)
+                          <p style="font-weight: bold;">{{$item->nama_alias}}</p>
+                        @else
+                          <p style="font-weight: bold;">{{$item->nama_donatur}}</p>
+                        @endif
                         <p>Rp. {{number_format($item->total_donasi)}}</p>
                         <p>{{date('d F Y', strtotime($item->created_at))}}</p>
                     </div>
